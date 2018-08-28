@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/crm</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+    
+    
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+    
+    
+        <mapping class="br.com.kadesh.model.Agendamento"/>
+        <mapping class="br.com.kadesh.model.Cliente"/>
+        <mapping class="br.com.kadesh.model.CondicaoPagamento"/>
+        <mapping class="br.com.kadesh.model.Contato"/>
+        <mapping class="br.com.kadesh.model.Endereco"/>
+        <mapping class="br.com.kadesh.model.Estado"/>
+        <mapping class="br.com.kadesh.model.Familia"/>
+        <mapping class="br.com.kadesh.model.Grupo"/>
+        <mapping class="br.com.kadesh.model.ItemPedido"/>
+        <mapping class="br.com.kadesh.model.Linha"/>
+        <mapping class="br.com.kadesh.model.Pedido"/>
+        <mapping class="br.com.kadesh.model.Produto"/>
+        <mapping class="br.com.kadesh.model.ProdutoGrade"/>
+        <mapping class="br.com.kadesh.model.Regiao"/>
+        <mapping class="br.com.kadesh.model.Relacionamento"/>
+        <mapping class="br.com.kadesh.model.TipoPedido"/>
+        <mapping class="br.com.kadesh.model.TipoRelacionamento"/>
+        <mapping class="br.com.kadesh.model.Transportadora"/>
+        <mapping class="br.com.kadesh.model.Opcional"/>
+        <mapping class="br.com.kadesh.model.GradeVenda"/>
+        <mapping class="br.com.kadesh.model.TipoVendedor"/>
+        <mapping class="br.com.kadesh.model.Setor"/>
+        <mapping class="br.com.kadesh.model.Usuario"/>
+        <mapping class="br.com.kadesh.model.Supervisor"/>
+        <mapping class="br.com.kadesh.model.Vendedor"/>
+        
+        
+
+    
+    
+    </session-factory>
+</hibernate-configuration>

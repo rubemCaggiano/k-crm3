@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/Template/template.xhtml">
+        <ui:define name="content">
+
+            <b:panel>
+                <h3>Adicionar Pedido</h3>
+            </b:panel>
+            <b:jumbotron> 
+
+                <h:panelGroup>
+                    <b:formGroup>
+                        <b:form>
+                            <b:container fluid="true" >
+
+
+                                <b:row>
+                                    <b:selectOneMenu id="tipoPedido"
+                                                     value="#{pedidoMB.tipoPedido}" 
+                                                     required="true"
+                                                     label="Tipo"
+                                                     span="2"
+                                                     select2="true"
+                                                     converter="omnifaces.SelectItemsConverter"
+                                                     >
+                                        <f:selectItem itemLabel="Tipo de Pedido" />
+                                        <f:selectItems value="#{pedidoMB.tipoPedidos}"
+                                                       var="tipo" 
+                                                       itemLabel="#{tipo.nome}"
+                                                       itemValue="#{tipo}"
+                                                       />
+                                    </b:selectOneMenu>
+
+                                    <b:selectOneMenu id="cliente"
+                                                     value="#{pedidoMB.cliente}" 
+                                                     required="true"
+                                                     label="Cliente"
+                                                     span="10"
+                                                     select2="true"
+                                                     converter="omnifaces.SelectItemsConverter" 
+                                                     >
+                                        <f:selectItem itemLabel="Selecione um cliente" />
+                                        <f:selectItems value="#{pedidoMB.clientes}"
+                                                       var="cliente" 
+                                                       itemLabel="#{cliente.razaoSocial}"
+                                                       itemValue="#{cliente}"
+                                                       />
+                                        <f:ajax event="change" render="divEnd"/>
+                                        <f:ajax event="change" render="divEnd"/>
+                                    </b:selectOneMenu>
+
+                                </b:row>
+                                <b:row>
+                                    <b:selectOneMenu id="condpag"
+                                                     value="#{pedidoMB.condicaoPagamento}" 
+                                                     required="true"
+                                                     label="Condição de Pagamento"
+                                                     span="2"
+                                                     converter="omnifaces.SelectItemsConverter" 
+                                                     >
+                                        <f:selectItem itemLabel="Condição de pagamento" />
+                                        <f:selectItems value="#{pedidoMB.condicoes}"
+                                                       var="condicao" 
+                                                       itemLabel="#{condicao.condicao}"
+                                                       itemValue="#{condicao}"
+                                                       />
+                                    </b:selectOneMenu>
+
+                                    <b:selectOneMenu id="transportadora"
+                                                     value="#{pedidoMB.transportadora}" 
+                                                     required="true"
+                                                     label="Transportadora"
+                                                     span="4"
+                                                     converter="omnifaces.SelectItemsConverter"
+                                                     >
+                                        <f:selectItem itemLabel="Selecione uma Transportadora" />
+                                        <f:selectItems value="#{pedidoMB.transportadoras}"
+                                                       var="transportadora" 
+                                                       itemLabel="#{transportadora.nomeFantasia}"
+                                                       itemValue="#{transportadora}"
+                                                       />
+                                    </b:selectOneMenu>
+
+
+
+                                    <b:inputText span="2" id="ordemCompra" value="#{pedidoMB.pedido.numeroOrdemCompra}" label="Numero da Ordem de Compra" size="30" required="false" />
+
+                                    <b:inputText span="4" id="obs" value="#{pedidoMB.pedido.observacoes}" label="Observações" size="100" required="false" />
+
+                                </b:row>
+                                <b:row>
+                                    <b:message for="tipoPedido"/>
+                                    <b:message for="cliente"/>
+                                    <b:message for="condpag"/>
+                                    <b:message for="transportadora"/>
+                                    <b:message for="ordemCompra"/>
+                                    <b:message for="obs"/>
+
+                                </b:row>
+
+
+
+
+                                <b:panel id="divEnd" title="Endereço de Entrega" collapsible="false">
+                                    <b:row>
+                                        <b:selectOneMenu id="estado"
+                                                         value="#{pedidoMB.estado}" 
+                                                         required="true"
+                                                         label="Estado"
+                                                         span="2"
+                                                         select2="true"
+                                                         >
+                                            <f:converter converterId="estadoConverter"/>
+                                            <f:selectItem itemLabel="Estado" />
+                                            <f:selectItems value="#{pedidoMB.estados}"
+                                                           var="estado" 
+                                                           itemLabel="#{estado}"
+                                                           itemValue="#{estado}"
+                                                           />
+                                        </b:selectOneMenu>
+
+                                        <b:inputText id="cidade" span="2" value="#{pedidoMB.endereco.cidade}" label="Cidade" size="30" required="true" />
+                                        <b:inputText id="logradouro" span="2" value="#{pedidoMB.endereco.logradouro}" label="Logradouro" size="30" required="true" />
+                                        <b:inputText id="bairro" span="2" value="#{pedidoMB.endereco.bairro}" label="Bairro" size="30" required="true" />
+                                        <b:inputText id="cep" span="2" value="#{pedidoMB.endereco.cep}" label="CEP" size="30" mask="99999-999" required="true" />
+                                        <b:inputText id="complemento" span="2" value="#{pedidoMB.endereco.complemento}" label="Complemento" size="30" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:message for="estado" />
+                                        <b:message for="cidade" />
+                                        <b:message for="logradouro" />
+                                        <b:message for="bairro" />
+                                        <b:message for="cep" />
+                                        <b:message for="complemento" />
+                                    </b:row>
+                                </b:panel>
+
+
+
+
+                                <b:panel id="itensVenda" title="Itens da Vendas" collapsible="false">
+
+
+                                    <!--                            <b:button onclick="$('.responsiveModalPseudoClass').modal('show')" value="Adicionar Item"/>
+                                                                <b:modal title="Item" styleClass="responsiveModalPseudoClass"
+                                                                         closable="true"
+                                                                         closeOnEscape="false">-->
+
+                                    <b:row style=" ">
+                                        <b:selectOneMenu id="produto"
+                                                         value="#{pedidoMB.produto}" 
+                                                         required="false"
+                                                         label="Referencia"
+                                                         span="2"
+                                                         select2="true"
+                                                         >
+                                            <f:converter converterId="produtoConverter"/>
+                                            <f:selectItem itemLabel="Produto" />
+                                            <f:selectItems value="#{pedidoMB.produtos}"
+                                                           var="produto" 
+                                                           itemLabel="#{produto.referencia}"
+                                                           itemValue="#{produto}"
+                                                           />
+                                            <f:ajax event="change" render="nomeProduto"/>
+                                            <f:ajax event="change" render="precoSugerido"/>
+                                            <f:ajax event="change" render="precoMinimo"/>
+                                            <f:ajax event="change" render="numeracao"/>
+                                        </b:selectOneMenu>
+
+                                        <b:inputText id="nomeProduto" readonly="true" value="#{pedidoMB.produto.descricao}" label="Produto" size="30" span="4" />
+
+                                        <b:selectOneMenu id="opcionais"
+                                                         value="#{pedidoMB.opcional}" 
+                                                         label="Opcional"
+                                                         span="2"
+                                                         select2="true"
+                                                         >
+                                            <f:selectItem itemLabel="Opcional" />
+                                            <f:selectItems value="#{pedidoMB.opcionaisDisponiveis}"
+                                                           var="opcional" 
+                                                           itemLabel="#{opcional.descricao}"
+                                                           itemValue="#{opcional}"
+                                                           />
+                                        </b:selectOneMenu>
+                                        <b:dataTable 
+                                            id="opcionaisTab"
+                                            columnVisibility="false"
+                                            value="#{pedidoMB.opcionaisDisponiveis}"
+                                            var="opcional"
+                                            select="true"
+                                            selectionMode="single"
+                                            searching ="false"
+                                            paginated="false"
+                                            info="false"
+                                            span="4"
+                                            >
+
+                                            <b:dataTableColumn value="#{opcional.descricao}" label="Opcional" />
+                                            <b:dataTableColumn value="#{opcional.preco}" label="Valor" />
+
+                                            <b:dataTableColumn label="Opções">
+                                                <b:commandButton type="button" look="danger" action="#{pedidoMB.removerItemGrade(gradeVenda)}" value="Remover" icon="trash" ajax="true" update="gradeNumeros" auto-update="true"/>
+                                            </b:dataTableColumn>
+                                        </b:dataTable>
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText id="precoSugerido" readonly="true" value="#{pedidoMB.produto.precoSugerido}"  label="Preço Sugerido" mask="R$ 9{1,9}.99" size="2" span="2" />
+                                        <b:inputText id="precoMinimo" readonly="true" value="#{pedidoMB.produto.precoMinimo}"  label="Preço Minimo" mask="R$ 9{1,9}.99" size="2" span="2" />
+
+                                        <b:inputText id="preco"  value="#{pedidoMB.itemPedido.preco}" label="Preço" size="2" span="2">
+                                            <f:validateDoubleRange minimum="#{pedidoMB.produto.precoMinimo}" />
+
+                                        </b:inputText>
+                                        <b:fetchBeanInfos />
+
+                                        <b:inputText id="frete"  value="#{pedidoMB.itemPedido.frete}" label="Valor Frete" size="2" span="2" />
+
+                                        <b:inputText readonly="true" id="mcValor"  value="#{pedidoMB.itemPedido.mc}" label="M.C" size="2" span="1" />
+                                        <b:inputText readonly="true" id="mcPorcentagem"  value="" label="M.C %" size="2" span="1" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:message for="produto" />
+                                        <b:message for="preco" />
+                                        <b:message for="frete" />
+                                    </b:row>
+
+                                    <h4>Grade de Numeração</h4>
+                                    <b:row>
+                                        <b:selectOneMenu id="numeracao"
+                                                         value="#{pedidoMB.produtoGrade}" 
+                                                         required="true"
+                                                         label="Numeração"
+                                                         span="2"
+                                                         >
+                                            <f:selectItem itemLabel="Numero" />
+                                            <f:selectItems value="#{pedidoMB.produtosGrade}"
+                                                           var="produtoGrade" 
+                                                           itemLabel="#{produtoGrade.numeracao}"
+                                                           itemValue="#{produtoGrade}"
+                                                           />
+                                        </b:selectOneMenu>
+
+                                        <b:inputText id="quantidade"  value="#{pedidoMB.gradeVenda.quantidade}" label="Quantidade" mask="numeric" size="2" span="1" />
+
+                                        <b:commandButton type="button" look="primary" value="Adicionar"  action="#{pedidoMB.adicionarGrade()}" icon-awesome="plus-square" ajax="true" update="gradeNumeros"  />
+                                    </b:row>
+                                    <b:row>
+                                        <b:message for="numeracao" />
+                                        <b:message for="quantidade" />
+                                    </b:row>
+                                    <b:dataTable 
+                                        id="gradeNumeros"
+                                        columnVisibility="false"
+                                        value="#{pedidoMB.gradeVendas}"
+                                        var="gradeVenda"
+                                        select="true"
+                                        selectionMode="single"
+                                        searching ="false"
+                                        paginated="false"
+                                        info="false"
+                                        customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                        >
+
+                                        <b:dataTableColumn value="#{gradeVenda.produto.referencia}" label="Referencia" />
+                                        <b:dataTableColumn value="#{gradeVenda.produto.descricao}" label="Descrição" />
+                                        <b:dataTableColumn value="#{gradeVenda.grade.numeracao}" label="Numero" />
+                                        <b:dataTableColumn value="#{gradeVenda.quantidade}" label="Quantidade" />
+                                        <b:dataTableColumn label="Opções">
+                                            <b:commandButton type="button" look="danger" action="#{pedidoMB.removerItemGrade(gradeVenda)}" immediate="true" value="Remover" icon="trash" ajax="true" update="gradeNumeros" auto-update="true"/>
+                                        </b:dataTableColumn>
+
+
+                                    </b:dataTable>
+
+                                    <b:commandButton type="button" look="primary" value="Confirmar Grade" action="#{pedidoMB.adicionarItem()}" icon-awesome="check" ajax="true" update="dtVenda, itensVenda"  />
+
+
+                                </b:panel>
+
+
+
+                                <!--                            </b:modal>-->
+                                <b:panel id="dtVenda" title="Detalhes da Venda" collapsible="false">
+                                    <b:inputText readonly="true" id="valorTotal"  value="#{pedidoMB.pedido.valorTotal}" label="Valor Total" mask="R$ 9{1,9}.00[00]" size="2" span="2" style="bottom: -20px" />
+                                    <b:inputText readonly="true" id="quantidadePares"  value="#{pedidoMB.pedido.quantidade}" label="Total de Pares"  size="2" span="2" />
+
+                                    <b:dataTable
+                                        id="gradeProdutos"
+                                        columnVisibility="false"
+                                        value="#{pedidoMB.itens}"
+                                        var="itemPedido"
+                                        select="true"
+                                        selectionMode="single"
+                                        searching ="false"
+                                        paginated="false"
+                                        info="false"
+                                        customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                        >
+
+                                        <b:dataTableColumn value="#{itemPedido.produto.descricao}" label="Item" />
+
+                                        <b:dataTableColumn value="#{itemPedido.preco}" label="Preço" />
+                                        <b:dataTableColumn value="#{itemPedido.quantidade}" label="Quantidade" />
+                                        <b:dataTableColumn value="#{itemPedido.valorItens}" label="Valor Itens" />
+                                        <b:dataTableColumn label="Opções">
+                                            <b:commandButton look="primary" action="#{pedidoMB.editarItem(itemPedido)}" immediate="true" value="Editar" icon="edit"/>
+                                            <b:commandButton look="danger" action="#{pedidoMB.removerItem()}" value="Remover" icon="trash"/>
+                                        </b:dataTableColumn>
+                                    </b:dataTable>
+
+                                </b:panel>
+
+
+                                <b:commandButton look="primary" value="Salvar" action="#{pedidoMB.salvar()}" icon-awesome="save" />
+                            </b:container>
+                        </b:form>
+                    </b:formGroup>
+                </h:panelGroup>
+            </b:jumbotron>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

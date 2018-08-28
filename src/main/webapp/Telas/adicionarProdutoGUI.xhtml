@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/Template/template.xhtml">
+        <ui:define name="content">
+            <b:jumbotron>
+                <b:formGroup>
+
+                    <b:form>
+
+                        <b:row>
+                            <b:inputText span="4" id="descricao" value="#{produtoMB.produto.descricao}" label="Descrição" size="200" required="true" />
+                            <b:inputText span="3" id="referencia" value="#{produtoMB.produto.referencia}" label="Referência" size="30" required="true" />
+                        </b:row>
+                        <b:row>
+                            <b:inputText span="3" id="numeroca" value="#{produtoMB.produto.numeroCa}" label="Numero do C.A " size="30" required="false" />
+                            <b:inputText span="3" id="custo" value="#{produtoMB.produto.custo}" label="Custo de Produção " size="10" required="true" />
+                            <b:inputText span="3" id="mcminima" value="#{produtoMB.produto.mcMinima}" label="Margem Minima" size="10" required="false" mask="numeric" />
+                        </b:row>
+                        <b:row>
+                            <b:selectOneMenu id="familia"
+                                             value="#{produtoMB.familia}" 
+                                             required="true"
+                                             label="Familia"
+                                             span="3"
+                                             select2="true"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             >
+                                <f:converter converterId="familiaConverter"/>
+                                <f:selectItem itemLabel="Selecione uma Familia" />
+                                <f:selectItems value="#{produtoMB.familias}"
+                                               var="familia" 
+                                               itemLabel="#{familia.nome}"
+                                               itemValue="#{familia}"
+                                               />
+                            </b:selectOneMenu>
+
+                            <b:selectOneMenu id="linha"
+                                             value="#{produtoMB.linha}" 
+                                             required="true"
+                                             label="Linha"
+                                             span="3"
+                                             select2="true"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             >
+                                <f:selectItem itemLabel="Selecione uma Linha" />
+                                <f:selectItems value="#{produtoMB.linhas}"
+                                               var="linha" 
+                                               itemLabel="#{linha.nome}"
+                                               itemValue="#{linha}"
+                                               />
+                            </b:selectOneMenu>
+
+                            <b:selectOneMenu id="grupo"
+                                             value="#{produtoMB.grupo}" 
+                                             required="true"
+                                             label="Grupo"
+                                             span="3"
+                                             select2="true"
+                                             converter="omnifaces.SelectItemsConverter"
+                                             >
+                                <f:selectItem itemLabel="Selecione um Grupo" />
+                                <f:selectItems value="#{produtoMB.grupos}"
+                                               var="grupo" 
+                                               itemLabel="#{grupo.nome}"
+                                               itemValue="#{grupo}"
+                                               />
+                            </b:selectOneMenu>
+                        </b:row>
+
+                        <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvar()}"  icon-awesome="save" />
+
+                    </b:form>
+
+                </b:formGroup>
+
+            </b:jumbotron>
+        </ui:define>
+
+    </ui:composition>
+
+
+</html>
