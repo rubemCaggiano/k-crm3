@@ -18,7 +18,8 @@
                                  styleClass="modalPseudoClass2"
                                  closable="false"  
                                  close-on-escape="false" 
-                                 backdrop="false">
+                                 backdrop="false"
+                                 closeOnEscape="false">
                             <b:form>
                                 <b:row>
                                     <b:inputText span="12" id="descricao" value="#{produtoMB.produto.descricao}" label="Descrição" size="200" required="true" />
@@ -126,9 +127,9 @@
                                 <b:dataTableColumn value="#{produto.linha.nome}" label="Linha" />
 
                                 <b:dataTableColumn label="Ações">
-                                    <b:commandButton look="info" action="#{produtoMB.detalharProduto(produto)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
-                                    <b:commandButton look="warning" action="#{produtoMB.alterarProduto(produto)}" value="Alterar" immediate="true" icon="edit" />
-                                    <b:commandButton look="danger" action="#{produtoMB.excluirProduto(produto)}" value="Excluir" immediate="true" icon="trash" />
+                                    <b:commandButton type="button" look="info" onclick="$('.modalPseudoClass2').modal()" action="#{produtoMB.detalharProduto(produto)}" value="Ver" icon-awesome="search-plus"/>
+                                    <b:commandButton type="button" look="warning" action="#{produtoMB.alterarProduto(produto)}" value="Alterar"  icon="edit" />
+                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirProduto(produto)}" value="Excluir"  icon="trash" />
                                 </b:dataTableColumn>
 
 
@@ -178,9 +179,9 @@
                                 <b:dataTableColumn value="#{familia.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ações">
-                                    <b:commandButton look="info" action="#{produtoMB.detalharFamilia(familia)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
-                                    <b:commandButton look="warning" action="#{produtoMB.alterarFamilia(familia)}" value="Alterar" immediate="true" icon="edit" />
-                                    <b:commandButton look="danger" action="#{produtoMB.excluirFamilia(familia)}" value="Excluir" immediate="true" icon="trash" />
+                                    <b:commandButton type="button" look="info" action="#{produtoMB.detalharFamilia(familia)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
+                                    <b:commandButton type="button" look="warning" action="#{produtoMB.alterarFamilia(familia)}" value="Alterar" immediate="true" icon="edit" />
+                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirFamilia(familia)}" value="Excluir" immediate="true" icon="trash" />
                                 </b:dataTableColumn>
 
 
@@ -230,9 +231,9 @@
                                 <b:dataTableColumn value="#{linha.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton look="info" action="#{produtoMB.detalharLinha(linha)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
-                                    <b:commandButton look="warning" action="#{produtoMB.alterarLinha(linha)}" value="Alterar" immediate="true" icon="edit" />
-                                    <b:commandButton look="danger" action="#{produtoMB.excluirLinha(linha)}" value="Excluir" immediate="true" icon="trash" />
+                                    <b:commandButton type="button" look="info" action="#{produtoMB.detalharLinha(linha)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
+                                    <b:commandButton type="button" look="warning" action="#{produtoMB.alterarLinha(linha)}" value="Alterar" immediate="true" icon="edit" />
+                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirLinha(linha)}" value="Excluir" immediate="true" icon="trash" />
                                 </b:dataTableColumn>
 
 
@@ -283,9 +284,9 @@
                                 <b:dataTableColumn value="#{grupo.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton look="info" action="#{produtoMB.detalharGrupo(grupo)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
-                                    <b:commandButton look="warning" action="#{produtoMB.alterarGrupo(grupo)}" value="Alterar" immediate="true" icon="edit" />
-                                    <b:commandButton look="danger" action="#{produtoMB.excluirGrupo(grupo)}" value="Excluir" immediate="true" icon="trash" />
+                                    <b:commandButton type="button" look="info" action="#{produtoMB.detalharGrupo(grupo)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
+                                    <b:commandButton type="button" look="warning" action="#{produtoMB.alterarGrupo(grupo)}" value="Alterar" immediate="true" icon="edit" />
+                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirGrupo(grupo)}" value="Excluir" immediate="true" icon="trash" />
                                 </b:dataTableColumn>
 
 
