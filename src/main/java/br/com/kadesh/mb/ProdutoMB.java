@@ -36,15 +36,14 @@ public class ProdutoMB implements Serializable {
     private Grupo grupo;
 
     public ProdutoMB() {
-        
+
         produto = new Produto();
         familia = new Familia();
         linha = new Linha();
         grupo = new Grupo();
     }
-    
+
     public void salvar() {
-        System.out.println("Salvo1");
         produto.setFamilia(familia);
         produto.setLinha(linha);
         produto.setGrupo(grupo);
@@ -52,7 +51,6 @@ public class ProdutoMB implements Serializable {
         produtoDao.create(produto);
 
         produto = new Produto();
-        System.out.println("Salvo2");
     }
 
     @PostConstruct
@@ -61,6 +59,57 @@ public class ProdutoMB implements Serializable {
         familias = familiaDao.findAll();
         linhas = linhaDao.findAll();
         grupos = grupoDao.findAll();
+    }
+
+    public void detalharProduto(Produto p) {
+        produto = new Produto(p.getId(), p.getDescricao(), p.getReferencia(), p.getNumeroCa(),
+                p.getCusto(), p.getMcMinima(), p.isStatus(), p.getPrecoSugerido(), p.getPrecoMinimo(),
+                p.getGrupo(), p.getFamilia(), p.getLinha());
+        familia = produto.getFamilia();
+        linha = produto.getLinha();
+        grupo = produto.getGrupo();
+    }
+
+    public void detalharFamilia(Familia f) {
+        familia = new Familia(f.getId(), f.getNome(), f.getDescricao(), f.getNomeReduzido());
+    }
+
+    public void detalharLinha(Linha l) {
+        linha = new Linha(l.getId(), l.getNome(), l.getDescricao(), l.getNomeReduzido());
+    }
+
+    public void detalharGrupo(Grupo g) {
+        grupo = new Grupo(g.getId(), g.getNome(), g.getDescricao(), g.getNomeReduzido());
+    }
+
+    public void excluirProduto(Produto p) {
+
+    }
+
+    public void excluirFamilia(Familia f) {
+
+    }
+
+    public void excluirLinha(Linha l) {
+
+    }
+
+    public void excluirGrupo(Grupo g) {
+    }
+
+    public void alterarProduto(Produto p) {
+
+    }
+
+    public void alterarFamilia(Familia f) {
+
+    }
+
+    public void alterarLinha(Linha l) {
+
+    }
+
+    public void alterarGrupo(Grupo g) {
     }
 
     public ProdutoDao getProdutoDao() {

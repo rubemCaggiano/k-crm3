@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/Template/template.xhtml">
+        <ui:define name="content">
+
+            <b:jumbotron> 
+                <h:panelGroup>
+                    <b:container fluid="true">
+                        <b:panel title="Produtos">
+
+                            <h:form>
+                                <b:dataTable  excel="true"
+                                              columnVisibility="true"
+                                              print="true"
+                                              value="#{produtoMB.produtos}"
+                                              var="produto"
+                                              select="true"
+                                              selectionMode="single"
+                                              customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                              >
+
+                                    <b:dataTableColumn value="#{produto.referencia}" label="Referencia" />
+                                    <b:dataTableColumn value="#{produto.descricao}" label="Descrição" />
+                                    <b:dataTableColumn value="#{produto.numeroCa}" label="Numero C.A" />
+                                    <b:dataTableColumn value="#{produto.familia.nome}" label="Familia" />
+                                    <b:dataTableColumn value="#{produto.grupo.nome}" label="Grupo" />
+                                    <b:dataTableColumn value="#{produto.linha.nome}" label="Linha" />
+
+                                    <b:dataTableColumn label="Ver">
+                                        <b:commandButton look="info" action="#{produtoMB.detalharProduto(produto)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
+                                    </b:dataTableColumn>
+
+
+                                </b:dataTable>
+                            </h:form>
+                        </b:panel>
+                    </b:container>
+                </h:panelGroup>
+            </b:jumbotron>
+
+        </ui:define>
+    </ui:composition>
+
+</html>
