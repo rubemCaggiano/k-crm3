@@ -213,6 +213,8 @@ public class PedidoMB implements Serializable {
         pedido = new Pedido(p.getId(), p.getCliente(), p.getTransportadora(), p.getEnderecoEntrega(), p.getCondicaoPagamento(),
                 p.getTipoPedido(), p.getNumeroOrdemCompra(), p.getObservacoes(), p.getSituacao(), p.getValorTotal(), p.getQuantidade(),
                 p.getDataCriacao(), p.getItensPedido());
+        cliente = pedido.getCliente();
+        tipoPedido = pedido.getTipoPedido();
 
         return "detalhesPedidoGUI.xhtml";
     }
