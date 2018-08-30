@@ -11,101 +11,103 @@
             <b:jumbotron>
                 <b:formGroup>
                     <b:panel id="pProd" title="Cadastro de Produto">
-                        <b:button look="primary" onclick="$('.modalPseudoClass2').modal()" value="Novo Produto" icon-awesome="plus"/>
+                        <b:button look="primary" onclick="$('.mCadProd').modal()" value="Novo Produto" icon-awesome="plus"/>
 
                         <b:modal id="mCadProd"
                                  title="Cadastro de Produtos" 
-                                 styleClass="modalPseudoClass2"
+                                 styleClass="mCadProd"
                                  closable="false"  
                                  close-on-escape="false" 
                                  backdrop="false"
                                  closeOnEscape="false">
-                            <b:form>
-                                <b:row>
-                                    <b:inputText span="12" id="descricao" value="#{produtoMB.produto.descricao}" label="Descrição" size="200" required="true" />
+                            <b:panel id="pMCadProd">
+                                <b:form>
+                                    <b:row>
+                                        <b:inputText span="12" id="descricao" value="#{produtoMB.produto.descricao}" label="Descrição" size="200" required="true" />
 
-                                </b:row>
-                                <b:row>
-                                    <b:inputText span="4" id="referencia" value="#{produtoMB.produto.referencia}" label="Referência" size="30" required="true" />
-                                    <b:inputText span="4" id="numeroca" value="#{produtoMB.produto.numeroCa}" label="Numero do C.A " size="30" required="false" />
-                                </b:row>
-                                <b:row> 
-                                    <b:inputText span="3" id="custo" value="#{produtoMB.produto.custo}" label="Custo de Produção " size="10" required="true" />
-                                    <b:inputText span="3" id="mcminima" value="#{produtoMB.produto.mcMinima}" label="Margem Minima" size="10" required="false" mask="numeric" />
-                                </b:row>
-                                <b:row>
-                                    <b:selectOneMenu id="familia"
-                                                     value="#{produtoMB.familia}" 
-                                                     required="true"
-                                                     label="Familia"
-                                                     span="3"
-                                                     select2="true"
-                                                     converter="omnifaces.SelectItemsConverter"
-                                                     >
-                                        <f:converter converterId="familiaConverter"/>
-                                        <f:selectItem itemLabel="Selecione uma Familia" />
-                                        <f:selectItems value="#{produtoMB.familias}"
-                                                       var="familia" 
-                                                       itemLabel="#{familia.nome}"
-                                                       itemValue="#{familia}"
-                                                       />
-                                    </b:selectOneMenu>
-                                </b:row>
-                                <b:row>  
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="4" id="referencia" value="#{produtoMB.produto.referencia}" label="Referência" size="30" required="true" />
+                                        <b:inputText span="4" id="numeroca" value="#{produtoMB.produto.numeroCa}" label="Numero do C.A " size="30" required="false" />
+                                    </b:row>
+                                    <b:row> 
+                                        <b:inputText span="3" id="custo" value="#{produtoMB.produto.custo}" label="Custo de Produção " size="10" required="true" />
+                                        <b:inputText span="3" id="mcminima" value="#{produtoMB.produto.mcMinima}" label="Margem Minima" size="10" required="false" mask="numeric" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:selectOneMenu id="familia"
+                                                         value="#{produtoMB.familia}" 
+                                                         required="true"
+                                                         label="Familia"
+                                                         span="3"
+                                                         select2="true"
+                                                         converter="omnifaces.SelectItemsConverter"
+                                                         >
+                                            <f:converter converterId="familiaConverter"/>
+                                            <f:selectItem itemLabel="Selecione uma Familia" />
+                                            <f:selectItems value="#{produtoMB.familias}"
+                                                           var="familia" 
+                                                           itemLabel="#{familia.nome}"
+                                                           itemValue="#{familia}"
+                                                           />
+                                        </b:selectOneMenu>
+                                    </b:row>
+                                    <b:row>  
 
-                                    <b:selectOneMenu id="linha"
-                                                     value="#{produtoMB.linha}" 
-                                                     required="true"
-                                                     label="Linha"
-                                                     span="3"
-                                                     select2="true"
-                                                     converter="omnifaces.SelectItemsConverter"
-                                                     >
-                                        <f:selectItem itemLabel="Selecione uma Linha" />
-                                        <f:selectItems value="#{produtoMB.linhas}"
-                                                       var="linha" 
-                                                       itemLabel="#{linha.nome}"
-                                                       itemValue="#{linha}"
-                                                       />
-                                    </b:selectOneMenu>
-                                </b:row>  
-                                <b:row> 
-                                    <b:selectOneMenu id="grupo"
-                                                     value="#{produtoMB.grupo}" 
-                                                     required="true"
-                                                     label="Grupo"
-                                                     span="3"
-                                                     select2="true"
-                                                     converter="omnifaces.SelectItemsConverter"
-                                                     >
-                                        <f:selectItem itemLabel="Selecione um Grupo" />
-                                        <f:selectItems value="#{produtoMB.grupos}"
-                                                       var="grupo" 
-                                                       itemLabel="#{grupo.nome}"
-                                                       itemValue="#{grupo}"
-                                                       />
-                                    </b:selectOneMenu>
-                                </b:row>
-                                <b:row>
-                                    <b:message for="descricao" />
-                                    <b:message for="referencia" />
-                                    <b:message for="numeroca" />
-                                    <b:message for="custo" />
-                                    <b:message for="mcminima" />
-                                    <b:message for="familia" />
-                                    <b:message for="linha" />
-                                    <b:message for="grupo" />
+                                        <b:selectOneMenu id="linha"
+                                                         value="#{produtoMB.linha}" 
+                                                         required="true"
+                                                         label="Linha"
+                                                         span="3"
+                                                         select2="true"
+                                                         converter="omnifaces.SelectItemsConverter"
+                                                         >
+                                            <f:selectItem itemLabel="Selecione uma Linha" />
+                                            <f:selectItems value="#{produtoMB.linhas}"
+                                                           var="linha" 
+                                                           itemLabel="#{linha.nome}"
+                                                           itemValue="#{linha}"
+                                                           />
+                                        </b:selectOneMenu>
+                                    </b:row>  
+                                    <b:row> 
+                                        <b:selectOneMenu id="grupo"
+                                                         value="#{produtoMB.grupo}" 
+                                                         required="true"
+                                                         label="Grupo"
+                                                         span="3"
+                                                         select2="true"
+                                                         converter="omnifaces.SelectItemsConverter"
+                                                         >
+                                            <f:selectItem itemLabel="Selecione um Grupo" />
+                                            <f:selectItems value="#{produtoMB.grupos}"
+                                                           var="grupo" 
+                                                           itemLabel="#{grupo.nome}"
+                                                           itemValue="#{grupo}"
+                                                           />
+                                        </b:selectOneMenu>
+                                    </b:row>
+                                    <b:row>
+                                        <b:message for="descricao" />
+                                        <b:message for="referencia" />
+                                        <b:message for="numeroca" />
+                                        <b:message for="custo" />
+                                        <b:message for="mcminima" />
+                                        <b:message for="familia" />
+                                        <b:message for="linha" />
+                                        <b:message for="grupo" />
 
-                                </b:row>
+                                    </b:row>
 
-                                <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvar()}"  icon-awesome="save" />
-                            </b:form>
-
+                                    <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvar()}"  icon-awesome="save" />
+                                </b:form>
+                            </b:panel>
 
                             <f:facet name="footer">
                                 <b:button value="Close" dismiss="modal" />
                                 <b:button value="Ok" look="primary" dismiss="modal" />
                             </f:facet>	
+
                         </b:modal>
 
                         <h:form>
@@ -127,8 +129,13 @@
                                 <b:dataTableColumn value="#{produto.linha.nome}" label="Linha" />
 
                                 <b:dataTableColumn label="Ações">
-                                    <b:commandButton type="button" look="info" onclick="$('.modalPseudoClass2').modal()" action="#{produtoMB.detalharProduto(produto)}" value="Ver" icon-awesome="search-plus"/>
-                                    <b:commandButton type="button" look="warning" action="#{produtoMB.alterarProduto(produto)}" value="Alterar"  icon="edit" />
+                                    <b:commandButton type="button" look="info" onclick="$('.mCadProd').modal()" action="#{produtoMB.detalharProduto(produto)}" value="Ver" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pMCadProd"/>
+                                    </b:commandButton>
+                                    <b:commandButton type="button" look="warning" onclick="$('.mCadProd').modal()" action="#{produtoMB.alterarProduto(produto)}" value="Alterar"  icon="edit" >
+                                        <f:ajax event="click" render="pMCadProd"/>
+                                    </b:commandButton>
+
                                     <b:commandButton type="button" look="danger" action="#{produtoMB.excluirProduto(produto)}" value="Excluir"  icon="trash" />
                                 </b:dataTableColumn>
 
@@ -139,24 +146,26 @@
 
 
                     <b:panel id="pFamilia" title="Cadastro de Familia" collapsed="true">
-                        <b:button look="primary" onclick="$('.modalPseudoClass3').modal()" value="Nova Familia" icon-awesome="plus"/>
+                        <b:button look="primary" onclick="$('.mCadFamilia').modal()" value="Nova Familia" icon-awesome="plus"/>
                         <b:modal id="mCadFamilia"
                                  title="Cadastro de Familia de Produtos" 
-                                 styleClass="modalPseudoClass3"
+                                 styleClass="mCadFamilia"
                                  closable="false"  
                                  close-on-escape="false" 
                                  backdrop="false">
-                            <h:form>
-                                <b:row>
-                                    <b:inputText span="12" id="descricaoFamilia" value="#{produtoMB.familia.descricao}" label="Descrição" size="200" required="true" />
-                                </b:row>
-                                <b:row>
-                                    <b:inputText span="12" id="nomeFamilia" value="#{produtoMB.familia.nome}" label="Nome" size="200" required="true" />
-                                </b:row>
-                                <b:row>
-                                    <b:inputText span="12" id="nomeRedFamilia" value="#{produtoMB.familia.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
-                                </b:row>
-                            </h:form>
+                            <b:panel id="pMCadFamilia">
+                                <h:form>
+                                    <b:row>
+                                        <b:inputText span="12" id="descricaoFamilia" value="#{produtoMB.familia.descricao}" label="Descrição" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="12" id="nomeFamilia" value="#{produtoMB.familia.nome}" label="Nome" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="12" id="nomeRedFamilia" value="#{produtoMB.familia.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
+                                    </b:row>
+                                </h:form>
+                            </b:panel>
                             <f:facet name="footer">
                                 <b:button value="Close" dismiss="modal" />
                                 <b:button value="Ok" look="primary" dismiss="modal" />
@@ -179,8 +188,12 @@
                                 <b:dataTableColumn value="#{familia.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ações">
-                                    <b:commandButton type="button" look="info" action="#{produtoMB.detalharFamilia(familia)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
-                                    <b:commandButton type="button" look="warning" action="#{produtoMB.alterarFamilia(familia)}" value="Alterar" immediate="true" icon="edit" />
+                                    <b:commandButton type="button" onclick="$('.mCadFamilia').modal()" look="info" action="#{produtoMB.detalharFamilia(familia)}" value="Ver" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pMCadFamilia"/>
+                                    </b:commandButton>
+                                    <b:commandButton type="button" onclick="$('.mCadFamilia').modal()" look="warning" action="#{produtoMB.alterarFamilia(familia)}" value="Alterar" immediate="true" icon="edit" >
+                                        <f:ajax event="click" render="pMCadFamilia"/>
+                                    </b:commandButton>
                                     <b:commandButton type="button" look="danger" action="#{produtoMB.excluirFamilia(familia)}" value="Excluir" immediate="true" icon="trash" />
                                 </b:dataTableColumn>
 
@@ -191,24 +204,26 @@
 
 
                     <b:panel id="pLinha" title="Cadastro de Linha" collapsed="true">
-                        <b:button look="primary" onclick="$('.modalPseudoClass4').modal()" value="Nova Linha" icon-awesome="plus"/>
+                        <b:button look="primary" onclick="$('.mCadLinha').modal()" value="Nova Linha" icon-awesome="plus"/>
                         <b:modal id="mCadLinha"
                                  title="Cadastro de Linha de Produtos" 
-                                 styleClass="modalPseudoClass4"
+                                 styleClass="mCadLinha"
                                  closable="false"  
                                  close-on-escape="false" 
                                  backdrop="false">
-                            <h:form>
-                                <b:row>
-                                    <b:inputText span="12" id="descricaoLinha" value="#{produtoMB.linha.descricao}" label="Descrição" size="200" required="true" />
-                                </b:row>
-                                <b:row>
-                                    <b:inputText span="12" id="nomeLinha" value="#{produtoMB.linha.nome}" label="Nome" size="200" required="true" />
-                                </b:row>
-                                <b:row>
-                                    <b:inputText span="12" id="nomeRedLinha" value="#{produtoMB.linha.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
-                                </b:row>
-                            </h:form>
+                            <b:panel id="pMCadLinha">
+                                <h:form>
+                                    <b:row>
+                                        <b:inputText span="12" id="descricaoLinha" value="#{produtoMB.linha.descricao}" label="Descrição" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="12" id="nomeLinha" value="#{produtoMB.linha.nome}" label="Nome" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="12" id="nomeRedLinha" value="#{produtoMB.linha.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
+                                    </b:row>
+                                </h:form>
+                            </b:panel>
                             <f:facet name="footer">
                                 <b:button value="Fechar" dismiss="modal" />
                                 <b:button value="Ok" look="primary" dismiss="modal" />
@@ -231,8 +246,12 @@
                                 <b:dataTableColumn value="#{linha.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton type="button" look="info" action="#{produtoMB.detalharLinha(linha)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
-                                    <b:commandButton type="button" look="warning" action="#{produtoMB.alterarLinha(linha)}" value="Alterar" immediate="true" icon="edit" />
+                                    <b:commandButton type="button" onclick="$('.mCadLinha').modal()" look="info" action="#{produtoMB.detalharLinha(linha)}" value="Ver" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pMCadLinha"/>
+                                    </b:commandButton>
+                                    <b:commandButton type="button" onclick="$('.mCadLinha').modal()" look="warning" action="#{produtoMB.alterarLinha(linha)}" value="Alterar" immediate="true" icon="edit" >
+                                        <f:ajax event="click" render="pMCadLinha"/>
+                                    </b:commandButton>
                                     <b:commandButton type="button" look="danger" action="#{produtoMB.excluirLinha(linha)}" value="Excluir" immediate="true" icon="trash" />
                                 </b:dataTableColumn>
 
@@ -244,24 +263,26 @@
 
 
                     <b:panel id="pGrupo" title="Cadastro de Grupo" collapsed="true">
-                        <b:button look="primary" onclick="$('.modalPseudoClass5').modal()" value="Novo Grupo" icon-awesome="plus"/>
+                        <b:button look="primary" onclick="$('.mCadGrupo').modal()" value="Novo Grupo" icon-awesome="plus"/>
                         <b:modal id="mCadGrupo"
                                  title="Cadastro de Grupo de Produtos" 
-                                 styleClass="modalPseudoClass5"
+                                 styleClass="mCadGrupo"
                                  closable="false"  
                                  close-on-escape="false" 
                                  backdrop="false">
-                            <h:form>
-                                <b:row>
-                                    <b:inputText span="12" id="descricaoGrupo" value="#{produtoMB.grupo.descricao}" label="Descrição" size="200" required="true" />
-                                </b:row>
-                                <b:row>
-                                    <b:inputText span="12" id="nomeGrupo" value="#{produtoMB.grupo.nome}" label="Nome" size="200" required="true" />
-                                </b:row>
-                                <b:row>
-                                    <b:inputText span="12" id="nomeRedGrupo" value="#{produtoMB.grupo.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
-                                </b:row>
-                            </h:form>
+                            <b:panel id="pMCadGrupo">
+                                <h:form>
+                                    <b:row>
+                                        <b:inputText span="12" id="descricaoGrupo" value="#{produtoMB.grupo.descricao}" label="Descrição" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="12" id="nomeGrupo" value="#{produtoMB.grupo.nome}" label="Nome" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="12" id="nomeRedGrupo" value="#{produtoMB.grupo.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
+                                    </b:row>
+                                </h:form>
+                            </b:panel>
                             <f:facet name="footer">
                                 <b:button value="Fechar" dismiss="modal" />
                                 <b:button value="Ok" look="primary" dismiss="modal" />
@@ -284,8 +305,12 @@
                                 <b:dataTableColumn value="#{grupo.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton type="button" look="info" action="#{produtoMB.detalharGrupo(grupo)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
-                                    <b:commandButton type="button" look="warning" action="#{produtoMB.alterarGrupo(grupo)}" value="Alterar" immediate="true" icon="edit" />
+                                    <b:commandButton type="button" onclick="$('.mCadGrupo').modal()" look="info" action="#{produtoMB.detalharGrupo(grupo)}" value="Ver" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pMCadGrupo"/>
+                                    </b:commandButton>
+                                    <b:commandButton type="button" onclick="$('.mCadGrupo').modal()" look="warning" action="#{produtoMB.alterarGrupo(grupo)}" value="Alterar" immediate="true" icon="edit">
+                                        <f:ajax event="click" render="pMCadGrupo"/>
+                                    </b:commandButton>
                                     <b:commandButton type="button" look="danger" action="#{produtoMB.excluirGrupo(grupo)}" value="Excluir" immediate="true" icon="trash" />
                                 </b:dataTableColumn>
 
