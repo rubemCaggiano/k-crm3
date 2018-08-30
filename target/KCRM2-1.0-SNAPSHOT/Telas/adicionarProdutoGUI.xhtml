@@ -99,27 +99,29 @@
 
                                     </b:row>
 
-                                    <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvar()}"  icon-awesome="save" />
+                                    <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvar()}"  icon-awesome="save">
+                                    </b:commandButton>
                                 </b:form>
                             </b:panel>
 
                             <f:facet name="footer">
-                                <b:button value="Close" dismiss="modal" />
-                                <b:button value="Ok" look="primary" dismiss="modal" />
+                                <b:button value="Close" look="danger" dismiss="modal"  />
                             </f:facet>	
 
                         </b:modal>
 
+
                         <h:form>
-                            <b:dataTable  excel="true"
-                                          columnVisibility="true"
-                                          print="true"
-                                          value="#{produtoMB.produtos}"
-                                          var="produto"
-                                          select="true"
-                                          selectionMode="single"
-                                          customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
-                                          >
+                            <b:dataTable   
+                                excel="true"
+                                columnVisibility="true"
+                                print="true"
+                                value="#{produtoMB.produtos}"
+                                var="produto"
+                                select="true"
+                                selectionMode="single"
+                                customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                >
 
                                 <b:dataTableColumn value="#{produto.referencia}" label="Referencia" />
                                 <b:dataTableColumn value="#{produto.descricao}" label="Descrição" />
@@ -136,7 +138,7 @@
                                         <f:ajax event="click" render="pMCadProd"/>
                                     </b:commandButton>
 
-                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirProduto(produto)}" value="Excluir"  icon="trash" />
+                                    <b:commandButton type="submit" look="danger" action="#{produtoMB.excluirProduto(produto)}" value="Excluir"  icon="trash" />
                                 </b:dataTableColumn>
 
 
@@ -164,11 +166,11 @@
                                     <b:row>
                                         <b:inputText span="12" id="nomeRedFamilia" value="#{produtoMB.familia.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
                                     </b:row>
+                                    
                                 </h:form>
                             </b:panel>
                             <f:facet name="footer">
-                                <b:button value="Close" dismiss="modal" />
-                                <b:button value="Ok" look="primary" dismiss="modal" />
+                                <b:button value="Close" look="danger" dismiss="modal" />
                             </f:facet>
                         </b:modal>
 
@@ -194,7 +196,7 @@
                                     <b:commandButton type="button" onclick="$('.mCadFamilia').modal()" look="warning" action="#{produtoMB.alterarFamilia(familia)}" value="Alterar" immediate="true" icon="edit" >
                                         <f:ajax event="click" render="pMCadFamilia"/>
                                     </b:commandButton>
-                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirFamilia(familia)}" value="Excluir" immediate="true" icon="trash" />
+                                    <b:commandButton type="submit" look="danger" action="#{produtoMB.excluirFamilia(familia)}" value="Excluir"  icon="trash" />
                                 </b:dataTableColumn>
 
 
@@ -225,8 +227,7 @@
                                 </h:form>
                             </b:panel>
                             <f:facet name="footer">
-                                <b:button value="Fechar" dismiss="modal" />
-                                <b:button value="Ok" look="primary" dismiss="modal" />
+                                <b:button value="Fechar" look="danger" dismiss="modal" />
                             </f:facet>
                         </b:modal>
 
@@ -284,8 +285,7 @@
                                 </h:form>
                             </b:panel>
                             <f:facet name="footer">
-                                <b:button value="Fechar" dismiss="modal" />
-                                <b:button value="Ok" look="primary" dismiss="modal" />
+                                <b:button value="Fechar" look="danger" dismiss="modal" />
                             </f:facet>
                         </b:modal>
 

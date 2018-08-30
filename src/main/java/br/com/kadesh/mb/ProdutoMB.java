@@ -51,6 +51,7 @@ public class ProdutoMB implements Serializable {
         produtoDao.create(produto);
 
         produto = new Produto();
+        selectAll();
     }
 
     @PostConstruct
@@ -59,6 +60,10 @@ public class ProdutoMB implements Serializable {
         familias = familiaDao.findAll();
         linhas = linhaDao.findAll();
         grupos = grupoDao.findAll();
+    }
+
+    public void novoProduto() {
+        produto = new Produto();
     }
 
     public void detalharProduto(Produto p) {
@@ -83,18 +88,27 @@ public class ProdutoMB implements Serializable {
     }
 
     public void excluirProduto(Produto p) {
-
+        produtoDao.delete(p);
+        this.produto = new Produto();
+        selectAll();
     }
 
     public void excluirFamilia(Familia f) {
-
+        familiaDao.delete(f);
+        this.familia = new Familia();
+        selectAll();
     }
 
     public void excluirLinha(Linha l) {
-
+        linhaDao.delete(l);
+        this.linha = new Linha();
+        selectAll();
     }
 
     public void excluirGrupo(Grupo g) {
+        grupoDao.delete(g);
+        this.grupo = new Grupo();
+        selectAll();
     }
 
     public void alterarProduto(Produto p) {
