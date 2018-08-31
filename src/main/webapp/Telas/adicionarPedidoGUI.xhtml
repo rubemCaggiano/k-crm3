@@ -122,7 +122,7 @@
 
                                     </b:dataTable>
 
-                                    <b:commandButton type="button" look="primary" value="Confirmar Grade" action="#{pedidoMB.adicionarItem()}" icon-awesome="check" ajax="true" update="itensVenda"  />
+                                    <b:commandButton type="button" look="primary" value="Confirmar Grade" action="#{pedidoMB.adicionarItem()}" icon-awesome="check" ajax="true" update=":fPedido:dtVenda, itensVenda"  />
 
                                 </b:form>
                             </b:panel>
@@ -132,7 +132,7 @@
                         </b:modal>
 
 
-                        <b:form>
+                        <b:form id="fPedido">
                             <b:container fluid="true" >
 
 
