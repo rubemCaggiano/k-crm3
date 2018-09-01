@@ -28,19 +28,22 @@
                             <b:panel id="itensVenda" title="Itens da Vendas" collapsible="false">
                                 <b:form>
                                     <b:row>
+
                                         <b:selectOneMenu id="produto"
                                                          value="#{pedidoMB.produto}" 
-                                                         required="false"
+                                                         required="true"
                                                          label="Referencia"
                                                          span="4"
                                                          select2="true"
+
                                                          >
                                             <f:converter converterId="produtoConverter"/>
-                                            <f:selectItem itemLabel="Produto" />
+                                            <f:selectItem itemLabel="Produto"/>
                                             <f:selectItems value="#{pedidoMB.produtos}"
                                                            var="produto" 
                                                            itemLabel="#{produto.referencia}"
                                                            itemValue="#{produto}"
+
                                                            />
                                             <f:ajax event="change" render="nomeProduto"/>
                                             <f:ajax event="change" render="precoSugerido"/>
@@ -57,17 +60,16 @@
                                         <b:inputText id="precoMinimo" readonly="true" value="#{pedidoMB.produto.precoMinimo}"  label="Preço Minimo" mask="R$ 9{1,9}.99" size="2" span="6" />
                                     </b:row>
                                     <b:row>
-                                        <b:inputText id="preco"  value="#{pedidoMB.itemPedido.preco}" label="Preço"  span="4">
+                                        <b:inputText id="preco"  value="#{pedidoMB.itemPedido.preco}" label="Preço"  span="4" ajax="true" update="messagePreco">
                                             <f:validateDoubleRange minimum="#{pedidoMB.produto.precoMinimo}" />
 
                                         </b:inputText>
-                                        <b:fetchBeanInfos />
-
                                         <b:inputText id="frete"  value="#{pedidoMB.itemPedido.frete}" label="Valor Frete"  span="4" />
 
                                         <b:inputText readonly="true" id="mcValor"  value="#{pedidoMB.itemPedido.mc}" label="M.C %" span="4" />
                                     </b:row>
                                     <b:row>
+                                        <b:message id="messagePreco" for="preco"/>
                                         <b:message for="produto" />
                                         <b:message for="preco" />
                                         <b:message for="frete" />
@@ -116,7 +118,7 @@
                                         <b:dataTableColumn value="#{gradeVenda.grade.numeracao}" label="Numero" />
                                         <b:dataTableColumn value="#{gradeVenda.quantidade}" label="Quantidade" />
                                         <b:dataTableColumn label="Opções">
-                                            <b:commandButton type="button" look="danger" action="#{pedidoMB.removerItemGrade(gradeVenda)}" immediate="true" value="Remover" icon="trash" ajax="true" update="gradeNumeros" auto-update="true"/>
+                                            <b:commandButton type="button" look="danger" action="#{pedidoMB.removerItemGrade(gradeVenda)}" immediate="true" value="Remover" icon="trash" ajax="true" update=":mItemAdd:itensVenda" auto-update="true"/>
                                         </b:dataTableColumn>
 
 
@@ -283,7 +285,7 @@
                                         <b:dataTableColumn value="#{itemPedido.valorItens}" label="Valor Itens" />
                                         <b:dataTableColumn label="Opções">
                                             <b:commandButton look="primary" action="#{pedidoMB.editarItem(itemPedido)}" immediate="true" value="Editar" icon="edit"/>
-                                            <b:commandButton look="danger" action="#{pedidoMB.removerItem()}" value="Remover" icon="trash"/>
+                                            <b:commandButton type="button" look="danger" action="#{pedidoMB.removerItem()}" value="Remover" icon="trash" ajax="true" update=":fPedido:dtVenda" autoUpdate="true"/>
                                         </b:dataTableColumn>
                                     </b:dataTable>
 
