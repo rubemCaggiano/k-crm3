@@ -131,14 +131,14 @@
                                 <b:dataTableColumn value="#{produto.linha.nome}" label="Linha" />
 
                                 <b:dataTableColumn label="Ações">
-                                    <b:commandButton type="button" look="info" onclick="$('.mCadProd').modal()" action="#{produtoMB.detalharProduto(produto)}" value="Ver" immediate="true" icon-awesome="search-plus">
+                                    <b:commandButton type="button" look="info" onclick="$('.mCadProd').modal()" action="#{produtoMB.detalharProduto(produto)}" immediate="true" icon-awesome="search-plus">
                                         <f:ajax event="click" render="pMCadProd"/>
                                     </b:commandButton>
-                                    <b:commandButton type="button" look="warning" onclick="$('.mCadProd').modal()" action="#{produtoMB.alterarProduto(produto)}" value="Alterar"  icon="edit" >
+                                    <b:commandButton type="button" look="warning" onclick="$('.mCadProd').modal()" action="#{produtoMB.alterarProduto(produto)}" icon="edit" >
                                         <f:ajax event="click" render="pMCadProd"/>
                                     </b:commandButton>
 
-                                    <b:commandButton type="submit" look="danger" action="#{produtoMB.excluirProduto(produto)}" value="Excluir"  icon="trash" />
+                                    <b:commandButton type="submit" look="danger" action="#{produtoMB.excluirProduto(produto)}" icon="trash" />
                                 </b:dataTableColumn>
 
 
@@ -166,7 +166,7 @@
                                     <b:row>
                                         <b:inputText span="12" id="nomeRedFamilia" value="#{produtoMB.familia.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
                                     </b:row>
-                                    
+
                                 </h:form>
                             </b:panel>
                             <f:facet name="footer">
@@ -190,13 +190,13 @@
                                 <b:dataTableColumn value="#{familia.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ações">
-                                    <b:commandButton type="button" onclick="$('.mCadFamilia').modal()" look="info" action="#{produtoMB.detalharFamilia(familia)}" value="Ver" immediate="true" icon-awesome="search-plus">
+                                    <b:commandButton type="button" onclick="$('.mCadFamilia').modal()" look="info" action="#{produtoMB.detalharFamilia(familia)}" immediate="true" icon-awesome="search-plus">
                                         <f:ajax event="click" render="pMCadFamilia"/>
                                     </b:commandButton>
-                                    <b:commandButton type="button" onclick="$('.mCadFamilia').modal()" look="warning" action="#{produtoMB.alterarFamilia(familia)}" value="Alterar" immediate="true" icon="edit" >
+                                    <b:commandButton type="button" onclick="$('.mCadFamilia').modal()" look="warning" action="#{produtoMB.alterarFamilia(familia)}" immediate="true" icon="edit" >
                                         <f:ajax event="click" render="pMCadFamilia"/>
                                     </b:commandButton>
-                                    <b:commandButton type="submit" look="danger" action="#{produtoMB.excluirFamilia(familia)}" value="Excluir"  icon="trash" />
+                                    <b:commandButton type="submit" look="danger" action="#{produtoMB.excluirFamilia(familia)}" icon="trash" />
                                 </b:dataTableColumn>
 
 
@@ -247,13 +247,13 @@
                                 <b:dataTableColumn value="#{linha.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton type="button" onclick="$('.mCadLinha').modal()" look="info" action="#{produtoMB.detalharLinha(linha)}" value="Ver" immediate="true" icon-awesome="search-plus">
+                                    <b:commandButton type="button" onclick="$('.mCadLinha').modal()" look="info" action="#{produtoMB.detalharLinha(linha)}" immediate="true" icon-awesome="search-plus">
                                         <f:ajax event="click" render="pMCadLinha"/>
                                     </b:commandButton>
-                                    <b:commandButton type="button" onclick="$('.mCadLinha').modal()" look="warning" action="#{produtoMB.alterarLinha(linha)}" value="Alterar" immediate="true" icon="edit" >
+                                    <b:commandButton type="button" onclick="$('.mCadLinha').modal()" look="warning" action="#{produtoMB.alterarLinha(linha)}" immediate="true" icon="edit" >
                                         <f:ajax event="click" render="pMCadLinha"/>
                                     </b:commandButton>
-                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirLinha(linha)}" value="Excluir" immediate="true" icon="trash" />
+                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirLinha(linha)}" immediate="true" icon="trash" />
                                 </b:dataTableColumn>
 
 
@@ -305,13 +305,13 @@
                                 <b:dataTableColumn value="#{grupo.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton type="button" onclick="$('.mCadGrupo').modal()" look="info" action="#{produtoMB.detalharGrupo(grupo)}" value="Ver" immediate="true" icon-awesome="search-plus">
+                                    <b:commandButton type="button" onclick="$('.mCadGrupo').modal()" look="info" action="#{produtoMB.detalharGrupo(grupo)}" immediate="true" icon-awesome="search-plus">
                                         <f:ajax event="click" render="pMCadGrupo"/>
                                     </b:commandButton>
-                                    <b:commandButton type="button" onclick="$('.mCadGrupo').modal()" look="warning" action="#{produtoMB.alterarGrupo(grupo)}" value="Alterar" immediate="true" icon="edit">
+                                    <b:commandButton type="button" onclick="$('.mCadGrupo').modal()" look="warning" action="#{produtoMB.alterarGrupo(grupo)}" immediate="true" icon="edit">
                                         <f:ajax event="click" render="pMCadGrupo"/>
                                     </b:commandButton>
-                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirGrupo(grupo)}" value="Excluir" immediate="true" icon="trash" />
+                                    <b:commandButton type="button" look="danger" action="#{produtoMB.excluirGrupo(grupo)}" immediate="true" icon="trash" />
                                 </b:dataTableColumn>
 
 
