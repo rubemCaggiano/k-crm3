@@ -28,10 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class PedidoMB implements Serializable {
 
     private PedidoDao pedidoDao = new PedidoDao();
@@ -212,6 +213,7 @@ public class PedidoMB implements Serializable {
         pedido = new Pedido(p.getId(), p.getCliente(), p.getTransportadora(), p.getEnderecoEntrega(), p.getCondicaoPagamento(),
                 p.getTipoPedido(), p.getNumeroOrdemCompra(), p.getObservacoes(), p.getSituacao(), p.getValorTotal(), p.getQuantidade(),
                 p.getDataCriacao(), p.getItensPedido());
+        
 
         return "detalhesPedidoGUI.xhtml";
     }

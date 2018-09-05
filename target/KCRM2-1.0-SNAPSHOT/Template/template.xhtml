@@ -29,12 +29,35 @@
                     <!--Menu Lateral-->
                     <b:column col-sm="2" col-md="1" styleClass="sidebar">
                         <b:listLinks>
-                            
+
                             <b:navLink header="Menu" style="font-size: 18px; color: black;" />
-                            <b:navLink href="#" value="Pedidos" active="true"/>
-                            <b:navLink href="#" value="Clientes" />
-                            <b:navLink href="#" value="Produtos" />
-                            <b:navLink href="#" value="Agendamentos" />
+                            <b:dropMenu value="Pedido">
+                                <b:navLink href="../Telas/adicionarPedidoGUI.xhtml" value="Adicionar"/>
+                                <b:navLink href="../Telas/pedidosGUI.xhtml" value="Consultar" />
+                            </b:dropMenu>
+
+                            <b:dropMenu value="Cliente">
+                                <b:navLink href="" value="Adicionar"/>
+                                <b:navLink href="" value="Consultar"/>
+
+                            </b:dropMenu>
+                            <b:dropMenu value="Produto">
+                                <b:navLink href="../Telas/adicionarProdutoGUI.xhtml" value="Adicionar"/>
+                                <b:navLink href="../Telas/produtosGUI.xhtml" value="Consultar"/>
+
+                            </b:dropMenu>
+
+                            <b:dropMenu value="Transportadora">
+                                <b:navLink href="" value="Adicionar"/>
+                                <b:navLink href="" value="Consultar"/>
+
+                            </b:dropMenu>
+
+                            <b:dropMenu value="Agendamentos">
+
+
+                            </b:dropMenu>
+
                         </b:listLinks>
 
                     </b:column>
