@@ -28,6 +28,9 @@ public class Cliente implements Serializable {
     private double limite;
     private double limiteDisponivel;
 
+    @ManyToOne
+    private Vendedor vendedor;
+
     @OneToMany
     private List<Contato> contatos;
 
@@ -59,6 +62,14 @@ public class Cliente implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
 
     public String getCnpj() {

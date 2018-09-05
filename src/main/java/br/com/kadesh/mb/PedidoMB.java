@@ -32,7 +32,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class PedidoMB implements Serializable {
 
     private PedidoDao pedidoDao = new PedidoDao();

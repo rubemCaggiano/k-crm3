@@ -1,4 +1,4 @@
- package br.com.kadesh.mb;
+package br.com.kadesh.mb;
 
 import br.com.kadesh.dao.impl.ClienteDao;
 import br.com.kadesh.model.Cliente;
@@ -15,68 +15,66 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-
 @ManagedBean
 @RequestScoped
-public class ClienteMB implements Serializable{
-    ClienteDao clienteDao   = new ClienteDao();
-    ContatoDao contatoDao   = new ContatoDao();
+public class ClienteMB implements Serializable {
+
+    ClienteDao clienteDao = new ClienteDao();
+    ContatoDao contatoDao = new ContatoDao();
     EnderecoDao enderecoDao = new EnderecoDao();
-    EstadoDao estadoDao     = new EstadoDao();
-  
+    EstadoDao estadoDao = new EstadoDao();
+
     List<Cliente> clientes;
     List<Contato> contatos = new ArrayList<>();
     List<Endereco> enderecos;
     List<Estado> estados;
-    
+
     private Cliente cliente;
     private Contato contato;
     private Endereco endereco;
     private Estado estado;
-    
+
     public ClienteMB() {
-        cliente  = new Cliente();
-        contato  = new Contato();
+        cliente = new Cliente();
+        contato = new Contato();
         endereco = new Endereco();
-        estado   = new Estado();
+        estado = new Estado();
     }
-    
-    public void salvar(){
+
+    public void salvar() {
         endereco.setEstado(estado);
         cliente.setEndereco(endereco);
         cliente.setContatos(contatos);
         clienteDao.saveOrUpdate(cliente);
-        
+
         contatos = new ArrayList<>();
         estado = new Estado();
         endereco = new Endereco();
         cliente = new Cliente();
-        
-        
-        
+
     }
-    
-    public void adicionarContato(){
+
+    public void adicionarContato() {
         contatos.add(contato);
         contato = new Contato();
     }
-    
-    public String detalharCliente(Cliente c){
+
+    public String detalharCliente(Cliente c) {
         cliente = new Cliente(c.getId(), c.getCnpj(), c.getRazaoSocial(), c.getNomeFantasia(), c.getInscricaoEstadual(),
-                c.getNumeroFuncionarios(),c.getRamoAtividade(), c.getSegmento(), c.getEmailNFE(), c.getLimite(),
+                c.getNumeroFuncionarios(), c.getRamoAtividade(), c.getSegmento(), c.getEmailNFE(), c.getLimite(),
                 c.getLimiteDisponivel(), c.getContatos(), c.getEndereco());
-        
+
         contatos = cliente.getContatos();
         endereco = cliente.getEndereco();
         estado = endereco.getEstado();
         return "adicionarClienteGUI.xhtml";
     }
-    
+
     @PostConstruct
-    public void selectAll(){
-        clientes  = clienteDao.findAll();
+    public void selectAll() {
+        clientes = clienteDao.findAll();
         enderecos = enderecoDao.findAll();
-        estados   = estadoDao.findAll();
+        estados = estadoDao.findAll();
     }
 
     public ClienteDao getClienteDao() {
@@ -174,10 +172,5 @@ public class ClienteMB implements Serializable{
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
-    
-    
-    
-    
-    
-    
+
 }
