@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+    >
+    
+    <ui:composition template="/Template/template.xhtml">
+        <ui:define name="content">
+            <b:jumbotron>
+                <b:form>
+                    <b:container fluid="true">
+                        <b:row>
+                            <b:selectOneMenu id="setor"
+                                             value="#{usuarioMB.vendedor.setor}" 
+                                             required="true"
+                                             label="Setor"
+                                             span="3"
+                                             select2="true"
+                                             converter="omnifaces.SelectItemsConverter"
+
+                                             >
+                                <f:selectItem itemLabel="Selecione um setor" />
+                                <f:selectItems value="#{usuarioMB.setores}"
+                                               var="setor" 
+                                               itemLabel="#{setor.nome}"
+                                               itemValue="#{setor}"
+                                               />
+                            </b:selectOneMenu>  
+                        </b:row>
+                        <b:panel title="Usuário" collapsible="false">
+                            <b:row>
+                                <b:inputText span="6" id="nome" value="#{usuarioMB.vendedor.nome}" label="Nome" size="100" required="true"/>
+                                <b:inputSecret span="4" id="senha" value="#{usuarioMB.vendedor.senha}" label="Senha" size="16" required="true"/>
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="6" id="email" value="#{usuarioMB.vendedor.email}" label="E-mail" size="50" required="true"/>                    
+                            </b:row>
+                        </b:panel>    
+                        <b:panel title="Vendedor" collapsible="false" rendered="true">
+                            <b:row>
+                                <b:inputText span="6" id="nome-fantasia" value="#{usuarioMB.vendedor.nomeFantasia}" label="Nome Fantasia" size="18"/>
+                                <b:inputText span="4" id="cnpj" value="#{usuarioMB.vendedor.cnpj}" label="CNPJ" size="18"/>
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="4" id="telefone" value="#{usuarioMB.vendedor.telefone}" label="Telefone" size="15"/>
+                            </b:row>
+                        </b:panel>
+                    </b:container>
+                    <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
+                </b:form>
+            </b:jumbotron>
+        </ui:define>
+    </ui:composition>
+</html>
+

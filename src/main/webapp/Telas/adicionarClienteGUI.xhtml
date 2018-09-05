@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/Template/template.xhtml">
+        <ui:define name="content">
+            <b:jumbotron>
+                <h:panelGroup>
+                    <b:formGroup>
+                        <b:modal id="mContato"
+                                 title="Contatos"
+                                 styleClass="mContato"
+                                 closable="false"
+                                 close-on-escape="false"
+                                 backdrop="false"
+                                 >
+                            <b:panel>
+                                <b:form>
+                                <b:row>
+                                    <b:inputText span="6" id="nome" value="#{clienteMB.contato.nome}" label="Nome" required="true" />
+                                    <b:inputText span="6" id="cargo" value="#{clienteMB.contato.cargo}" label="Cargo" required="true" />
+                                </b:row>
+                                <b:row>
+                                    <b:inputText span="6" id="email" value="#{clienteMB.contato.email}" label="E-mail" required="true" />
+                                    <b:inputText span="4" id="telefone" value="#{clienteMB.contato.telefone}" label="Telefone" required="true" />
+                                    <b:commandButton type="button" look="primary" value="Adicionar Contato" action="#{clienteMB.adicionarContato()}" icon-awesome="plus-square" ajax="true" update=":fContatos:contato"  />
+                                </b:row>
+
+                                <b:row>
+                                    <b:message for="nome" />
+                                    <b:message for="cargo" />
+                                    <b:message for="email" />
+                                    <b:message for="telefone" />
+                                </b:row>
+                                </b:form>
+                            </b:panel>
+                            <f:facet name="footer">
+                                <b:button value="close" look="danger" dismiss="modal"/>
+                            </f:facet>
+                        </b:modal>
+
+                        <b:form id="fContatos">
+                            <b:container fluid="true">
+
+                                <b:panel title="Dados Cliente" collapsible="false">
+                                    <b:row>
+                                        <b:inputText span="4" id="razao-social" value="#{clienteMB.cliente.razaoSocial}" label="Razão Social" size="100" required="true" />
+                                        <b:inputText span="4" id="nome-fantasia" value="#{clienteMB.cliente.nomeFantasia}" label="Nome Fantasia" size="100" />
+                                        <b:inputText span="4" id="cnpj" value="#{clienteMB.cliente.cnpj}" label="CNPJ" size="60" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="4" id="inscricao-estadual" value="#{clienteMB.cliente.inscricaoEstadual}" label="Inscrição Estadual" size="100" required="true" />
+                                        <b:inputText span="4" id="numero-funcionarios" value="#{clienteMB.cliente.numeroFuncionarios}" label="Número de Funcionários" />
+                                        <b:inputText span="4" id="ramo-atividade" value="#{clienteMB.cliente.ramoAtividade}" label="Ramo de Atividade" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="6" id="segmento" value="#{clienteMB.cliente.segmento}" label="Segmento" />
+                                        <b:inputText span="6" id="email-nfe" value="#{clienteMB.cliente.emailNFE}" label="E-mail" />
+                                    </b:row>
+                                </b:panel>
+                                <b:panel title="Dados Contato" collapsible="false">
+                                    <b:button onclick="$('.mContato').modal()" value="Adiconar Contato" icon-awesome="plus"/>
+                                    <b:dataTable 
+                                        id="contato"
+                                        columnVisibility="false"
+                                        value="#{clienteMB.contatos}"
+                                        var="contato"
+                                        select="true"
+                                        selectionMode="single"
+                                        searching ="false"
+                                        paginated="false"
+                                        info="false"
+                                        customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                        >
+
+                                        <b:dataTableColumn value="#{contato.nome}" label="Nome" />
+                                        <b:dataTableColumn value="#{contato.cargo}" label="Cargo" />
+                                        <b:dataTableColumn value="#{contato.email}" label="E-mail" />
+                                        <b:dataTableColumn value="#{contato.telefone}" label="Telefone" />
+                                        <b:dataTableColumn label="Opções">
+                                            <b:commandButton type="button" look="danger" value="Remover" icon="trash"/>
+                                            <b:commandButton type="button" look="primary" value="Editar" icon="edit"/>
+                                        </b:dataTableColumn>
+                                    </b:dataTable>
+
+                                </b:panel>
+                                <b:panel title="Dados Endereço" collapsible="false">
+                                    <b:row>
+                                        <b:inputText span="2" id="cep" value="#{clienteMB.endereco.cep}" label="CEP" required="true" />
+                                        <b:selectOneMenu id="estado"
+                                                         value="#{clienteMB.estado}" 
+                                                         required="true"
+                                                         label="Estado"
+                                                         span="3"
+                                                         select2="true"
+                                                         converter="omnifaces.SelectItemsConverter"
+                                                         >
+                                            <f:converter converterId="estadoConverter"/>
+                                            <f:selectItem itemLabel="Selecione um estado" />
+                                            <f:selectItems value="#{clienteMB.estados}"
+                                                           var="estado" 
+                                                           itemLabel="#{estado}"
+                                                           itemValue="#{estado}"
+                                                           />
+                                        </b:selectOneMenu>
+                                        <b:inputText span="4" id="cidade" value="#{clienteMB.endereco.cidade}" label="Cidade" required="true" />
+                                        <b:inputText span="3" id="bairro" value="#{clienteMB.endereco.bairro}" label="Bairro" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="6" id="endereco" value="#{clienteMB.endereco.logradouro}" label="Endereco" required="true" />
+                                        <b:inputText span="4" id="complemento" value="#{clienteMB.endereco.complemento}" label="Complemento" required="true" />
+                                        <b:commandButton type="button" look="primary" value="Adicionar Endereco" icon-awesome="plus-square" ajax="true" update=""  />
+                                    </b:row>
+                                </b:panel>
+                                <b:commandButton look="primary" value="Salvar Cadastro" action="#{clienteMB.salvar()}" icon-awesome="save" />
+                            </b:container>
+                        </b:form>
+                    </b:formGroup>
+                </h:panelGroup>
+            </b:jumbotron>
+        </ui:define>
+    </ui:composition>
+</html>
+
