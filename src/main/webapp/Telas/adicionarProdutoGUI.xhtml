@@ -13,6 +13,25 @@
                     <b:panel id="pProd" title="Cadastro de Produto">
                         <b:button look="primary" onclick="$('.mCadProd').modal()" value="Novo Produto" icon-awesome="plus"/>
 
+                        <b:modal id="mExcluirProd"
+                                 title="Deseja Excluir?" 
+                                 styleClass="mExcluirProd"
+                                 closable="false"  
+                                 close-on-escape="false" 
+                                 backdrop="false"
+                                 closeOnEscape="false">
+                            <b:panel id="pMExcluirProd">
+                                <b:form>
+                                    <b:commandButton look="success" value="Confirmar" action="#{produtoMB.excluirProduto()}" iconAwesome="fa-check" span="3" />
+                                    <b:button value="Cancelar" look="danger" dismiss="modal"  />
+                                </b:form>
+                            </b:panel>
+                        </b:modal>
+
+
+
+
+
                         <b:modal id="mCadProd"
                                  title="Cadastro de Produtos" 
                                  styleClass="mCadProd"
@@ -138,7 +157,8 @@
                                         <f:ajax event="click" render="pMCadProd"/>
                                     </b:commandButton>
 
-                                    <b:commandButton type="submit" look="danger" action="#{produtoMB.excluirProduto(produto)}" icon="trash" />
+                                    <b:commandButton type="button" look="danger" onclick="$('.mExcluirProd').modal()" action="#{produtoMB.detalharProduto(produto)}" icon="trash" >
+                                    </b:commandButton>
                                 </b:dataTableColumn>
 
 

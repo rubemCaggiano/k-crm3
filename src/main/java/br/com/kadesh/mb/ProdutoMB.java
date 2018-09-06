@@ -87,10 +87,10 @@ public class ProdutoMB implements Serializable {
         grupo = new Grupo(g.getId(), g.getNome(), g.getDescricao(), g.getNomeReduzido());
     }
 
-    public void excluirProduto(Produto p) {
-        produtoDao.delete(p);
-        this.produto = new Produto();
-        selectAll();
+    public void excluirProduto() {
+        produtoDao.delete(produto);
+        produto = new Produto();
+        
     }
 
     public void excluirFamilia(Familia f) {

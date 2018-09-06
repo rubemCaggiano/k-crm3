@@ -42,7 +42,6 @@ br\com\kadesh\dao\impl\TransportadoraDao.class
 br\com\kadesh\dao\impl\EnderecoDao.class
 br\com\kadesh\util\converter\FamiliaConverter.class
 br\com\kadesh\util\GerarTabelas.class
-br\com\kadesh\dao\interfaces\IGenericDAO.class
 br\com\kadesh\model\SituacaoEnum.class
 br\com\kadesh\model\Agendamento.class
 br\com\kadesh\util\converter\LinhaConverter.class
