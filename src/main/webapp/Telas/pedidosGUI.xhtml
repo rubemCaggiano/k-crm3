@@ -36,7 +36,7 @@
                             <b:dataTable  excel="true"
                                           columnVisibility="true"
                                           print="true"
-                                          value="#{pedidoMB.pedidos}"
+                                          value="#{pedidoDetalheMB.pedidos}"
                                           var="pedido"
                                           select="true"
                                           selectionMode="single"
@@ -53,7 +53,7 @@
                                 <b:dataTableColumn value="#{pedido.condicaoPagamento.condicao}" label="Pagamento" />
                                 <b:dataTableColumn value="#{pedido.observacoes}" label="Observações" />
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton look="info" action="#{pedidoMB.detalharPedido(pedido)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
+                                    <b:commandButton look="info" action="#{pedidoDetalheMB.detalharPedido(pedido)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
                                 </b:dataTableColumn>
 
 

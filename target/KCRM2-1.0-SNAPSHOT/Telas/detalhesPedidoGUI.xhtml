@@ -17,21 +17,21 @@
                             
 
                             <b:panel title="Cliente" collapsible="false" >
-                                <b:inputText span="8" readonly="true" id="clienteRazaoSocial" value="#{pedidoMB.pedido.cliente.razaoSocial}" label="Razão Social" size="30" />
-                                <b:inputText span="4" readonly="true" id="clienteCnpj" value="#{pedidoMB.pedido.cliente.cnpj}" label="CNPJ" size="30" />
-                                <b:inputText span="8" readonly="true" id="clienteFantasia" value="#{pedidoMB.pedido.cliente.nomeFantasia}" label="Nome Fantasia" size="30" />
-                                <b:inputText span="4" readonly="true" id="clienteRamo" value="#{pedidoMB.pedido.cliente.ramoAtividade}" label="Ramo" size="30" />
-                                <b:inputText span="4" readonly="true" id="clienteSegmento" value="#{pedidoMB.pedido.cliente.segmento}" label="Segmento" size="30" />
-                                <b:inputText span="4" readonly="true" id="clienteLimite" value="#{pedidoMB.pedido.cliente.limite}" label="Limite" size="30" />
-                                <b:inputText span="4" readonly="true" id="clienteLimiteDisponivel" value="#{pedidoMB.pedido.cliente.limiteDisponivel}" label="Limite Disponivel" size="30" />
+                                <b:inputText span="8" readonly="true" id="clienteRazaoSocial" value="#{pedidoDetalheMB.pedido.cliente.razaoSocial}" label="Razão Social" size="30" />
+                                <b:inputText span="4" readonly="true" id="clienteCnpj" value="#{pedidoDetalheMB.pedido.cliente.cnpj}" label="CNPJ" size="30" />
+                                <b:inputText span="8" readonly="true" id="clienteFantasia" value="#{pedidoDetalheMB.pedido.cliente.nomeFantasia}" label="Nome Fantasia" size="30" />
+                                <b:inputText span="4" readonly="true" id="clienteRamo" value="#{pedidoDetalheMB.pedido.cliente.ramoAtividade}" label="Ramo" size="30" />
+                                <b:inputText span="4" readonly="true" id="clienteSegmento" value="#{pedidoDetalheMB.pedido.cliente.segmento}" label="Segmento" size="30" />
+                                <b:inputText span="4" readonly="true" id="clienteLimite" value="#{pedidoDetalheMB.pedido.cliente.limite}" label="Limite" size="30" />
+                                <b:inputText span="4" readonly="true" id="clienteLimiteDisponivel" value="#{pedidoDetalheMB.pedido.cliente.limiteDisponivel}" label="Limite Disponivel" size="30" />
                             </b:panel>
 
                             <b:panel title="Pedido" collapsible="false">
-                                <b:inputText span="4" readonly="true" id="condPag" value="#{pedidoMB.pedido.condicaoPagamento}" label="Condição de Pagamento" size="30" />
-                                <b:inputText span="3" readonly="true" id="valorTotal" value="#{pedidoMB.pedido.valorTotal}" label="Valor Total" size="30" />
-                                <b:inputText span="4" readonly="true" id="quantidade" value="#{pedidoMB.pedido.quantidade}" label="Quantidade" size="30" />
-                                <b:inputText span="4" readonly="true" id="transportadora" value="#{pedidoMB.pedido.transportadora.nomeFantasia}" label="Transportadora" size="30" />
-                                <b:inputText span="12" readonly="true" id="observacao" value="#{pedidoMB.pedido.observacoes}" label="Observações" size="30" />
+                                <b:inputText span="4" readonly="true" id="condPag" value="#{pedidoDetalheMB.pedido.condicaoPagamento}" label="Condição de Pagamento" size="30" />
+                                <b:inputText span="3" readonly="true" id="valorTotal" value="#{pedidoDetalheMB.pedido.valorTotal}" label="Valor Total" size="30" />
+                                <b:inputText span="4" readonly="true" id="quantidade" value="#{pedidoDetalheMB.pedido.quantidade}" label="Quantidade" size="30" />
+                                <b:inputText span="4" readonly="true" id="transportadora" value="#{pedidoDetalheMB.pedido.transportadora.nomeFantasia}" label="Transportadora" size="30" />
+                                <b:inputText span="12" readonly="true" id="observacao" value="#{pedidoDetalheMB.pedido.observacoes}" label="Observações" size="30" />
 
                             </b:panel>
 
@@ -39,7 +39,7 @@
                                 <b:dataTable
                                     id="gradeProdutos"
                                     columnVisibility="false"
-                                    value="#{pedidoMB.itens}"
+                                    value="#{pedidoDetalheMB.itens}"
                                     var="itemPedido"
                                     select="true"
                                     selectionMode="single"
@@ -57,8 +57,8 @@
                                 </b:dataTable>
                             </b:panel>
 
-                            <b:commandButton look="primary" value="Aprovar" action="#{pedidoMB.aprovar()}" immediate="true" icon-awesome="check" />
-                            <b:commandButton look="warning" value="Devolver" action="#{pedidoMB.devolver()}" immediate="true" icon-awesome="times" />
+                            <b:commandButton look="primary" value="Aprovar" action="#{pedidoDetalheMB.aprovar()}" immediate="true" icon-awesome="check" />
+                            <b:commandButton look="warning" value="Devolver" action="#{pedidoDetalheMB.devolver()}" immediate="true" icon-awesome="times" />
 
 
 

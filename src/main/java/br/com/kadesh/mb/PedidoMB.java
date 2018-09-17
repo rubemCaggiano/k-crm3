@@ -193,8 +193,8 @@ public class PedidoMB implements Serializable {
         gradeVendas.remove(gradeVenda);
     }
 
-    public void removerItem() {
-
+    public void removerItem(ItemPedido itemPedido) {
+        itens.remove(itemPedido);
     }
 
     public void editarItem(ItemPedido itemPedido) {
