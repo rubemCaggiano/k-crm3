@@ -129,6 +129,41 @@
 
                         </b:modal>
 
+                        <b:modal id="mDtProd"
+                                 title="Cadastro de Produtos" 
+                                 styleClass="mDtProd"
+                                 closable="false"  
+                                 close-on-escape="false" 
+                                 backdrop="false"
+                                 closeOnEscape="false">
+                            <b:panel id="pMDtProd">
+                                <b:form>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="descricao" value="#{produtoMB.produto.descricao}" label="Descrição" size="200" required="true" />
+
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="4" id="referencia" value="#{produtoMB.produto.referencia}" label="Referência" size="30" required="true" />
+                                        <b:inputText readonly="true" span="4" id="numeroca" value="#{produtoMB.produto.numeroCa}" label="Numero do C.A " size="30" required="false" />
+                                    </b:row>
+                                    <b:row> 
+                                        <b:inputText readonly="true" span="3" id="custo" value="#{produtoMB.produto.custo}" label="Custo de Produção" size="10" required="true" />
+                                        <b:inputText readonly="true" span="3" id="mcminima" value="#{produtoMB.produto.mcMinima}" label="Margem Minima" size="10" required="false" mask="numeric" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="3" id="pfamiliaN" value="#{produtoMB.produto.familia.nome}" label="Familia" size="10" required="true" />
+                                        <b:inputText readonly="true" span="3" id="plinhaN" value="#{produtoMB.produto.linha.nome}" label="Linha" size="10" required="true" />
+                                        <b:inputText readonly="true" span="3" id="pgrupoN" value="#{produtoMB.produto.grupo.nome}" label="Grupo" size="10" required="true" />
+                                    </b:row>
+                                </b:form>
+                            </b:panel>
+
+                            <f:facet name="footer">
+                                <b:button value="Close" look="danger" dismiss="modal"  />
+                            </f:facet>	
+
+                        </b:modal>
+
 
                         <h:form>
                             <b:dataTable   
@@ -150,8 +185,8 @@
                                 <b:dataTableColumn value="#{produto.linha.nome}" label="Linha" />
 
                                 <b:dataTableColumn label="Ações">
-                                    <b:commandButton type="button" look="info" onclick="$('.mCadProd').modal()" action="#{produtoMB.detalharProduto(produto)}" immediate="true" icon-awesome="search-plus">
-                                        <f:ajax event="click" render="pMCadProd"/>
+                                    <b:commandButton type="button" look="info" onclick="$('.mDtProd').modal()" action="#{produtoMB.detalharProduto(produto)}" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pMDtProd"/>
                                     </b:commandButton>
                                     <b:commandButton type="button" look="warning" onclick="$('.mCadProd').modal()" action="#{produtoMB.alterarProduto(produto)}" icon="edit" >
                                         <f:ajax event="click" render="pMCadProd"/>
@@ -194,6 +229,31 @@
                             </f:facet>
                         </b:modal>
 
+                        <b:modal id="mDtFamilia"
+                                 title="Cadastro de Familia de Produtos" 
+                                 styleClass="mDtFamilia"
+                                 closable="false"  
+                                 close-on-escape="false" 
+                                 backdrop="false">
+                            <b:panel id="pMDtFamilia">
+                                <h:form>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="descricaoFamilia" value="#{produtoMB.familia.descricao}" label="Descrição" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="nomeFamilia" value="#{produtoMB.familia.nome}" label="Nome" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="nomeRedFamilia" value="#{produtoMB.familia.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
+                                    </b:row>
+
+                                </h:form>
+                            </b:panel>
+                            <f:facet name="footer">
+                                <b:button value="Close" look="danger" dismiss="modal" />
+                            </f:facet>
+                        </b:modal>
+
                         <h:form>
                             <b:dataTable  excel="true"
                                           columnVisibility="true"
@@ -210,8 +270,8 @@
                                 <b:dataTableColumn value="#{familia.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ações">
-                                    <b:commandButton type="button" onclick="$('.mCadFamilia').modal()" look="info" action="#{produtoMB.detalharFamilia(familia)}" immediate="true" icon-awesome="search-plus">
-                                        <f:ajax event="click" render="pMCadFamilia"/>
+                                    <b:commandButton type="button" onclick="$('.mDtFamilia').modal()" look="info" action="#{produtoMB.detalharFamilia(familia)}" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pMDtFamilia"/>
                                     </b:commandButton>
                                     <b:commandButton type="button" onclick="$('.mCadFamilia').modal()" look="warning" action="#{produtoMB.alterarFamilia(familia)}" immediate="true" icon="edit" >
                                         <f:ajax event="click" render="pMCadFamilia"/>
@@ -251,6 +311,30 @@
                             </f:facet>
                         </b:modal>
 
+                        <b:modal id="mDtLinha"
+                                 title="Cadastro de Linha de Produtos" 
+                                 styleClass="mDtLinha"
+                                 closable="false"  
+                                 close-on-escape="false" 
+                                 backdrop="false">
+                            <b:panel id="pMDtLinha">
+                                <h:form>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="descricaoLinha" value="#{produtoMB.linha.descricao}" label="Descrição" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="nomeLinha" value="#{produtoMB.linha.nome}" label="Nome" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="nomeRedLinha" value="#{produtoMB.linha.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
+                                    </b:row>
+                                </h:form>
+                            </b:panel>
+                            <f:facet name="footer">
+                                <b:button value="Fechar" look="danger" dismiss="modal" />
+                            </f:facet>
+                        </b:modal>
+
                         <h:form>
                             <b:dataTable  excel="true"
                                           columnVisibility="true"
@@ -267,8 +351,8 @@
                                 <b:dataTableColumn value="#{linha.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton type="button" onclick="$('.mCadLinha').modal()" look="info" action="#{produtoMB.detalharLinha(linha)}" immediate="true" icon-awesome="search-plus">
-                                        <f:ajax event="click" render="pMCadLinha"/>
+                                    <b:commandButton type="button" onclick="$('.mDtLinha').modal()" look="info" action="#{produtoMB.detalharLinha(linha)}" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pMDtLinha"/>
                                     </b:commandButton>
                                     <b:commandButton type="button" onclick="$('.mCadLinha').modal()" look="warning" action="#{produtoMB.alterarLinha(linha)}" immediate="true" icon="edit" >
                                         <f:ajax event="click" render="pMCadLinha"/>
@@ -309,6 +393,30 @@
                             </f:facet>
                         </b:modal>
 
+                        <b:modal id="mDtGrupo"
+                                 title="Cadastro de Grupo de Produtos" 
+                                 styleClass="mDtGrupo"
+                                 closable="false"  
+                                 close-on-escape="false" 
+                                 backdrop="false">
+                            <b:panel id="pMDtGrupo">
+                                <h:form>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="descricaoGrupo" value="#{produtoMB.grupo.descricao}" label="Descrição" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="nomeGrupo" value="#{produtoMB.grupo.nome}" label="Nome" size="200" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="nomeRedGrupo" value="#{produtoMB.grupo.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
+                                    </b:row>
+                                </h:form>
+                            </b:panel>
+                            <f:facet name="footer">
+                                <b:button value="Fechar" look="danger" dismiss="modal" />
+                            </f:facet>
+                        </b:modal>
+
                         <h:form>
                             <b:dataTable  excel="true"
                                           columnVisibility="true"
@@ -325,8 +433,8 @@
                                 <b:dataTableColumn value="#{grupo.nomeReduzido}" label="Nome Reduzido" />
 
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton type="button" onclick="$('.mCadGrupo').modal()" look="info" action="#{produtoMB.detalharGrupo(grupo)}" immediate="true" icon-awesome="search-plus">
-                                        <f:ajax event="click" render="pMCadGrupo"/>
+                                    <b:commandButton type="button" onclick="$('.mDtGrupo').modal()" look="info" action="#{produtoMB.detalharGrupo(grupo)}" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pMDtGrupo"/>
                                     </b:commandButton>
                                     <b:commandButton type="button" onclick="$('.mCadGrupo').modal()" look="warning" action="#{produtoMB.alterarGrupo(grupo)}" immediate="true" icon="edit">
                                         <f:ajax event="click" render="pMCadGrupo"/>
