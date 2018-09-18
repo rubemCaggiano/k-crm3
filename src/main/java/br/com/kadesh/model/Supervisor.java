@@ -13,12 +13,12 @@ public class Supervisor extends Usuario {
     public Supervisor() {
     }
 
-    public Supervisor(List<Vendedor> vendedores) {
+    public Supervisor(List<Vendedor> vendedores, int id, String nome, String email, Setor setor, String senha, boolean vendedor, boolean supervisor, boolean status) {
+        super(id, nome, email, setor, senha, vendedor, supervisor, status);
         this.vendedores = vendedores;
     }
 
-    public Supervisor(List<Vendedor> vendedores, int id, String nome, String email, Setor setor, String senha, boolean status) {
-        super(id, nome, email, setor, senha, status);
+    public Supervisor(List<Vendedor> vendedores) {
         this.vendedores = vendedores;
     }
 

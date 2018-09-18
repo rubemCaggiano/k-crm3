@@ -29,8 +29,8 @@ public class Vendedor extends Usuario {
         this.clientes = clientes;
     }
 
-    public Vendedor(TipoVendedor tipoVendedor, String cnpj, String nomeFantasia, String telefone, List<Cliente> clientes, int id, String nome, String email, Setor setor, String senha, boolean status) {
-        super(id, nome, email, setor, senha, status);
+    public Vendedor(TipoVendedor tipoVendedor, String cnpj, String nomeFantasia, String telefone, List<Cliente> clientes, int id, String nome, String email, Setor setor, String senha, boolean vendedor, boolean supervisor, boolean status) {
+        super(id, nome, email, setor, senha, vendedor, supervisor, status);
         this.tipoVendedor = tipoVendedor;
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;

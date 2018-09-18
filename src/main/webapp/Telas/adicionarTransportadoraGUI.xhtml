@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/Template/template.xhtml">
+        <ui:define name="content">
+
+            <b:jumbotron> 
+                <b:formGroup>
+                    <b:container fluid="true">
+                        <b:panel title="Transportadoras" >
+                            <b:button look="primary" onclick="$('.mCadTransp').modal()" value="Nova Transportadora" icon-awesome="plus"/>
+                            <b:modal id="mCadTransp"
+                                     title="Cadastro de Transportadora" 
+                                     styleClass="mCadTransp"
+                                     closable="false"  
+                                     close-on-escape="false" 
+                                     backdrop="false">
+                                <b:panel id="pMCadTransp">
+                                    <h:form>
+                                        <b:row>
+                                            <b:inputText span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" required="true" />
+                                        </b:row>
+                                        <b:row>
+                                            <b:inputText span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" size="200" required="true" />
+                                        </b:row>
+                                        <b:row>
+                                            <b:inputText span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" required="true" />
+                                        </b:row>
+
+                                        <b:row>
+                                            <b:selectOneMenu id="estados"
+                                                             value="#{transportadoraMB.estado}" 
+                                                             label="Estados"
+                                                             span="3"
+                                                             select2="true"
+                                                             converter="omnifaces.SelectItemsConverter"
+                                                             >
+                                                <f:converter converterId="estadoConverter"/>
+                                                <f:selectItem itemLabel="Selecione" />
+                                                <f:selectItems value="#{transportadoraMB.estados}"
+                                                               var="estado" 
+                                                               itemLabel="#{estado.sigla}"
+                                                               itemValue="#{estado}"
+                                                               />
+                                            </b:selectOneMenu>
+                                            <b:commandButton type="button" look="primary" value="Adicionar" action="#{pedidoMB.adicionarItem()}" icon-awesome="check" ajax="true" update="estadosAtendidos"  />
+                                        </b:row>
+                                        <b:row>
+                                            <b:dataTable 
+                                                id="estadosAtendidos"
+                                                columnVisibility="false"
+                                                value="#{transportadoraMB.estadosAtendidos}"
+                                                var="estado"
+                                                select="true"
+                                                selectionMode="single"
+                                                searching ="false"
+                                                paginated="false"
+                                                info="false"
+                                                customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                                >
+
+                                                <b:dataTableColumn value="#{estado.nome}" label="Estado" />
+                                                <b:dataTableColumn value="#{estado.sigla}" label="Sigla" />
+                                                <b:dataTableColumn label="Opções">
+                                                    <b:commandButton type="button" look="danger" action="#{pedidoMB.removerItemGrade(gradeVenda)}" immediate="true" icon="trash" ajax="true" update=":mItemAdd:itensVenda" auto-update="true"/>
+                                                </b:dataTableColumn>
+
+
+                                            </b:dataTable>
+
+                                        </b:row>
+
+                                    </h:form>
+                                </b:panel>
+                                <f:facet name="footer">
+                                    <b:button value="Close" look="danger" dismiss="modal" />
+                                </f:facet>
+                            </b:modal>
+
+
+                            <b:form>
+                                <b:dataTable   
+                                    excel="true"
+                                    columnVisibility="true"
+                                    print="true"
+                                    value="#{transportadoraMB.transportadoras}"
+                                    var="transportadora"
+                                    select="true"
+                                    selectionMode="single"
+                                    customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                    >
+
+                                    <b:dataTableColumn value="#{transportadora.nomeFantasia}" label="Transportadora" />
+                                    <b:dataTableColumn value="#{transportadora.cnpj}" label="CNPJ" />
+                                    <b:dataTableColumn value="#{transportadora.razaoSocial}" label="Razão Social" />
+
+                                    <b:dataTableColumn label="Ações">
+                                        <b:commandButton type="button" look="info" onclick="$('.mCadTransp').modal()" action="#{produtoMB.detalharProduto(produto)}" immediate="true" icon-awesome="search-plus">
+                                            <f:ajax event="click" render="pMCadTransp"/>
+                                        </b:commandButton>
+                                        <b:commandButton type="button" look="warning" onclick="$('.mCadTransp').modal()" action="#{produtoMB.alterarProduto(produto)}" icon="edit" >
+                                            <f:ajax event="click" render="pMCadTransp"/>
+                                        </b:commandButton>
+
+
+                                    </b:dataTableColumn>
+
+
+                                </b:dataTable>
+
+                            </b:form>
+                        </b:panel>
+                    </b:container>
+                </b:formGroup>
+            </b:jumbotron>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

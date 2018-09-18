@@ -16,12 +16,6 @@ public class LoginMB implements Serializable {
     private Usuario usuario;
     private Setor setor;
 
-    public LoginMB() {
-        setor = new Setor(0, "Vendas");
-        usuario = new Usuario(0, "Rubem", "rubem@kadesh.com", setor, "1234", true);
-
-    }
-
     public UsuarioDao getUsuarioDao() {
         return usuarioDao;
     }

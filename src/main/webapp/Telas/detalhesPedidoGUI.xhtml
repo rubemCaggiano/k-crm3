@@ -13,7 +13,36 @@
 
                     <b:form>
                         <b:container fluid="true">
-
+                            <b:panel title="Supervisor" collapsible="false" >
+                                <!--rendered="{usuarioMB.usuario.supervisor}"-->
+                                
+                                <b:row>
+                                    <b:inputText span="8" readonly="true" id="vendedor" value="#{pedidoDetalheMB.pedido.vendedor.nome}" label="Vendedor" size="30" />
+                                    <b:commandButton look="primary" value="Aprovar" action="#{pedidoDetalheMB.aprovar()}" immediate="true" icon-awesome="check" />
+                                    <b:commandButton look="warning" value="Devolver" action="#{pedidoDetalheMB.devolver()}" immediate="true" icon-awesome="times" />
+                                </b:row>
+                            </b:panel>
+                            
+                            <b:panel title="Financeiro" collapsible="false" >
+                                <!--rendered="{usuarioMB.usuario.supervisor}"-->
+                                
+                                <b:row>
+                                    <b:inputText span="8" readonly="true" id="vendedor" value="#{pedidoDetalheMB.pedido.vendedor.nome}" label="Vendedor" size="30" />
+                                    <b:commandButton look="primary" value="Aprovar" action="#{pedidoDetalheMB.aprovar()}" immediate="true" icon-awesome="check" />
+                                    <b:commandButton look="warning" value="Devolver" action="#{pedidoDetalheMB.devolver()}" immediate="true" icon-awesome="times" />
+                                </b:row>
+                            </b:panel>
+                            
+                            <b:panel title="Vendedor" collapsible="false" >
+                                <!--rendered="{usuarioMB.usuario.supervisor}"-->
+                                
+                                <b:row>
+                                    <b:commandButton look="primary" value="Aprovar" action="#{pedidoDetalheMB.aprovar()}" immediate="true" icon-awesome="check" />
+                                    <b:commandButton look="warning" value="Devolver" action="#{pedidoDetalheMB.devolver()}" immediate="true" icon-awesome="times" />
+                                </b:row>
+                            </b:panel>
+                            
+                            
                             <b:panel title="Cliente" collapsible="false" >
                                 <b:row>
                                     <b:inputText span="8" readonly="true" id="clienteRazaoSocial" value="#{pedidoDetalheMB.pedido.cliente.razaoSocial}" label="Razão Social" size="30" />
@@ -28,11 +57,8 @@
                                     <b:inputText span="4" readonly="true" id="clienteLimite" value="#{pedidoDetalheMB.pedido.cliente.limite}" label="Limite" size="30" />
                                     <b:inputText span="4" readonly="true" id="clienteLimiteDisponivel" value="#{pedidoDetalheMB.pedido.cliente.limiteDisponivel}" label="Limite Disponivel" size="30" />
                                 </b:row>
-
                             </b:panel>
-
                             <b:panel title="Pedido" collapsible="false">
-
                                 <b:commandButton look="warning" action="#{pedidoDetalheMB.detalharPedido(pedido)}" immediate="true" value="Editar Pedido" icon-awesome="edit"
                                                  rendered="#{pedidoDetalheMB.pedido.situacao == 'ABERTO'}"/>
                                 <b:row>
@@ -47,7 +73,6 @@
                                     <b:inputText span="12" readonly="true" id="observacao" value="#{pedidoDetalheMB.pedido.observacoes}" label="Observações" size="30" />
                                 </b:row>
                             </b:panel>
-
                             <b:panel title="Produtos" collapsible="false">
                                 <b:dataTable
                                     id="gradeProdutos"
@@ -60,21 +85,13 @@
                                     paginated="false"
                                     info="false"
                                     >
-
                                     <b:dataTableColumn value="#{itemPedido.produto.descricao}" label="Item" />
-
                                     <b:dataTableColumn value="#{itemPedido.preco}" label="Preço" />
                                     <b:dataTableColumn value="#{itemPedido.quantidade}" label="Quantidade" />
                                     <b:dataTableColumn value="#{itemPedido.valorItens}" label="Valor Itens" />
 
                                 </b:dataTable>
                             </b:panel>
-
-                            <b:commandButton look="primary" value="Aprovar" action="#{pedidoDetalheMB.aprovar()}" immediate="true" icon-awesome="check" />
-                            <b:commandButton look="warning" value="Devolver" action="#{pedidoDetalheMB.devolver()}" immediate="true" icon-awesome="times" />
-
-
-
                         </b:container>
                     </b:form>
                 </b:formGroup>

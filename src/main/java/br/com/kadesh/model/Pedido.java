@@ -30,6 +30,8 @@ public class Pedido implements Serializable {
     private CondicaoPagamento condicaoPagamento;
     @ManyToOne
     private TipoPedido tipoPedido;
+    @ManyToOne
+    private Vendedor vendedor;
 
     private String numeroOrdemCompra;
     private String observacoes;
@@ -63,6 +65,8 @@ public class Pedido implements Serializable {
         this.itensPedido = itensPedido;
     }
 
+    
+    
     public List<ItemPedido> getItensPedido() {
         return itensPedido;
     }
@@ -170,6 +174,14 @@ public class Pedido implements Serializable {
 
     public void setSituacao(SituacaoEnum situacao) {
         this.situacao = situacao;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
 
 }

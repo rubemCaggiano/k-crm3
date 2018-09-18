@@ -19,19 +19,19 @@ public class Transportadora implements Serializable {
     private String nomeFantasia;
 
     @OneToMany
-    private List<Regiao> regioesAtendidas;
+    private List<Estado> estadosAtendidos;
 
     private boolean status;
 
     public Transportadora() {
     }
 
-    public Transportadora(int id, String razaoSocial, String cnpj, String nomeFantasia, List<Regiao> regioesAtendidas, boolean status) {
+    public Transportadora(int id, String razaoSocial, String cnpj, String nomeFantasia, List<Estado> estadosAtendidos, boolean status) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;
-        this.regioesAtendidas = regioesAtendidas;
+        this.estadosAtendidos = estadosAtendidos;
         this.status = status;
     }
 
@@ -67,12 +67,12 @@ public class Transportadora implements Serializable {
         this.nomeFantasia = nomeFantasia;
     }
 
-    public List<Regiao> getRegioesAtendidas() {
-        return regioesAtendidas;
+    public List<Estado> getEstadosAtendidos() {
+        return estadosAtendidos;
     }
 
-    public void setRegioesAtendidas(List<Regiao> regioesAtendidas) {
-        this.regioesAtendidas = regioesAtendidas;
+    public void setEstadosAtendidos(List<Estado> estadosAtendidos) {
+        this.estadosAtendidos = estadosAtendidos;
     }
 
     public boolean isStatus() {
