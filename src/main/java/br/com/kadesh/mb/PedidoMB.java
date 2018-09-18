@@ -70,6 +70,7 @@ public class PedidoMB implements Serializable {
     private ItemPedido itemPedido;
     private GradeVenda gradeVenda;
     private Opcional opcional;
+    private SituacaoEnum situacaoEnum;
 
     public PedidoMB() {
 
@@ -140,7 +141,6 @@ public class PedidoMB implements Serializable {
         pedido.setQuantidade(quantidadeTotal);
         pedido.setValorTotal(valorTotal);
 
-        
     }
 
     public void carregarProdutos() {
@@ -168,7 +168,7 @@ public class PedidoMB implements Serializable {
         pedido.setCondicaoPagamento(condicaoPagamento);
         pedido.setTransportadora(transportadora);
         pedido.setItensPedido(itens);
-        pedido.setSituacao(SituacaoEnum.FINANCEIRO);
+        pedido.setSituacao(SituacaoEnum.ABERTO);
 
         pedidoDao.create(pedido);
 
@@ -205,15 +205,13 @@ public class PedidoMB implements Serializable {
                 itemPedido.getPisCofins(), itemPedido.getCprb(), itemPedido.getOpcionais());
         gradeVendas = itemPedido.getProdutos();
         produto = itemPedido.getProduto();
-        
-        
+
     }
 
     public String detalharPedido(Pedido p) {
         pedido = new Pedido(p.getId(), p.getCliente(), p.getTransportadora(), p.getEnderecoEntrega(), p.getCondicaoPagamento(),
                 p.getTipoPedido(), p.getNumeroOrdemCompra(), p.getObservacoes(), p.getSituacao(), p.getValorTotal(), p.getQuantidade(),
                 p.getDataCriacao(), p.getItensPedido());
-        
 
         return "detalhesPedidoGUI.xhtml";
     }
@@ -487,6 +485,14 @@ public class PedidoMB implements Serializable {
 
     public void setOpcional(Opcional opcional) {
         this.opcional = opcional;
+    }
+
+    public SituacaoEnum getSituacaoEnum() {
+        return situacaoEnum;
+    }
+
+    public void setSituacaoEnum(SituacaoEnum situacaoEnum) {
+        this.situacaoEnum = situacaoEnum;
     }
 
 }

@@ -48,18 +48,21 @@
 
                                 <b:panel title="Dados Cliente" collapsible="false">
                                     <b:row>
-                                        <b:inputText span="4" id="razao-social" value="#{clienteMB.cliente.razaoSocial}" label="Razão Social" size="100" required="true" />
-                                        <b:inputText span="4" id="nome-fantasia" value="#{clienteMB.cliente.nomeFantasia}" label="Nome Fantasia" size="100" />
-                                        <b:inputText span="4" id="cnpj" value="#{clienteMB.cliente.cnpj}" label="CNPJ" size="60" required="true" />
+                                        <b:inputText span="6" id="razao-social" value="#{clienteMB.cliente.razaoSocial}" label="Razão Social" size="100" required="true" />
+                                        <b:inputText span="6" id="nome-fantasia" value="#{clienteMB.cliente.nomeFantasia}" label="Nome Fantasia" size="100" />
+                                        
                                     </b:row>
                                     <b:row>
-                                        <b:inputText span="4" id="inscricao-estadual" value="#{clienteMB.cliente.inscricaoEstadual}" label="Inscrição Estadual" size="100" required="true" />
-                                        <b:inputText span="4" id="numero-funcionarios" value="#{clienteMB.cliente.numeroFuncionarios}" label="Número de Funcionários" />
+                                        <b:inputText span="3" id="cnpj" value="#{clienteMB.cliente.cnpj}" label="CNPJ" size="60" required="true" />
+                                        <b:inputText span="3" id="inscricao-estadual" value="#{clienteMB.cliente.inscricaoEstadual}" label="Inscrição Estadual" size="100" required="true" />
+                                        <b:inputText span="2" id="numero-funcionarios" value="#{clienteMB.cliente.numeroFuncionarios}" label="Número de Funcionários" />
+                                        <b:inputText span="4" id="email-nfe" value="#{clienteMB.cliente.emailNFE}" label="E-mail" />
+                                        
+                                    </b:row>
+                                    <b:row>
                                         <b:inputText span="4" id="ramo-atividade" value="#{clienteMB.cliente.ramoAtividade}" label="Ramo de Atividade" />
-                                    </b:row>
-                                    <b:row>
-                                        <b:inputText span="6" id="segmento" value="#{clienteMB.cliente.segmento}" label="Segmento" />
-                                        <b:inputText span="6" id="email-nfe" value="#{clienteMB.cliente.emailNFE}" label="E-mail" />
+                                        <b:inputText span="4" id="segmento" value="#{clienteMB.cliente.segmento}" label="Segmento" />
+                                        
                                     </b:row>
                                 </b:panel>
                                 <b:panel title="Dados Contato" collapsible="false">
@@ -112,8 +115,7 @@
                                     </b:row>
                                     <b:row>
                                         <b:inputText span="6" id="endereco" value="#{clienteMB.endereco.logradouro}" label="Endereco" required="true" />
-                                        <b:inputText span="4" id="complemento" value="#{clienteMB.endereco.complemento}" label="Complemento" required="true" />
-                                        <b:commandButton type="button" look="primary" value="Adicionar Endereco" icon-awesome="plus-square" ajax="true" update=""  />
+                                        <b:inputText span="6" id="complemento" value="#{clienteMB.endereco.complemento}" label="Complemento" required="true" />
                                     </b:row>
                                 </b:panel>
                                 <b:commandButton look="primary" value="Salvar Cadastro" action="#{clienteMB.salvar()}" icon-awesome="save" />

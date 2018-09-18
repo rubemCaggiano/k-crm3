@@ -51,9 +51,8 @@
                                 <b:dataTableColumn value="#{pedido.quantidade}" label="Total de Pares" />
                                 <b:dataTableColumn value="#{pedido.transportadora.nomeFantasia}" label="Transportadora" />
                                 <b:dataTableColumn value="#{pedido.condicaoPagamento.condicao}" label="Pagamento" />
-                                <b:dataTableColumn value="#{pedido.observacoes}" label="Observações" />
                                 <b:dataTableColumn label="Ver">
-                                    <b:commandButton look="info" action="#{pedidoDetalheMB.detalharPedido(pedido)}" value="Ver" immediate="true" icon-awesome="search-plus"/>
+                                    <b:commandButton look="info" action="#{pedidoDetalheMB.detalharPedido(pedido)}" immediate="true" icon-awesome="search-plus"/>
                                 </b:dataTableColumn>
 
 
