@@ -5,6 +5,7 @@ import br.com.kadesh.dao.impl.TransportadoraDao;
 import br.com.kadesh.model.Estado;
 import br.com.kadesh.model.Transportadora;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +20,7 @@ public class TransportadoraMB implements Serializable {
 
     private List<Transportadora> transportadoras;
     private List<Estado> estados;
-    private List<Estado> estadosAtendidos;
+    private List<Estado> estadosAtendidos = new ArrayList<>();
 
     private Transportadora transportadora;
     private Estado estado;
@@ -29,9 +30,20 @@ public class TransportadoraMB implements Serializable {
         estado = new Estado();
     }
     
-    public void adicionarEstado(){
+    
+    public void salvar(){
+        transportadora.setEstadosAtendidos(estadosAtendidos);
+        transportadoraDao.create(transportadora);
+    }
+
+    public void adicionarEstado() {
         estadosAtendidos.add(estado);
         estado = new Estado();
+    }
+
+    public void removerEstado(Estado estado) {
+        estadosAtendidos.remove(estado);
+
     }
 
     @PostConstruct

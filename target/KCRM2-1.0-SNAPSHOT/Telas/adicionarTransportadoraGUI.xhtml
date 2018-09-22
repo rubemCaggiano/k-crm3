@@ -22,12 +22,12 @@
                                      close-on-escape="false" 
                                      backdrop="false">
                                 <b:panel id="pMCadTransp">
-                                    <b:form>
+                                    <b:form id="fpMCadTransp" >
                                         <b:row>
                                             <b:inputText span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" required="true" />
                                         </b:row>
                                         <b:row>
-                                            <b:inputText span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" size="200" required="true" />
+                                            <b:inputText span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="200" required="true" />
                                         </b:row>
                                         <b:row>
                                             <b:inputText span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" required="true" />
@@ -48,7 +48,7 @@
                                                                itemValue="#{estado}"
                                                                />
                                             </b:selectOneMenu>
-                                            <b:commandButton type="button" look="primary" value="Adicionar" action="#{pedidoMB.adicionarItem()}" icon-awesome="check" ajax="true" update="estadosAtendidos"  />
+                                            <b:commandButton type="button" look="primary" value="Adicionar" action="#{transportadoraMB.adicionarEstado()}" icon-awesome="check" ajax="true" update="estadosAtendidos"  />
                                         </b:row>
                                         <b:row>
                                             <b:dataTable 
@@ -67,13 +67,15 @@
                                                 <b:dataTableColumn value="#{estado.nome}" label="Estado" />
                                                 <b:dataTableColumn value="#{estado.sigla}" label="Sigla" />
                                                 <b:dataTableColumn label="Opções">
-                                                    <b:commandButton type="button" look="danger" action="#{pedidoMB.removerItemGrade(gradeVenda)}" immediate="true" icon="trash" ajax="true" update=":mItemAdd:itensVenda" auto-update="true"/>
+                                                    <b:commandButton type="button" look="danger" action="#{transportadoraMB.removerEstado(estado)}" immediate="true" icon="trash" ajax="true" update=":mCadTransp:pMCadTransp" auto-update="true"/>
                                                 </b:dataTableColumn>
 
 
                                             </b:dataTable>
 
                                         </b:row>
+                                        <b:commandButton look="primary" value="Salvar" action="#{transportadoraMB.salvar()}"  icon-awesome="save">
+                                        </b:commandButton>
 
                                     </b:form>
                                 </b:panel>

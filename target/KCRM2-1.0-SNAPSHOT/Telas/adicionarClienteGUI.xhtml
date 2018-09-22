@@ -53,7 +53,7 @@
                                         
                                     </b:row>
                                     <b:row>
-                                        <b:inputText span="3" id="cnpj" value="#{clienteMB.cliente.cnpj}" label="CNPJ" size="60" required="true" />
+                                        <b:inputText span="3" id="cnpj" value="#{clienteMB.cliente.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="60" required="true" />
                                         <b:inputText span="3" id="inscricao-estadual" value="#{clienteMB.cliente.inscricaoEstadual}" label="Inscrição Estadual" size="100" required="true" />
                                         <b:inputText span="2" id="numero-funcionarios" value="#{clienteMB.cliente.numeroFuncionarios}" label="Número de Funcionários" />
                                         <b:inputText span="4" id="email-nfe" value="#{clienteMB.cliente.emailNFE}" label="E-mail" />
@@ -93,7 +93,7 @@
                                 </b:panel>
                                 <b:panel title="Dados Endereço" collapsible="false">
                                     <b:row>
-                                        <b:inputText span="2" id="cep" value="#{clienteMB.endereco.cep}" label="CEP" required="true" />
+                                        <b:inputText span="2" id="cep" value="#{clienteMB.endereco.cep}" mask="99999-999" label="CEP" required="true" />
                                         <b:selectOneMenu id="estado"
                                                          value="#{clienteMB.estado}" 
                                                          required="true"

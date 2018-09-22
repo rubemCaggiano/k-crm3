@@ -1,0 +1,8 @@
+#surefire
+#Fri Sep 14 20:15:25 BRT 2018
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\Rubem\\Desktop\\Workspace CRM\\k-crm3
+file.encoding=UTF-8
+localRepository=C\:\\Users\\Rubem\\.m2\\repository
+netbeans.deploy=true
+basedir=C\:\\Users\\Rubem\\Desktop\\Workspace CRM\\k-crm3
