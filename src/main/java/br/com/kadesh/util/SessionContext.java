@@ -1,5 +1,6 @@
 package br.com.kadesh.util;
 
+import br.com.kadesh.model.Usuario;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -25,6 +26,14 @@ public class SessionContext {
         } else {
             return FacesContext.getCurrentInstance().getExternalContext();
         }
+    }
+    
+    public Usuario getUsuarioLogado(){
+         return (Usuario) getAttribute("usuarioLogado");
+    }
+     
+    public void setUsuarioLogado(Usuario usuario){
+         setAttribute("usuarioLogado", usuario);
     }
 
     public void encerrarSessao() {

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
@@ -19,28 +20,53 @@ public class LoginMB implements Serializable {
 
     public LoginMB() {
         usuario = new Usuario();
+        Usuario u = new Usuario();
     }
 
-    @PostConstruct
-    public void selectAll() {
-        usuarios = usuarioDao.findAll();
+    public Usuario getUser() {
+        return (Usuario) SessionContext.getInstance().getUsuarioLogado();
     }
 
-    public String envia() {
+    public String doLogin() {
+        try {
+            usuario = usuarioDao.fazerLogin(usuario);
+//           User user = userBO.isUsuarioReadyToLogin(login, senha);
 
-        usuario = usuarioDao.fazerLogin(usuario);
-        if (usuario != null) {
-            usuario = new Usuario();
+            if (usuario == null) {
+//             addErrorMessage("Login ou Senha errado, tente novamente !");
+                FacesContext.getCurrentInstance().validationFailed();
+                return "";
+            }
+            SessionContext.getInstance().setAttribute("usuarioLogado", usuario);
+            return "./adicionarClienteGUI.xhtml";
 
-            SessionContext.getInstance().setAttribute("nome", usuario.getNome());
-
-            return "adicionarClienteGUI.xhtml";
-        } else {
-            return "login.xhtml";
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().validationFailed();
+            e.printStackTrace();
+            return "";
         }
 
     }
 
+//    @PostConstruct
+//    public void selectAll() {
+//        usuarios = usuarioDao.findAll();
+//    }
+//
+//    public String envia() {
+//
+//        usuario = usuarioDao.fazerLogin(usuario);
+//        if (usuario != null) {
+//            usuario = new Usuario();
+//
+//            SessionContext.getInstance().setAttribute("nome", usuario.getNome());
+//
+//            return "adicionarClienteGUI.xhtml";
+//        } else {
+//            return "login.xhtml";
+//        }
+//
+//    }
     public UsuarioDao getUsuarioDao() {
         return usuarioDao;
     }
@@ -55,6 +81,14 @@ public class LoginMB implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
 }

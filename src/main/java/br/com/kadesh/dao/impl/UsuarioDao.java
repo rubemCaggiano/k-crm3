@@ -3,11 +3,13 @@ package br.com.kadesh.dao.impl;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.util.DataAccessLayerException;
 import br.com.kadesh.util.HibernateFactory;
+import br.com.kadesh.util.HibernateSession;
 import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 
 public class UsuarioDao extends AbstractDao {
 
@@ -16,6 +18,7 @@ public class UsuarioDao extends AbstractDao {
 
     public UsuarioDao() {
         super();
+        HibernateFactory.buildIfNeeded();
     }
 
     public void saveOrUpdate(Usuario u) throws DataAccessLayerException {
@@ -51,22 +54,21 @@ public class UsuarioDao extends AbstractDao {
     }
 
     public Usuario fazerLogin(Usuario u) {
+        session = HibernateSession.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
         Usuario usuario = new Usuario();
 
         try {
-            startOperation();
             String sql = "SELECT * FROM usuario where nome = :nome and senha = :senha";
-            Query query = session.createQuery(sql);
+            SQLQuery query = session.createSQLQuery(sql);
+            query.addEntity(Usuario.class);
             query.setParameter("nome", u.getNome());
             query.setParameter("senha", u.getSenha());
-
             usuario = (Usuario) query.getSingleResult();
-            tx.commit();
+            session.getTransaction().commit();
 
         } catch (Exception e) {
             usuario = null;
-        } finally {
-            HibernateFactory.close(session);
         }
 
         if (usuario != null) {

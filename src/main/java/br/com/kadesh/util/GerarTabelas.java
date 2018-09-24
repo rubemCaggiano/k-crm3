@@ -49,9 +49,9 @@ public class GerarTabelas {
         SetorDao setorDao = new SetorDao();
         UsuarioDao usuarioDao = new UsuarioDao();
 
-//        Setor setor = new Setor();
-//        setor = setorDao.find(88);
+
         Usuario u = new Usuario("Rubem", "1234");
+//        usuarioDao.create(u);
 
         Usuario usuario = usuarioDao.fazerLogin(u);
         System.out.println(usuario.getNome());

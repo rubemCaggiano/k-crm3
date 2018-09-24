@@ -33,12 +33,12 @@
     
     <filter-mapping>
         <filter-name>PageFilter</filter-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>/faces/Telas/*</url-pattern>
     </filter-mapping>
     
-    <listener>
+    <!--    <listener>
         <listener-class>br.com.kadesh.util.SessionListener</listener-class>
-    </listener>
+    </listener>-->
 
     <mime-mapping>
         <extension>eot</extension>
