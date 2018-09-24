@@ -26,10 +26,10 @@
             <b:container fluid="true">
                 <b:row>
                     <!--Menu Lateral-->
-                    <b:column col-sm="2" col-md="1" styleClass="sidebar">
+                    <b:column span="1" styleClass="sidebar">
                         <b:listLinks>
 
-                            <b:navLink header="Menu" style="font-size: 18px; color: black;" />
+                            <b:navLink header="Menu" style="font-size: 24px; color: black;" />
                             <b:dropMenu value="Pedido" icon-awesome="clipboard">
                                 <b:navLink href="../Telas/adicionarPedidoGUI.xhtml" value="Adicionar"/>
                                 <b:navLink href="../Telas/pedidosGUI.xhtml" value="Consultar" />
@@ -62,7 +62,7 @@
                     </b:column>
 
                     <!--Conteudo-->
-                    <b:column col-sm="10" offset-sm="2" col-md="11" offset="1" styleClass="main">
+                    <b:column span="11" offset="1" styleClass="main">
                         <hr></hr>
 
                         <ui:insert name="content">

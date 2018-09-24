@@ -38,7 +38,7 @@ public class UsuarioMB implements Serializable{
     public void salvar(){
         System.out.println("Usuário Salvo");
         
-        vendedorDao.saveOrUpdate(vendedor);
+        usuarioDao.saveOrUpdate(usuario);
     }
     
     @PostConstruct

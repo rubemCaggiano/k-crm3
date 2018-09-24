@@ -10,7 +10,9 @@ C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\Pedid
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\converter\ProdutoConverter.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\SupervisorDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\converter\LinhaConverter.java
+C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\PageFilter.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Pedido.java
+C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\SessionContext.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\ContatoDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Regiao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\SituacaoEnum.java
@@ -19,6 +21,7 @@ C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Co
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\TransportadoraMB.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Cliente.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\DataAccessLayerException.java
+C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\SessionListener.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\EnderecoDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\UsuarioDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\HibernateUtil.java

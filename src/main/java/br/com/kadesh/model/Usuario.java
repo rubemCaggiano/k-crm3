@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 public class Usuario implements Serializable {
@@ -21,23 +23,23 @@ public class Usuario implements Serializable {
 
     private String senha;
 
-    private boolean vendedor;
-    private boolean supervisor;
-
     private boolean status;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String email, Setor setor, String senha, boolean vendedor, boolean supervisor, boolean status) {
+    public Usuario(int id, String nome, String email, Setor setor, String senha, boolean status) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.setor = setor;
         this.senha = senha;
-        this.vendedor = vendedor;
-        this.supervisor = supervisor;
         this.status = status;
+    }
+
+    public Usuario(String nome, String senha) {
+        this.nome = nome;
+        this.senha = senha;
     }
 
     public int getId() {
@@ -86,22 +88,6 @@ public class Usuario implements Serializable {
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public boolean isVendedor() {
-        return vendedor;
-    }
-
-    public void setVendedor(boolean vendedor) {
-        this.vendedor = vendedor;
-    }
-
-    public boolean isSupervisor() {
-        return supervisor;
-    }
-
-    public void setSupervisor(boolean supervisor) {
-        this.supervisor = supervisor;
     }
 
 }

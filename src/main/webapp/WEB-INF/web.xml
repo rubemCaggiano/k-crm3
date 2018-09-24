@@ -25,7 +25,21 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
-      
+    
+    <filter>
+        <filter-name>PageFilter</filter-name>
+        <filter-class>br.com.kadesh.util.PageFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>PageFilter</filter-name>
+        <url-pattern>/faces/*</url-pattern>
+    </filter-mapping>
+    
+    <listener>
+        <listener-class>br.com.kadesh.util.SessionListener</listener-class>
+    </listener>
+
     <mime-mapping>
         <extension>eot</extension>
         <mime-type>application/vnd.ms-fontobject</mime-type>
