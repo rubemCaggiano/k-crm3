@@ -21,6 +21,8 @@ public class Usuario implements Serializable {
     @ManyToOne
     private Setor setor;
 
+    private String usuario;
+
     private String senha;
 
     private boolean status;
@@ -28,17 +30,18 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String email, Setor setor, String senha, boolean status) {
+    public Usuario(int id, String nome, String email, Setor setor, String usuario, String senha, boolean status) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.setor = setor;
+        this.usuario = usuario;
         this.senha = senha;
         this.status = status;
     }
 
-    public Usuario(String nome, String senha) {
-        this.nome = nome;
+    public Usuario(String usuario, String senha) {
+        this.usuario = usuario;
         this.senha = senha;
     }
 
@@ -88,6 +91,14 @@ public class Usuario implements Serializable {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
 }

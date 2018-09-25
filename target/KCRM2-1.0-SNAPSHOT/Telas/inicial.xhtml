@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/Template/template.xhtml">
+        <ui:define name="content">
+
+            <b:jumbotron> 
+                <h:panelGroup>
+                    <b:container fluid="true">
+                        <b:form>
+                            <b:inputText span="8" readonly="true" id="vendedor" value="#{loginMB.usuario.nome}" label="Vendedor" size="30" />
+                        </b:form>
+                       
+                    </b:container>
+                </h:panelGroup>
+            </b:jumbotron>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

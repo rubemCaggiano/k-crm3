@@ -3,10 +3,13 @@ package br.com.kadesh.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.Proxy;
 
 @Entity
 public class Transportadora implements Serializable {
@@ -19,6 +22,7 @@ public class Transportadora implements Serializable {
     private String nomeFantasia;
 
     @OneToMany
+    
     private List<Estado> estadosAtendidos;
 
     private boolean status;

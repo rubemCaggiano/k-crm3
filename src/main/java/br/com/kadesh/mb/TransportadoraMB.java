@@ -29,9 +29,8 @@ public class TransportadoraMB implements Serializable {
         transportadora = new Transportadora();
         estado = new Estado();
     }
-    
-    
-    public void salvar(){
+
+    public void salvar() {
         transportadora.setEstadosAtendidos(estadosAtendidos);
         transportadoraDao.create(transportadora);
     }
@@ -43,6 +42,12 @@ public class TransportadoraMB implements Serializable {
 
     public void removerEstado(Estado estado) {
         estadosAtendidos.remove(estado);
+
+    }
+
+    public void detalharTransportadora(Transportadora t) {
+        transportadora = new Transportadora(t.getId(), t.getRazaoSocial(), t.getCnpj(), t.getNomeFantasia(), t.getEstadosAtendidos(), t.isStatus());
+        estadosAtendidos = transportadora.getEstadosAtendidos();
 
     }
 

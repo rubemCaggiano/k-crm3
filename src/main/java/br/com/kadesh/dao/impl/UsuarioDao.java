@@ -59,10 +59,10 @@ public class UsuarioDao extends AbstractDao {
         Usuario usuario = new Usuario();
 
         try {
-            String sql = "SELECT * FROM usuario where nome = :nome and senha = :senha";
+            String sql = "SELECT * FROM usuario where usuario = :usuario and senha = :senha";
             SQLQuery query = session.createSQLQuery(sql);
             query.addEntity(Usuario.class);
-            query.setParameter("nome", u.getNome());
+            query.setParameter("usuario", u.getUsuario());
             query.setParameter("senha", u.getSenha());
             usuario = (Usuario) query.getSingleResult();
             session.getTransaction().commit();

@@ -16,15 +16,23 @@ public class LoginMB implements Serializable {
 
     private UsuarioDao usuarioDao = new UsuarioDao();
     private Usuario usuario;
+    private Usuario usuarioLogado;
     private List<Usuario> usuarios;
 
     public LoginMB() {
         usuario = new Usuario();
-        Usuario u = new Usuario();
+        usuarioLogado = new Usuario();
     }
 
+        
     public Usuario getUser() {
         return (Usuario) SessionContext.getInstance().getUsuarioLogado();
+         
+    }
+    
+    @PostConstruct
+    public void carregarUsuario(){
+        usuarioLogado = getUser();
     }
 
     public String doLogin() {
@@ -35,10 +43,10 @@ public class LoginMB implements Serializable {
             if (usuario == null) {
 //             addErrorMessage("Login ou Senha errado, tente novamente !");
                 FacesContext.getCurrentInstance().validationFailed();
-                return "";
+                return "login.xhtml";
             }
             SessionContext.getInstance().setAttribute("usuarioLogado", usuario);
-            return "./adicionarClienteGUI.xhtml";
+            return "/Telas/inicial.xhtml";
 
         } catch (Exception e) {
             FacesContext.getCurrentInstance().validationFailed();
@@ -89,6 +97,14 @@ public class LoginMB implements Serializable {
 
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public Usuario getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
+    public void setUsuarioLogado(Usuario usuarioLogado) {
+        this.usuarioLogado = usuarioLogado;
     }
 
 }

@@ -85,6 +85,54 @@
                             </b:modal>
 
 
+                            <b:modal id="mDtTransp"
+                                     title="Cadastro de Transportadora" 
+                                     styleClass="mDtTransp"
+                                     closable="false"  
+                                     close-on-escape="false" 
+                                     backdrop="false">
+                                <b:panel id="pMDtTransp">
+                                    <b:form id="fpMDtTransp" >
+                                        <b:row>
+                                            <b:inputText readonly="true" span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" required="true" />
+                                        </b:row>
+                                        <b:row>
+                                            <b:inputText readonly="true" span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="200" required="true" />
+                                        </b:row>
+                                        <b:row>
+                                            <b:inputText readonly="true" span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" required="true" />
+                                        </b:row>
+                                        <b:row>
+                                            <b:dataTable 
+                                                id="estadosAtendidos"
+                                                columnVisibility="false"
+                                                value="#{transportadoraMB.estadosAtendidos}"
+                                                var="estado"
+                                                select="true"
+                                                selectionMode="single"
+                                                searching ="false"
+                                                paginated="false"
+                                                info="false"
+                                                customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                                >
+
+                                                <b:dataTableColumn value="#{estado.nome}" label="Estado" />
+                                                <b:dataTableColumn value="#{estado.sigla}" label="Sigla" />
+
+                                            </b:dataTable>
+
+                                        </b:row>
+                                        <b:commandButton look="primary" value="Salvar" action="#{transportadoraMB.salvar()}"  icon-awesome="save">
+                                        </b:commandButton>
+
+                                    </b:form>
+                                </b:panel>
+                                <f:facet name="footer">
+                                    <b:button value="Close" look="danger" dismiss="modal" />
+                                </f:facet>
+                            </b:modal>
+
+
                             <b:form>
                                 <b:dataTable   
                                     excel="true"
@@ -102,10 +150,10 @@
                                     <b:dataTableColumn value="#{transportadora.razaoSocial}" label="Razão Social" />
 
                                     <b:dataTableColumn label="Ações">
-                                        <b:commandButton type="button" look="info" onclick="$('.mCadTransp').modal()" action="#{produtoMB.detalharProduto(produto)}" immediate="true" icon-awesome="search-plus">
-                                            <f:ajax event="click" render="pMCadTransp"/>
+                                        <b:commandButton type="button" look="info" onclick="$('.mDtTransp').modal()" action="#{transportadoraMB.detalharTransportadora(transportadora)}" immediate="true" icon-awesome="search-plus">
+                                            <f:ajax event="click" render="pMDtTransp"/>
                                         </b:commandButton>
-                                        <b:commandButton type="button" look="warning" onclick="$('.mCadTransp').modal()" action="#{produtoMB.alterarProduto(produto)}" icon="edit" >
+                                        <b:commandButton type="button" look="warning" onclick="$('.mCadTransp').modal()" action="#{transportadoraMB.detalharTransportadora(transportadora)}" icon="edit" >
                                             <f:ajax event="click" render="pMCadTransp"/>
                                         </b:commandButton>
 
