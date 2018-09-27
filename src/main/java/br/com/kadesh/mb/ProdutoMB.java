@@ -90,7 +90,7 @@ public class ProdutoMB implements Serializable {
     public void excluirProduto() {
         produtoDao.delete(produto);
         produto = new Produto();
-        
+        selectAll();
     }
 
     public void excluirFamilia(Familia f) {
