@@ -1,0 +1,9 @@
+#surefire
+#Thu Sep 27 14:48:14 BRT 2018
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\rubem\\Desktop\\Workspace CRM\\k-crm3
+file.encoding=UTF-8
+localRepository=C\:\\Users\\rubem\\.m2\\repository
+netbeans.deploy=true
+netbeans.deploy.clientUrlPart=/faces/Telas/adicionarUsuarioGUI.xhtml
+basedir=C\:\\Users\\rubem\\Desktop\\Workspace CRM\\k-crm3

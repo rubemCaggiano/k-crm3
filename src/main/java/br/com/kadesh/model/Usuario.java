@@ -27,10 +27,12 @@ public class Usuario implements Serializable {
 
     private boolean status;
 
+    private PermissaoEnum permissao;
+
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String email, Setor setor, String usuario, String senha, boolean status) {
+    public Usuario(int id, String nome, String email, Setor setor, String usuario, String senha, boolean status, PermissaoEnum permissao) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -38,6 +40,7 @@ public class Usuario implements Serializable {
         this.usuario = usuario;
         this.senha = senha;
         this.status = status;
+        this.permissao = permissao;
     }
 
     public Usuario(String usuario, String senha) {
@@ -99,6 +102,14 @@ public class Usuario implements Serializable {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    public PermissaoEnum getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(PermissaoEnum permissao) {
+        this.permissao = permissao;
     }
 
 }

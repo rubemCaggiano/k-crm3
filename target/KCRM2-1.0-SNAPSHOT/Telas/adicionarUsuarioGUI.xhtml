@@ -5,52 +5,92 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-    >
-    
+      >
+
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
             <b:jumbotron>
-                <b:form>
+                <b:formGroup>
                     <b:container fluid="true">
-                        <b:row>
-                            <b:selectOneMenu id="setor"
-                                             value="#{usuarioMB.vendedor.setor}" 
-                                             required="true"
-                                             label="Setor"
-                                             span="3"
-                                             select2="true"
-                                             converter="omnifaces.SelectItemsConverter"
+                        <b:panel title="Cadastro de Usuarios">
+                            <b:button look="primary" onclick="$('.mCadUsuario').modal()" value="Novo Usuario" icon-awesome="plus"/>
+                            <b:modal id="mCadUsuario"
+                                     title="Cadastro de Usuario" 
+                                     styleClass="mCadUsuario"
+                                     closable="false"  
+                                     close-on-escape="false" 
+                                     backdrop="false">
+                                <b:panel id="pmCadUsuario">
+                                    <b:form>
+                                        <b:row>
+                                            <b:inputText span="6" id="nome" value="#{usuarioMB.usuario.nome}" label="Nome Completo" size="100" required="true"/>
+                                            <b:inputText span="6" id="email" value="#{usuarioMB.usuario.email}" label="E-mail" size="50" required="true"/>  
 
-                                             >
-                                <f:selectItem itemLabel="Selecione um setor" />
-                                <f:selectItems value="#{usuarioMB.setores}"
-                                               var="setor" 
-                                               itemLabel="#{setor.nome}"
-                                               itemValue="#{setor}"
-                                               />
-                            </b:selectOneMenu>  
-                        </b:row>
-                        <b:panel title="Usuário" collapsible="false">
-                            <b:row>
-                                <b:inputText span="6" id="nome" value="#{usuarioMB.vendedor.nome}" label="Nome" size="100" required="true"/>
-                                <b:inputSecret span="4" id="senha" value="#{usuarioMB.vendedor.senha}" label="Senha" size="16" required="true"/>
-                            </b:row>
-                            <b:row>
-                                <b:inputText span="6" id="email" value="#{usuarioMB.vendedor.email}" label="E-mail" size="50" required="true"/>                    
-                            </b:row>
-                        </b:panel>    
-                        <b:panel title="Vendedor" collapsible="false" rendered="true">
-                            <b:row>
-                                <b:inputText span="6" id="nome-fantasia" value="#{usuarioMB.vendedor.nomeFantasia}" label="Nome Fantasia" size="18"/>
-                                <b:inputText span="4" id="cnpj" value="#{usuarioMB.vendedor.cnpj}" label="CNPJ" size="18"/>
-                            </b:row>
-                            <b:row>
-                                <b:inputText span="4" id="telefone" value="#{usuarioMB.vendedor.telefone}" label="Telefone" size="15"/>
-                            </b:row>
+                                        </b:row>
+                                        <b:row>
+                                            <b:inputText span="6" id="usuariou" value="#{usuarioMB.usuario.usuario}" label="Usuario" size="50" required="true"/> 
+                                            <b:inputSecret span="6" id="senha" value="#{usuarioMB.usuario.senha}" label="Senha" size="16" required="true"/>            
+                                        </b:row>
+                                        <b:row>
+                                            <b:selectOneMenu id="permissao"
+                                                             value="#{usuarioMB.permissao}" 
+                                                             label="Permissão"
+                                                             span="10"
+                                                             select2="true"
+                                                             >
+
+                                                <f:selectItem itemLabel="Selecione       ." />
+                                                <f:selectItems value="#{usuarioMB.permissoes}"
+                                                               var="permissao" 
+                                                               itemLabel="#{permissao.permissao}"
+                                                               itemValue="#{permissao}"
+                                                               />
+                                            </b:selectOneMenu>
+                                        </b:row>
+
+                                        <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
+                                    </b:form>
+                                </b:panel>
+                                <f:facet name="footer">
+                                    <b:button value="Close" look="danger" dismiss="modal" />
+                                </f:facet>
+                            </b:modal>
+
+
+                            <b:form>
+                                <b:dataTable   
+                                    excel="true"
+                                    columnVisibility="true"
+                                    print="true"
+                                    value="#{usuarioMB.usuarios}"
+                                    var="usuario"
+                                    select="true"
+                                    selectionMode="single"
+                                    customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                    >
+
+                                    <b:dataTableColumn value="#{usuario.nome}" label="Nome" />
+                                    <b:dataTableColumn value="#{usuario.usuario}" label="Usuario" />
+                                    <b:dataTableColumn value="#{usuario.permissao.permissao}" label="Permissão" />
+                                    <b:dataTableColumn value="#{usuario.email}" label="Email" />
+
+                                    <b:dataTableColumn label="Ações">
+                                        <b:commandButton type="button" look="info" onclick="$('.mCadUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon-awesome="search-plus">
+                                            <f:ajax event="click" render="pmCadUsuario"/>
+                                        </b:commandButton>
+                                        <b:commandButton type="button" look="warning" onclick="$('.mCadUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" icon="edit" >
+                                            <f:ajax event="click" render="pmCadUsuario"/>
+                                        </b:commandButton>
+
+
+                                    </b:dataTableColumn>
+
+
+                                </b:dataTable> 
+                            </b:form>
                         </b:panel>
                     </b:container>
-                    <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
-                </b:form>
+                </b:formGroup>
             </b:jumbotron>
         </ui:define>
     </ui:composition>

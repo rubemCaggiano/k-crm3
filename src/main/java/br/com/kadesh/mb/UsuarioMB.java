@@ -3,61 +3,72 @@ package br.com.kadesh.mb;
 import br.com.kadesh.dao.impl.SetorDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
 import br.com.kadesh.dao.impl.VendedorDao;
+import br.com.kadesh.model.PermissaoEnum;
 import br.com.kadesh.model.Setor;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@RequestScoped
-public class UsuarioMB implements Serializable{
-    
+@ViewScoped
+public class UsuarioMB implements Serializable {
+
     private UsuarioDao usuarioDao = new UsuarioDao();
     private VendedorDao vendedorDao = new VendedorDao();
     private SetorDao setorDao = new SetorDao();
-    
+
     private List<Usuario> usuarios;
     private List<Vendedor> vendedores;
     private List<Setor> setores;
-    
+    private List<PermissaoEnum> permissoes;
+
     private Usuario usuario;
     private Vendedor vendedor;
     private Setor setor;
+    private PermissaoEnum permissao;
 
     public UsuarioMB() {
         usuario = new Usuario();
         vendedor = new Vendedor();
         setor = new Setor();
     }
-    
-    
-    public void salvar(){
-        System.out.println("Usuário Salvo");
-        
-        usuarioDao.saveOrUpdate(usuario);
+
+    public void salvar() {
+        usuario.setPermissao(permissao);
+
+        usuarioDao.create(usuario);
+        usuario = new Usuario();
+        selectAll();
     }
-    
+
     @PostConstruct
-    public void selectAll(){
+    public void selectAll() {
         usuarios = usuarioDao.findAll();
         vendedores = vendedorDao.findAll();
         setores = setorDao.findAll();
-                
+        permissoes = Arrays.asList(PermissaoEnum.values());
+
     }
-    
-    public boolean renderizar(){
-        if(setor.getNome().equals("Vendas")){
+
+    public void detalharUsuario(Usuario u) {
+
+    }
+
+    public boolean renderizar() {
+        if (setor.getNome().equals("Vendas")) {
             return true;
-        } else{
+        } else {
             return false;
         }
-        
+
     }
-    
+
     public UsuarioDao getUsuarioDao() {
         return usuarioDao;
     }
@@ -129,5 +140,21 @@ public class UsuarioMB implements Serializable{
     public void setSetor(Setor setor) {
         this.setor = setor;
     }
-    
+
+    public List<PermissaoEnum> getPermissoes() {
+        return permissoes;
+    }
+
+    public void setPermissoes(List<PermissaoEnum> permissoes) {
+        this.permissoes = permissoes;
+    }
+
+    public PermissaoEnum getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(PermissaoEnum permissao) {
+        this.permissao = permissao;
+    }
+
 }

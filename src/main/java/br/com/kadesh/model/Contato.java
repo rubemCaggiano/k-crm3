@@ -28,8 +28,6 @@ public class Contato implements Serializable {
         this.email = email;
     }
 
-    
-    
     public int getId() {
         return id;
     }
@@ -69,7 +67,5 @@ public class Contato implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    
+
 }

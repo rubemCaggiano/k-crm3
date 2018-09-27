@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cliente implements Serializable {
@@ -35,7 +36,7 @@ public class Cliente implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     private List<Contato> contatos;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.ALL})
     private Endereco endereco;
 
     public Cliente() {
