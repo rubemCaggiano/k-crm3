@@ -1,10 +1,12 @@
 package br.com.kadesh.mb;
 
 import br.com.kadesh.dao.impl.SetorDao;
+import br.com.kadesh.dao.impl.SupervisorDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
 import br.com.kadesh.dao.impl.VendedorDao;
 import br.com.kadesh.model.PermissaoEnum;
 import br.com.kadesh.model.Setor;
+import br.com.kadesh.model.Supervisor;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
 import java.io.Serializable;
@@ -21,28 +23,60 @@ public class UsuarioMB implements Serializable {
 
     private UsuarioDao usuarioDao = new UsuarioDao();
     private VendedorDao vendedorDao = new VendedorDao();
+    private SupervisorDao supervisorDao = new SupervisorDao();
     private SetorDao setorDao = new SetorDao();
 
     private List<Usuario> usuarios;
     private List<Vendedor> vendedores;
+    private List<Supervisor> supervisores;
     private List<Setor> setores;
     private List<PermissaoEnum> permissoes;
 
     private Usuario usuario;
     private Vendedor vendedor;
+    private Supervisor supervisor;
     private Setor setor;
     private PermissaoEnum permissao;
+    private String nome;
+    private String email;
+    private String usuarioUsuario;
+    private String senha;
 
     public UsuarioMB() {
         usuario = new Usuario();
         vendedor = new Vendedor();
         setor = new Setor();
+
     }
 
     public void salvar() {
-        usuario.setPermissao(permissao);
 
-        usuarioDao.create(usuario);
+        usuario.setPermissao(permissao);
+        if (permissao == PermissaoEnum.VENDEDOR) {
+            vendedor.setNome(nome);
+            vendedor.setEmail(email);
+            vendedor.setUsuario(usuarioUsuario);
+            vendedor.setSenha(senha);
+            vendedor.setPermissao(permissao);
+            vendedor.setStatus(true);
+            vendedorDao.create(vendedor);
+        } else if (permissao == PermissaoEnum.SUPERVISOR) {
+            supervisor.setNome(nome);
+            supervisor.setEmail(email);
+            supervisor.setUsuario(usuarioUsuario);
+            supervisor.setSenha(senha);
+            supervisor.setPermissao(permissao);
+            supervisor.setStatus(true);
+            supervisorDao.create(supervisor);
+        } else {
+            usuario.setNome(nome);
+            usuario.setEmail(email);
+            usuario.setUsuario(usuarioUsuario);
+            usuario.setSenha(senha);
+            usuario.setPermissao(permissao);
+            usuario.setStatus(true);
+            usuarioDao.create(usuario);
+        }
         usuario = new Usuario();
         selectAll();
     }
@@ -155,6 +189,62 @@ public class UsuarioMB implements Serializable {
 
     public void setPermissao(PermissaoEnum permissao) {
         this.permissao = permissao;
+    }
+
+    public SupervisorDao getSupervisorDao() {
+        return supervisorDao;
+    }
+
+    public void setSupervisorDao(SupervisorDao supervisorDao) {
+        this.supervisorDao = supervisorDao;
+    }
+
+    public List<Supervisor> getSupervisores() {
+        return supervisores;
+    }
+
+    public void setSupervisores(List<Supervisor> supervisores) {
+        this.supervisores = supervisores;
+    }
+
+    public Supervisor getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(Supervisor supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsuarioUsuario() {
+        return usuarioUsuario;
+    }
+
+    public void setUsuarioUsuario(String usuarioUsuario) {
+        this.usuarioUsuario = usuarioUsuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
 }
