@@ -33,6 +33,7 @@ public class TransportadoraMB implements Serializable {
     public void salvar() {
         transportadora.setEstadosAtendidos(estadosAtendidos);
         transportadoraDao.create(transportadora);
+        selectAll();
     }
 
     public void adicionarEstado() {

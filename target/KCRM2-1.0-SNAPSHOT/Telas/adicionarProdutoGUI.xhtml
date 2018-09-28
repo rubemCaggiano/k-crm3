@@ -47,10 +47,10 @@
                                     </b:row>
                                     <b:row>
                                         <b:inputText span="4" id="referencia" value="#{produtoMB.produto.referencia}" label="Referência" size="30" required="true" />
-                                        <b:inputText span="4" id="numeroca" value="#{produtoMB.produto.numeroCa}" label="Numero do C.A " size="30" required="false" />
+                                        <b:inputText span="4" id="numeroca" value="#{produtoMB.produto.numeroCa}" label="Numero do C.A " mask="99.999" size="30" required="false"  />
                                     </b:row>
                                     <b:row> 
-                                        <b:inputText span="3" id="custo" value="#{produtoMB.produto.custo}" label="Custo de Produção " size="10" required="true" />
+                                        <b:inputText span="3" id="custo" value="#{produtoMB.produto.custo}" label="Custo de Produção " size="10" required="true" mask="currency" />
                                         <b:inputText span="3" id="mcminima" value="#{produtoMB.produto.mcMinima}" label="Margem Minima" size="10" required="false" mask="numeric" />
                                     </b:row>
                                     <b:row>
@@ -118,7 +118,7 @@
 
                                     </b:row>
 
-                                    <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvar()}"  icon-awesome="save">
+                                    <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarProduto()}"  icon-awesome="save">
                                     </b:commandButton>
                                 </b:form>
                             </b:panel>
@@ -192,7 +192,7 @@
                                         <f:ajax event="click" render="pMCadProd"/>
                                     </b:commandButton>
 
-                                    <b:commandButton type="button" look="danger" onclick="$('.mExcluirProd').modal()" action="#{produtoMB.detalharProduto(produto)}" icon="trash" >
+                                    <b:commandButton type="button" look="danger" onclick="$('.mExcluirProd').modal()" action="#{produtoMB.carregarProduto(produto)}" icon="trash" >
                                     </b:commandButton>
                                 </b:dataTableColumn>
 
@@ -221,7 +221,13 @@
                                     <b:row>
                                         <b:inputText span="12" id="nomeRedFamilia" value="#{produtoMB.familia.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
                                     </b:row>
-
+                                    <b:row>
+                                        <b:message for="descricaoFamilia"/>
+                                        <b:message for="nomeFamilia"/>
+                                        <b:message for="nomeRedFamilia"/>
+                                    </b:row>
+                                    <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarFamilia()}"  icon-awesome="save">
+                                    </b:commandButton>
                                 </h:form>
                             </b:panel>
                             <f:facet name="footer">
@@ -304,6 +310,13 @@
                                     <b:row>
                                         <b:inputText span="12" id="nomeRedLinha" value="#{produtoMB.linha.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
                                     </b:row>
+                                    <b:row>
+                                        <b:message for="descricaoLinha"/>
+                                        <b:message for="nomeLinha"/>
+                                        <b:message for="nomeRedLinha"/>
+                                    </b:row>
+                                    <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarLinha()}"  icon-awesome="save">
+                                    </b:commandButton>
                                 </h:form>
                             </b:panel>
                             <f:facet name="footer">
@@ -386,6 +399,13 @@
                                     <b:row>
                                         <b:inputText span="12" id="nomeRedGrupo" value="#{produtoMB.grupo.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
                                     </b:row>
+                                    <b:row>
+                                        <b:message for="descricaoGrupo"/>
+                                        <b:message for="nomeGrupo"/>
+                                        <b:message for="nomeRedGrupo"/>
+                                    </b:row>
+                                    <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarFamilia()}"  icon-awesome="save">
+                                    </b:commandButton>
                                 </h:form>
                             </b:panel>
                             <f:facet name="footer">

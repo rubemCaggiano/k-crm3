@@ -15,19 +15,20 @@
             <!--Menu superior-->
             <b:navBar brand="K-CRM" brandHref="#" inverse="true" fixed="top" fluid="true">
                 <b:navbarLinks pull="right">
-                    <b:navLink value="Sair" href="#"></b:navLink>
+                    <b:navLink value="Sair" href="#" ></b:navLink>
 
                 </b:navbarLinks>
 
             </b:navBar>
 
 
-
-            <b:container fluid="true">
+            
+            <b:container fluid="true" >
                 <b:row>
                     <!--Menu Lateral-->
                     <b:column span="1" styleClass="sidebar">
-                        <b:listLinks>
+                        <!--Adm-->
+                        <b:listLinks rendered="#{loginMB.usuario.permissao == 'ADMIN'}">
 
                             <b:navLink header="Menu" style="font-size: 24px; color: black;" />
                             <b:dropMenu value="Agendamentos" icon-awesome="fa-calendar-check-o">
@@ -38,7 +39,7 @@
                                 <b:navLink href="../faces/Telas/adicionarPedidoGUI.xhtml" value="Adicionar"/>
                                 <b:navLink href="../faces/Telas/pedidosGUI.xhtml" value="Consultar" />
                             </b:dropMenu>
-                            <b:dropMenu value="Cliente" icon-awesome="user">
+                            <b:dropMenu value="Cliente" icon-awesome="users">
                                 <b:navLink href="../faces/Telas/adicionarClienteGUI.xhtml" value="Adicionar"/>
                                 <b:navLink href="../faces/Telas/clientesGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
@@ -51,9 +52,58 @@
                                 <b:navLink href="../faces/Telas/transportadorasGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
 
-                            <b:dropMenu value="Usuarios" icon-awesome="">
+                            <b:dropMenu value="Usuarios" icon-awesome="user-circle-o">
+                                <b:navLink href="../faces/Telas/adicionarUsuarioGUI.xhtml" value="Adicionar"/>
+                            </b:dropMenu>
+
+                        </b:listLinks>
+                        
+                        <!--Vendedor-->
+                        <b:listLinks rendered="#{loginMB.usuario.permissao == 'VENDEDOR' or loginMB.usuario.permissao == 'SUPERVISOR' }">
+
+                            <b:navLink header="Menu" style="font-size: 24px; color: black;" />
+                            <b:dropMenu value="Agendamentos" icon-awesome="fa-calendar-check-o">
 
 
+                            </b:dropMenu>
+                            <b:dropMenu value="Pedido" icon-awesome="clipboard">
+                                <b:navLink href="../faces/Telas/adicionarPedidoGUI.xhtml" value="Adicionar"/>
+                                <b:navLink href="../faces/Telas/pedidosGUI.xhtml" value="Consultar" />
+                            </b:dropMenu>
+                            <b:dropMenu value="Cliente" icon-awesome="users">
+                                <b:navLink href="../faces/Telas/adicionarClienteGUI.xhtml" value="Adicionar"/>
+                                <b:navLink href="../faces/Telas/clientesGUI.xhtml" value="Consultar"/>
+                            </b:dropMenu>
+                            <b:dropMenu value="Produto" iconAwesome="cubes">
+                                <b:navLink href="../faces/Telas/produtosGUI.xhtml" value="Consultar"/>
+                            </b:dropMenu>
+                            <b:dropMenu value="Transportadora" icon-awesome="truck">
+                                <b:navLink href="../faces/Telas/transportadorasGUI.xhtml" value="Consultar"/>
+                            </b:dropMenu>
+
+                        </b:listLinks>
+                        
+                        <!--Logistica-->
+                        <b:listLinks rendered="#{loginMB.usuario.permissao == 'LOGISTICA'}">
+
+                            <b:navLink header="Menu" style="font-size: 24px; color: black;" />
+                            <b:dropMenu value="Agendamentos" icon-awesome="fa-calendar-check-o">
+
+
+                            </b:dropMenu>
+                            <b:dropMenu value="Pedido" icon-awesome="clipboard">
+                                <b:navLink href="../faces/Telas/adicionarPedidoGUI.xhtml" value="Adicionar"/>
+                                <b:navLink href="../faces/Telas/pedidosGUI.xhtml" value="Consultar" />
+                            </b:dropMenu>
+                            <b:dropMenu value="Cliente" icon-awesome="users">
+                                <b:navLink href="../faces/Telas/adicionarClienteGUI.xhtml" value="Adicionar"/>
+                                <b:navLink href="../faces/Telas/clientesGUI.xhtml" value="Consultar"/>
+                            </b:dropMenu>
+                            <b:dropMenu value="Produto" iconAwesome="cubes">
+                                <b:navLink href="../faces/Telas/produtosGUI.xhtml" value="Consultar"/>
+                            </b:dropMenu>
+                            <b:dropMenu value="Transportadora" icon-awesome="truck">
+                                <b:navLink href="../faces/Telas/transportadorasGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
 
                         </b:listLinks>
@@ -102,6 +152,7 @@
                     margin-bottom: 20px;
                     margin-left: -20px;
                     margin-right: -21px;
+                    font-size: 13px;
                 }
                 .nav-list > li > a {
                     padding-left: 20px;

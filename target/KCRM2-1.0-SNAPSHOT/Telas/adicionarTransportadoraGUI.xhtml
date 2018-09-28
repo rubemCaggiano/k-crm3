@@ -103,6 +103,9 @@
                                             <b:inputText readonly="true" span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" required="true" />
                                         </b:row>
                                         <b:row>
+                                            <h3>Estados Atendidos</h3>
+                                        </b:row>
+                                        <b:row>
                                             <b:dataTable 
                                                 id="estadosAtendidos"
                                                 columnVisibility="false"
@@ -115,16 +118,10 @@
                                                 info="false"
                                                 customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
                                                 >
-
                                                 <b:dataTableColumn value="#{estado.nome}" label="Estado" />
                                                 <b:dataTableColumn value="#{estado.sigla}" label="Sigla" />
-
                                             </b:dataTable>
-
                                         </b:row>
-                                        <b:commandButton look="primary" value="Salvar" action="#{transportadoraMB.salvar()}"  icon-awesome="save">
-                                        </b:commandButton>
-
                                     </b:form>
                                 </b:panel>
                                 <f:facet name="footer">

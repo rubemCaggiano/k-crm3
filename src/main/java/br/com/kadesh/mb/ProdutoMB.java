@@ -43,14 +43,34 @@ public class ProdutoMB implements Serializable {
         grupo = new Grupo();
     }
 
-    public void salvar() {
+    public void salvarProduto() {
         produto.setFamilia(familia);
         produto.setLinha(linha);
         produto.setGrupo(grupo);
+        produto.setStatus(true);
 
         produtoDao.create(produto);
 
         produto = new Produto();
+        selectAll();
+    }
+
+    public void salvarFamilia() {
+        familiaDao.create(familia);
+        familia = new Familia();
+
+        selectAll();
+    }
+
+    public void salvarLinha() {
+        linhaDao.create(linha);
+        linha = new Linha();
+        selectAll();
+    }
+
+    public void salvarGrupo() {
+        grupoDao.create(grupo);
+        grupo = new Grupo();
         selectAll();
     }
 
@@ -67,12 +87,18 @@ public class ProdutoMB implements Serializable {
     }
 
     public void detalharProduto(Produto p) {
-        produto = new Produto(p.getId(), p.getDescricao(), p.getReferencia(), p.getNumeroCa(),
-                p.getCusto(), p.getMcMinima(), p.isStatus(), p.getPrecoSugerido(), p.getPrecoMinimo(),
-                p.getGrupo(), p.getFamilia(), p.getLinha());
+        produto = produtoDao.find(p.getId());
+//        produto = new Produto(p.getId(), p.getDescricao(), p.getReferencia(), p.getNumeroCa(),
+//                p.getCusto(), p.getMcMinima(), p.isStatus(), p.getPrecoSugerido(), p.getPrecoMinimo(),
+//                p.getGrupo(), p.getFamilia(), p.getLinha());
         familia = produto.getFamilia();
         linha = produto.getLinha();
         grupo = produto.getGrupo();
+    }
+
+    public void carregarProduto(Produto p) {
+        produto = produtoDao.find(p.getId());
+
     }
 
     public void detalharFamilia(Familia f) {

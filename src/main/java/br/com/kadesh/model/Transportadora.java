@@ -2,7 +2,7 @@ package br.com.kadesh.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.ElementCollection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,10 +12,9 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Proxy;
-import org.hibernate.annotations.Subselect;
 
 @Entity
-@Proxy(lazy = true)
+@Proxy(lazy = false)
 public class Transportadora implements Serializable {
 
     @Id
@@ -25,7 +24,7 @@ public class Transportadora implements Serializable {
     private String cnpj;
     private String nomeFantasia;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @Fetch(FetchMode.SUBSELECT)
     private List<Estado> estadosAtendidos;
 

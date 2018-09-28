@@ -45,8 +45,28 @@
                                                                itemLabel="#{permissao.permissao}"
                                                                itemValue="#{permissao}"
                                                                />
+                                                <f:ajax event="change" render="rsv"/>
                                             </b:selectOneMenu>
                                         </b:row>
+
+                                        <b:row rendered="#{usuarioMB.permissao == 'VENDEDOR'}" id="rsv">
+                                            <b:selectOneMenu id="supervisorVendedor"
+                                                             value="#{usuarioMB.supervisor}" 
+                                                             label="Supervisor"
+                                                             span="10"
+                                                             select2="true"
+                                                             
+                                                             >
+
+                                                <f:selectItem itemLabel="Selecione       ." />
+                                                <f:selectItems value="#{usuarioMB.supervisores}"
+                                                               var="supervisor" 
+                                                               itemLabel="#{supervisor.nome}"
+                                                               itemValue="#{supervisor}"
+                                                               />
+                                            </b:selectOneMenu>
+                                        </b:row>
+
 
                                         <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
                                     </b:form>
@@ -81,6 +101,7 @@
                                         <b:commandButton type="button" look="warning" onclick="$('.mCadUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" icon="edit" >
                                             <f:ajax event="click" render="pmCadUsuario"/>
                                         </b:commandButton>
+                                        <b:commandButton type="submit" look="danger" action="#{usuarioMB.excluirUsuario(usuario)}" icon="trash" />
 
 
                                     </b:dataTableColumn>
