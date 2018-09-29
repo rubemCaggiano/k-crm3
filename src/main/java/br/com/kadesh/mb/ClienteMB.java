@@ -7,28 +7,38 @@ import br.com.kadesh.model.Contato;
 import br.com.kadesh.dao.impl.EnderecoDao;
 import br.com.kadesh.model.Endereco;
 import br.com.kadesh.dao.impl.EstadoDao;
+import br.com.kadesh.dao.impl.UsuarioDao;
 import br.com.kadesh.model.Estado;
+import br.com.kadesh.model.Usuario;
+import br.com.kadesh.model.Vendedor;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped
 public class ClienteMB implements Serializable {
 
+    @ManagedProperty("#{loginMB}")
+    private LoginMB loginMB;
+
     ClienteDao clienteDao = new ClienteDao();
     ContatoDao contatoDao = new ContatoDao();
     EnderecoDao enderecoDao = new EnderecoDao();
     EstadoDao estadoDao = new EstadoDao();
+    private UsuarioDao usuarioDao = new UsuarioDao();
 
     List<Cliente> clientes;
     List<Contato> contatos = new ArrayList<>();
     List<Endereco> enderecos;
     List<Estado> estados;
 
+    private Usuario usuario;
+    private Vendedor vendedor;
     private Cliente cliente;
     private Contato contato;
     private Endereco endereco;
@@ -39,12 +49,14 @@ public class ClienteMB implements Serializable {
         contato = new Contato();
         endereco = new Endereco();
         estado = new Estado();
+
     }
 
     public void salvar() {
         endereco.setEstado(estado);
         cliente.setEndereco(endereco);
         cliente.setContatos(contatos);
+        cliente.setVendedor(vendedor);
         clienteDao.saveOrUpdate(cliente);
 
         contatos = new ArrayList<>();
@@ -75,6 +87,11 @@ public class ClienteMB implements Serializable {
         clientes = clienteDao.findAll();
         enderecos = enderecoDao.findAll();
         estados = estadoDao.findAll();
+        vendedor = (Vendedor) loginMB.getUsuario();
+    }
+
+    public void carregarClientes() {
+
     }
 
     public ClienteDao getClienteDao() {
@@ -171,6 +188,38 @@ public class ClienteMB implements Serializable {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public LoginMB getLoginMB() {
+        return loginMB;
+    }
+
+    public void setLoginMB(LoginMB loginMB) {
+        this.loginMB = loginMB;
+    }
+
+    public UsuarioDao getUsuarioDao() {
+        return usuarioDao;
+    }
+
+    public void setUsuarioDao(UsuarioDao usuarioDao) {
+        this.usuarioDao = usuarioDao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
 
 }
