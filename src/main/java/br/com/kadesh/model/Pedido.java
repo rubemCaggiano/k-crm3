@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,8 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Proxy;
 
 @Entity
+@Proxy(lazy = true)
 public class Pedido implements Serializable {
 
     @Id
@@ -43,7 +48,8 @@ public class Pedido implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     private List<ItemPedido> itensPedido;
 
     public Pedido() {
@@ -65,8 +71,6 @@ public class Pedido implements Serializable {
         this.itensPedido = itensPedido;
     }
 
-    
-    
     public List<ItemPedido> getItensPedido() {
         return itensPedido;
     }

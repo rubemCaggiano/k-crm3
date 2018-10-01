@@ -8,8 +8,10 @@ import br.com.kadesh.model.Familia;
 import br.com.kadesh.model.Grupo;
 import br.com.kadesh.model.Linha;
 import br.com.kadesh.model.Produto;
+import br.com.kadesh.model.ProdutoGrade;
 import br.com.kadesh.model.StatusEnum;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -51,12 +53,48 @@ public class ProdutoMB implements Serializable {
         produto.setLinha(linha);
         produto.setGrupo(grupo);
         produto.setStatus(StatusEnum.ATIVO);
+        produto.setNumeracao(geraGrade());
+        
         System.out.println("Salvando");
         produtoDao.saveOrUpdate(produto);
         System.out.println("Salvo");
 
         produto = new Produto();
         selectAll();
+    }
+
+    public List<ProdutoGrade> geraGrade() {
+        List<ProdutoGrade> grades = new ArrayList<>();
+        ProdutoGrade pg = new ProdutoGrade(0, 34);
+        grades.add(pg);
+        ProdutoGrade pg2 = new ProdutoGrade(0, 35);
+        grades.add(pg2);
+        ProdutoGrade pg3 = new ProdutoGrade(0, 36);
+        grades.add(pg3);
+        ProdutoGrade pg4 = new ProdutoGrade(0, 37);
+        grades.add(pg4);
+        ProdutoGrade pg5 = new ProdutoGrade(0, 38);
+        grades.add(pg5);
+        ProdutoGrade pg6 = new ProdutoGrade(0, 39);
+        grades.add(pg6);
+        ProdutoGrade pg7 = new ProdutoGrade(0, 40);
+        grades.add(pg7);
+        ProdutoGrade pg8 = new ProdutoGrade(0, 41);
+        grades.add(pg8);
+        ProdutoGrade pg9 = new ProdutoGrade(0, 42);
+        grades.add(pg9);
+        ProdutoGrade pg10 = new ProdutoGrade(0, 43);
+        grades.add(pg10);
+        ProdutoGrade pg11 = new ProdutoGrade(0, 44);
+        grades.add(pg11);
+        ProdutoGrade pg12 = new ProdutoGrade(0, 45);
+        grades.add(pg12);
+        ProdutoGrade pg13 = new ProdutoGrade(0, 46);
+        grades.add(pg13);
+        ProdutoGrade pg14 = new ProdutoGrade(0, 47);
+        grades.add(pg14);
+        
+        return grades;
     }
 
     public void salvarFamilia() {

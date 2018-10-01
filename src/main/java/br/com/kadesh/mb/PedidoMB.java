@@ -10,6 +10,8 @@ import br.com.kadesh.dao.impl.ProdutoDao;
 import br.com.kadesh.dao.impl.ProdutoGradeDao;
 import br.com.kadesh.dao.impl.TipoPedidoDao;
 import br.com.kadesh.dao.impl.TransportadoraDao;
+import br.com.kadesh.dao.impl.UsuarioDao;
+import br.com.kadesh.dao.impl.VendedorDao;
 import br.com.kadesh.model.Cliente;
 import br.com.kadesh.model.CondicaoPagamento;
 import br.com.kadesh.model.Endereco;
@@ -23,17 +25,22 @@ import br.com.kadesh.model.ProdutoGrade;
 import br.com.kadesh.model.SituacaoEnum;
 import br.com.kadesh.model.TipoPedido;
 import br.com.kadesh.model.Transportadora;
+import br.com.kadesh.model.Vendedor;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
 public class PedidoMB implements Serializable {
+
+    @ManagedProperty("#{loginMB}")
+    private LoginMB loginMB;
 
     private PedidoDao pedidoDao = new PedidoDao();
     private ClienteDao clienteDao = new ClienteDao();
@@ -45,6 +52,8 @@ public class PedidoMB implements Serializable {
     private ProdutoDao produtoDao = new ProdutoDao();
     private ProdutoGradeDao produtoGradeDao = new ProdutoGradeDao();
     private OpcionaisDao opcionaisDao = new OpcionaisDao();
+    private UsuarioDao usuarioDao = new UsuarioDao();
+    private VendedorDao vendedorDao = new VendedorDao();
 
     private List<TipoPedido> tipoPedidos;
     private List<Transportadora> transportadoras;
@@ -71,6 +80,7 @@ public class PedidoMB implements Serializable {
     private GradeVenda gradeVenda;
     private Opcional opcional;
     private SituacaoEnum situacaoEnum;
+    private Vendedor vendedor;
 
     public PedidoMB() {
 
@@ -91,17 +101,18 @@ public class PedidoMB implements Serializable {
 
     @PostConstruct
     public void selectAll() {
-        pedidos = pedidoDao.findAll();
-        clientes = clienteDao.findAll();
+//        pedidos = pedidoDao.findAll();
+        vendedor = (Vendedor) loginMB.getUsuario();
+        pedidos = vendedor.getPedidos();
+        clientes = vendedor.getClientes();
+        
+//        clientes = clienteDao.findAll();
         condicoes = condPagDao.findAll();
         transportadoras = transportadoraDao.findAll();
         tipoPedidos = tipoPedidoDao.findAll();
         estados = estadoDao.findAll();
 
         produtos = produtoDao.findAll();
-
-        opcionaisDisponiveis = opcionaisDao.findAll();
-
     }
 
     public void adicionarGrade() {
@@ -169,8 +180,12 @@ public class PedidoMB implements Serializable {
         pedido.setTransportadora(transportadora);
         pedido.setItensPedido(itens);
         pedido.setSituacao(SituacaoEnum.ABERTO);
+        pedido.setVendedor(vendedor);
 
-        pedidoDao.create(pedido);
+        pedidos.add(pedido);
+        vendedor.setPedidos(pedidos);
+        vendedorDao.saveOrUpdate(vendedor);
+//        pedidoDao.create(pedido);
 
         pedido = new Pedido();
 
@@ -493,6 +508,30 @@ public class PedidoMB implements Serializable {
 
     public void setSituacaoEnum(SituacaoEnum situacaoEnum) {
         this.situacaoEnum = situacaoEnum;
+    }
+
+    public UsuarioDao getUsuarioDao() {
+        return usuarioDao;
+    }
+
+    public void setUsuarioDao(UsuarioDao usuarioDao) {
+        this.usuarioDao = usuarioDao;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public LoginMB getLoginMB() {
+        return loginMB;
+    }
+
+    public void setLoginMB(LoginMB loginMB) {
+        this.loginMB = loginMB;
     }
 
 }

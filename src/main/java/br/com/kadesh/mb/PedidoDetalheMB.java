@@ -20,18 +20,24 @@ import br.com.kadesh.model.Opcional;
 import br.com.kadesh.model.Pedido;
 import br.com.kadesh.model.Produto;
 import br.com.kadesh.model.ProdutoGrade;
+import br.com.kadesh.model.SituacaoEnum;
 import br.com.kadesh.model.TipoPedido;
 import br.com.kadesh.model.Transportadora;
+import br.com.kadesh.model.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @RequestScoped
 public class PedidoDetalheMB {
+
+    @ManagedProperty("#{loginMB}")
+    private LoginMB loginMB;
 
     private PedidoDao pedidoDao = new PedidoDao();
     private ClienteDao clienteDao = new ClienteDao();
@@ -68,6 +74,7 @@ public class PedidoDetalheMB {
     private ItemPedido itemPedido;
     private GradeVenda gradeVenda;
     private Opcional opcional;
+    private Usuario usuario;
 
     public PedidoDetalheMB() {
 
@@ -87,6 +94,8 @@ public class PedidoDetalheMB {
 
     @PostConstruct
     public void selectAll() {
+        usuario = loginMB.getUsuario();
+
         pedidos = pedidoDao.findAll();
         clientes = clienteDao.findAll();
         condicoes = condPagDao.findAll();
@@ -104,18 +113,47 @@ public class PedidoDetalheMB {
         pedido = new Pedido(p.getId(), p.getCliente(), p.getTransportadora(), p.getEnderecoEntrega(), p.getCondicaoPagamento(),
                 p.getTipoPedido(), p.getNumeroOrdemCompra(), p.getObservacoes(), p.getSituacao(), p.getValorTotal(), p.getQuantidade(),
                 p.getDataCriacao(), p.getItensPedido());
+        itens = pedido.getItensPedido();
 
         return "detalhesPedidoGUI.xhtml";
     }
-    
-    
-    public void aprovar(){
-        
+
+//    Pedido cancelado pelo vendedor
+    public void cancelar() {
+        pedido.setSituacao(SituacaoEnum.CANCELADO);
+        pedidoDao.saveOrUpdate(pedido);
     }
 
-    public void devolver(){
-        
+//    Pedido finalizado pelo vendedor e encaminhado para o supervisor
+    public void finalizar() {
+        pedido.setSituacao(SituacaoEnum.FINALIZADO);
+        pedidoDao.saveOrUpdate(pedido);
     }
+
+//    Pedido aprovado pelo supervisor e encaminhado para o financeiro
+    public void aprovar() {
+        pedido.setSituacao(SituacaoEnum.SUPERVISOR);
+        pedidoDao.saveOrUpdate(pedido);
+    }
+
+//    Pedido devolvido para o vendedor pelo supervisor
+    public void devolverVendedor() {
+        pedido.setSituacao(SituacaoEnum.DEVOLVIDO);
+        pedidoDao.saveOrUpdate(pedido);
+    }
+
+//    Pedido devolvido para o supervisor pelo financeiro(Não aprovado analise de credito)
+    public void devolverSupervisor() {
+        pedido.setSituacao(SituacaoEnum.DEVOLVIDO);
+        pedidoDao.saveOrUpdate(pedido);
+    }
+
+//    Pedido enviado para produção pelo financeiro
+    public void enviarProducao() {
+        pedido.setSituacao(SituacaoEnum.FINANCEIRO);
+        pedidoDao.saveOrUpdate(pedido);
+    }
+
     public PedidoDao getPedidoDao() {
         return pedidoDao;
     }
@@ -378,6 +416,22 @@ public class PedidoDetalheMB {
 
     public void setOpcional(Opcional opcional) {
         this.opcional = opcional;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public LoginMB getLoginMB() {
+        return loginMB;
+    }
+
+    public void setLoginMB(LoginMB loginMB) {
+        this.loginMB = loginMB;
     }
 
 }

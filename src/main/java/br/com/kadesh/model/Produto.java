@@ -42,7 +42,6 @@ public class Produto implements Serializable {
     private Linha linha;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
     private List<ProdutoGrade> numeracao;
 
     public Produto() {

@@ -5,7 +5,9 @@ public enum SituacaoEnum {
     ABERTO("Aberto"),
     FINALIZADO("Finalizado"),
     SUPERVISOR("Aprovado Supervisor"),
-    FINANCEIRO("Aprovado Financeiro");
+    FINANCEIRO("Aprovado Financeiro"),
+    CANCELADO("Cancelado"),
+    DEVOLVIDO("Devolvido");
 
     private String situacao;
 
