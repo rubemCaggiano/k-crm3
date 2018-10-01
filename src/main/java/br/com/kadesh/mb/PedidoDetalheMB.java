@@ -90,6 +90,7 @@ public class PedidoDetalheMB {
         itemPedido = new ItemPedido();
         gradeVenda = new GradeVenda();
         opcional = new Opcional();
+
     }
 
     @PostConstruct

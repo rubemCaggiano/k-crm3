@@ -20,7 +20,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class ProdutoMB implements Serializable {
 
     private ProdutoDao produtoDao = new ProdutoDao();
@@ -34,7 +34,7 @@ public class ProdutoMB implements Serializable {
     private List<Grupo> grupos;
     private List<StatusEnum> statusPossiveis;
 
-    private Produto produto;
+    private Produto produto = new Produto();
     private Familia familia;
     private Linha linha;
     private Grupo grupo;
@@ -42,7 +42,6 @@ public class ProdutoMB implements Serializable {
 
     public ProdutoMB() {
 
-        produto = new Produto();
         familia = new Familia();
         linha = new Linha();
         grupo = new Grupo();
@@ -54,7 +53,7 @@ public class ProdutoMB implements Serializable {
         produto.setGrupo(grupo);
         produto.setStatus(StatusEnum.ATIVO);
         produto.setNumeracao(geraGrade());
-        
+
         System.out.println("Salvando");
         produtoDao.saveOrUpdate(produto);
         System.out.println("Salvo");
@@ -93,7 +92,7 @@ public class ProdutoMB implements Serializable {
         grades.add(pg13);
         ProdutoGrade pg14 = new ProdutoGrade(0, 47);
         grades.add(pg14);
-        
+
         return grades;
     }
 
@@ -130,9 +129,9 @@ public class ProdutoMB implements Serializable {
     }
 
     public void detalharProduto(Produto p) {
-        produto = produtoDao.find(p.getId());
-//        produto = new Produto(p.getId(), p.getDescricao(), p.getReferencia(), p.getNumeroCa(),
-//                p.getCusto(), p.getMcMinima(), p.isStatus(), p.getPrecoSugerido(), p.getPrecoMinimo(),
+        this.produto = produtoDao.find(p.getId());
+//        this.produto = new Produto(p.getId(), p.getDescricao(), p.getReferencia(), p.getNumeroCa(),
+//                p.getCusto(), p.getMcMinima(), p.getStatus(), p.getPrecoSugerido(), p.getPrecoMinimo(),
 //                p.getGrupo(), p.getFamilia(), p.getLinha());
         familia = produto.getFamilia();
         linha = produto.getLinha();
