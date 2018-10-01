@@ -8,6 +8,7 @@ import br.com.kadesh.dao.impl.EnderecoDao;
 import br.com.kadesh.model.Endereco;
 import br.com.kadesh.dao.impl.EstadoDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
+import br.com.kadesh.dao.impl.VendedorDao;
 import br.com.kadesh.model.Estado;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
@@ -30,6 +31,7 @@ public class ClienteMB implements Serializable {
     ContatoDao contatoDao = new ContatoDao();
     EnderecoDao enderecoDao = new EnderecoDao();
     EstadoDao estadoDao = new EstadoDao();
+    VendedorDao vendedorDao = new VendedorDao();
     private UsuarioDao usuarioDao = new UsuarioDao();
 
     List<Cliente> clientes;
@@ -57,7 +59,11 @@ public class ClienteMB implements Serializable {
         cliente.setEndereco(endereco);
         cliente.setContatos(contatos);
         cliente.setVendedor(vendedor);
-        clienteDao.saveOrUpdate(cliente);
+        clientes.add(cliente);
+        vendedor.setClientes(clientes);
+        
+        vendedorDao.saveOrUpdate(vendedor);
+//        clienteDao.saveOrUpdate(cliente);
 
         contatos = new ArrayList<>();
         estado = new Estado();
@@ -84,10 +90,12 @@ public class ClienteMB implements Serializable {
 
     @PostConstruct
     public void selectAll() {
-        clientes = clienteDao.findAll();
+        vendedor = (Vendedor) loginMB.getUsuario();
+//        clientes = clienteDao.findAll();
+        clientes = vendedor.getClientes();
         enderecos = enderecoDao.findAll();
         estados = estadoDao.findAll();
-        vendedor = (Vendedor) loginMB.getUsuario();
+        
     }
 
     public void carregarClientes() {
