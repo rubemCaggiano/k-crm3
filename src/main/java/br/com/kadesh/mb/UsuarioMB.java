@@ -37,7 +37,7 @@ public class UsuarioMB implements Serializable {
     private Supervisor supervisor;
     private Setor setor;
     private PermissaoEnum permissao;
-    
+
     private String nome;
     private String email;
     private String usuarioUsuario;
@@ -78,11 +78,14 @@ public class UsuarioMB implements Serializable {
             usuario.setStatus(true);
             usuarioDao.create(usuario);
         }
+        nome = "";
+        email = "";
+        usuarioUsuario = "";
+        senha = "";
+
         usuario = new Usuario();
         selectAll();
     }
-    
-    
 
     @PostConstruct
     public void selectAll() {
@@ -96,8 +99,8 @@ public class UsuarioMB implements Serializable {
     public void detalharUsuario(Usuario u) {
 
     }
-    
-    public void excluirUsuario(Usuario u){
+
+    public void excluirUsuario(Usuario u) {
         usuarioDao.delete(u);
         selectAll();
     }

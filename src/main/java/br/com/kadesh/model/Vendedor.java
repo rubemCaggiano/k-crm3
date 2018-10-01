@@ -11,7 +11,7 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Proxy;
 
 @Entity
-@Proxy(lazy = false)
+@Proxy(lazy = true)
 public class Vendedor extends Usuario {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

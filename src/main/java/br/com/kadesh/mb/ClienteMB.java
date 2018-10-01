@@ -93,6 +93,7 @@ public class ClienteMB implements Serializable {
         vendedor = (Vendedor) loginMB.getUsuario();
 //        clientes = clienteDao.findAll();
         clientes = vendedor.getClientes();
+        
         enderecos = enderecoDao.findAll();
         estados = estadoDao.findAll();
         

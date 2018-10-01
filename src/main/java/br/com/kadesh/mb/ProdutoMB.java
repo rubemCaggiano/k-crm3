@@ -8,12 +8,13 @@ import br.com.kadesh.model.Familia;
 import br.com.kadesh.model.Grupo;
 import br.com.kadesh.model.Linha;
 import br.com.kadesh.model.Produto;
+import br.com.kadesh.model.StatusEnum;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
@@ -29,11 +30,13 @@ public class ProdutoMB implements Serializable {
     private List<Familia> familias;
     private List<Linha> linhas;
     private List<Grupo> grupos;
+    private List<StatusEnum> statusPossiveis;
 
     private Produto produto;
     private Familia familia;
     private Linha linha;
     private Grupo grupo;
+    private StatusEnum status;
 
     public ProdutoMB() {
 
@@ -47,9 +50,10 @@ public class ProdutoMB implements Serializable {
         produto.setFamilia(familia);
         produto.setLinha(linha);
         produto.setGrupo(grupo);
-        produto.setStatus(true);
-
-        produtoDao.create(produto);
+        produto.setStatus(StatusEnum.ATIVO);
+        System.out.println("Salvando");
+        produtoDao.saveOrUpdate(produto);
+        System.out.println("Salvo");
 
         produto = new Produto();
         selectAll();
@@ -80,6 +84,7 @@ public class ProdutoMB implements Serializable {
         familias = familiaDao.findAll();
         linhas = linhaDao.findAll();
         grupos = grupoDao.findAll();
+        statusPossiveis = Arrays.asList(StatusEnum.values());
     }
 
     public void novoProduto() {
@@ -246,6 +251,22 @@ public class ProdutoMB implements Serializable {
 
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
+    }
+
+    public List<StatusEnum> getStatusPossiveis() {
+        return statusPossiveis;
+    }
+
+    public void setStatusPossiveis(List<StatusEnum> statusPossiveis) {
+        this.statusPossiveis = statusPossiveis;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
 }

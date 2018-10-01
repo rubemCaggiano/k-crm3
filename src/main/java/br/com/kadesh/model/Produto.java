@@ -24,7 +24,8 @@ public class Produto implements Serializable {
     private String numeroCa;
     private double custo;
     private double mcMinima;
-    private boolean status;
+
+    private StatusEnum status;
 
     @Column(columnDefinition = "Decimal(10,2)")
     private double precoSugerido;
@@ -47,7 +48,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(int id, String descricao, String referencia, String numeroCa, double custo, double mcMinima, boolean status, double precoSugerido, double precoMinimo, Grupo grupo, Familia familia, Linha linha, List<ProdutoGrade> numeracao) {
+    public Produto(int id, String descricao, String referencia, String numeroCa, double custo, double mcMinima, StatusEnum status, double precoSugerido, double precoMinimo, Grupo grupo, Familia familia, Linha linha, List<ProdutoGrade> numeracao) {
         this.id = id;
         this.descricao = descricao;
         this.referencia = referencia;
@@ -63,7 +64,7 @@ public class Produto implements Serializable {
         this.numeracao = numeracao;
     }
 
-    public Produto(int id, String descricao, String referencia, String numeroCa, double custo, double mcMinima, boolean status, double precoSugerido, double precoMinimo, Grupo grupo, Familia familia, Linha linha) {
+    public Produto(int id, String descricao, String referencia, String numeroCa, double custo, double mcMinima, StatusEnum status, double precoSugerido, double precoMinimo, Grupo grupo, Familia familia, Linha linha) {
         this.id = id;
         this.descricao = descricao;
         this.referencia = referencia;
@@ -128,14 +129,6 @@ public class Produto implements Serializable {
         setPrecoMinimo(custo + (custo * (this.mcMinima / 100)));
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     public Grupo getGrupo() {
         return grupo;
     }
@@ -188,10 +181,19 @@ public class Produto implements Serializable {
     public String toString() {
         return referencia;
     }
+
     @Override
     public boolean equals(Object obj) {
         Produto p = (Produto) obj;
         return this.id == p.getId();
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
 }

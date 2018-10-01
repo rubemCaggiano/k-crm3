@@ -20,22 +20,22 @@
                                  >
                             <b:panel>
                                 <b:form>
-                                <b:row>
-                                    <b:inputText span="6" id="nome" value="#{clienteMB.contato.nome}" label="Nome" required="true" />
-                                    <b:inputText span="6" id="cargo" value="#{clienteMB.contato.cargo}" label="Cargo" required="true" />
-                                </b:row>
-                                <b:row>
-                                    <b:inputText span="6" id="email" value="#{clienteMB.contato.email}" label="E-mail" required="true" />
-                                    <b:inputText span="4" id="telefone" value="#{clienteMB.contato.telefone}" label="Telefone" required="true" />
-                                    <b:commandButton type="button" look="primary" value="Adicionar Contato" action="#{clienteMB.adicionarContato()}" icon-awesome="plus-square" ajax="true" update=":fContatos:contato"  />
-                                </b:row>
+                                    <b:row>
+                                        <b:inputText span="6" id="nome" value="#{clienteMB.contato.nome}" label="Nome" required="true" />
+                                        <b:inputText span="6" id="cargo" value="#{clienteMB.contato.cargo}" label="Cargo" required="true" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText span="6" id="email" value="#{clienteMB.contato.email}" label="E-mail" required="true" />
+                                        <b:inputText span="4" id="telefone" value="#{clienteMB.contato.telefone}" label="Telefone" required="true" />
+                                        <b:commandButton type="button" look="primary" value="Adicionar Contato" action="#{clienteMB.adicionarContato()}" icon-awesome="plus-square" ajax="true" update=":fContatos:contato"  />
+                                    </b:row>
 
-                                <b:row>
-                                    <b:message for="nome" />
-                                    <b:message for="cargo" />
-                                    <b:message for="email" />
-                                    <b:message for="telefone" />
-                                </b:row>
+                                    <b:row>
+                                        <b:message for="nome" />
+                                        <b:message for="cargo" />
+                                        <b:message for="email" />
+                                        <b:message for="telefone" />
+                                    </b:row>
                                 </b:form>
                             </b:panel>
                             <f:facet name="footer">
@@ -50,21 +50,35 @@
                                     <b:row>
                                         <b:inputText span="6" id="razao-social" value="#{clienteMB.cliente.razaoSocial}" label="Razão Social" size="100" required="true" />
                                         <b:inputText span="6" id="nome-fantasia" value="#{clienteMB.cliente.nomeFantasia}" label="Nome Fantasia" size="100" />
-                                        
+
                                     </b:row>
                                     <b:row>
                                         <b:inputText span="3" id="cnpj" value="#{clienteMB.cliente.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="60" required="true" />
                                         <b:inputText span="3" id="inscricao-estadual" value="#{clienteMB.cliente.inscricaoEstadual}" label="Inscrição Estadual" size="100" required="true" />
                                         <b:inputText span="2" id="numero-funcionarios" value="#{clienteMB.cliente.numeroFuncionarios}" label="Número de Funcionários" />
                                         <b:inputText span="4" id="email-nfe" value="#{clienteMB.cliente.emailNFE}" label="E-mail" />
-                                        
+
                                     </b:row>
                                     <b:row>
                                         <b:inputText span="4" id="ramo-atividade" value="#{clienteMB.cliente.ramoAtividade}" label="Ramo de Atividade" />
                                         <b:inputText span="4" id="segmento" value="#{clienteMB.cliente.segmento}" label="Segmento" />
-                                        
+
+                                    </b:row>
+                                    <b:row>
+                                        <b:message for="razao-social"/>
+                                        <b:message for="nome-fantasia"/>
+                                        <b:message for="cnpj" />
+                                        <b:message for="inscricao-estadual" />
+                                        <b:message for="numero-funcionarios" />
+                                        <b:message for="email-nfe" />
+                                        <b:message for="ramo-atividade" />
+                                        <b:message for="segmento" />
                                     </b:row>
                                 </b:panel>
+
+
+
+
                                 <b:panel title="Dados Contato" collapsible="false">
                                     <b:button onclick="$('.mContato').modal()" value="Adiconar Contato" icon-awesome="plus"/>
                                     <b:dataTable 
@@ -115,7 +129,15 @@
                                     </b:row>
                                     <b:row>
                                         <b:inputText span="6" id="endereco" value="#{clienteMB.endereco.logradouro}" label="Endereco" required="true" />
-                                        <b:inputText span="6" id="complemento" value="#{clienteMB.endereco.complemento}" label="Complemento" required="true" />
+                                        <b:inputText span="6" id="complemento" value="#{clienteMB.endereco.complemento}" label="Complemento"/>
+                                    </b:row>
+                                    <b:row>
+                                        <b:message for="cep"/>
+                                        <b:message for="estado"/>
+                                        <b:message for="cidade" />
+                                        <b:message for="bairro" />
+                                        <b:message for="endereco" />
+                                        <b:message for="complemento" />
                                     </b:row>
                                 </b:panel>
                                 <b:commandButton look="primary" value="Salvar Cadastro" action="#{clienteMB.salvar()}" icon-awesome="save" />
