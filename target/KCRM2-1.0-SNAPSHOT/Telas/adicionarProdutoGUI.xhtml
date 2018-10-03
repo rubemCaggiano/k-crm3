@@ -8,7 +8,6 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
-            <b:jumbotron>
                 <b:formGroup>
                     <b:panel id="pProd" title="Cadastro de Produto">
                         <b:button look="primary" onclick="$('.mCadProd').modal()" value="Novo Produto" icon-awesome="plus"/>
@@ -480,20 +479,10 @@
                                     </b:commandButton>
                                     <b:commandButton type="button" look="danger" action="#{produtoMB.excluirGrupo(grupo)}" immediate="true" icon="trash" />
                                 </b:dataTableColumn>
-
-
                             </b:dataTable>
                         </h:form>
-
-
                     </b:panel>
-
                 </b:formGroup>
-
-            </b:jumbotron>
         </ui:define>
-
     </ui:composition>
-
-
 </html>

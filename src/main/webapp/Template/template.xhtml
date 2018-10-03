@@ -26,7 +26,7 @@
             <b:container fluid="true" >
                 <b:row>
                     <!--Menu Lateral-->
-                    <b:column span="1" styleClass="sidebar">
+                    <b:column span="2" styleClass="sidebar">
                         <!--Adm-->
                         <b:listLinks rendered="#{loginMB.usuario.permissao == 'ADMIN'}">
 
@@ -59,7 +59,7 @@
                         </b:listLinks>
 
                         <!--Vendedor-->
-                        <b:listLinks rendered="#{loginMB.usuario.permissao == 'VENDEDOR' or loginMB.usuario.permissao == 'SUPERVISOR' }">
+                        <b:listLinks rendered="#{loginMB.usuario.permissao == 'VENDEDOR'}">
 
                             <b:navLink header="Menu" style="font-size: 24px; color: black;" />
                             <b:dropMenu value="Agendamentos" icon-awesome="fa-calendar-check-o">
@@ -133,13 +133,17 @@
                     </b:column>
 
                     <!--Conteudo-->
-                    <b:column span="11" offset="1" styleClass="main">
+                    <b:column span="10" offset="2" styleClass="main">
                         <hr></hr>
+                        <div style="border: 1px">
+                            <ui:insert name="content">
 
-                        <ui:insert name="content">
-                            Conteúdo
-                        </ui:insert>
 
+
+
+                                Conteúdo
+                            </ui:insert>
+                        </div>
 
                     </b:column>
                 </b:row>
@@ -174,7 +178,8 @@
                     margin-bottom: 20px;
                     margin-left: -20px;
                     margin-right: -21px;
-                    font-size: 13px;
+                    font-size: 18px;
+                    line-height: 30px;
                 }
                 .nav-list > li > a {
                     padding-left: 20px;

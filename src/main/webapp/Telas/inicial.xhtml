@@ -8,19 +8,13 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
-
-            <b:jumbotron> 
                 <h:panelGroup>
                     <b:container fluid="true">
                         <b:form>
                             <b:inputText span="8" readonly="true" id="vendedor" value="#{loginMB.usuario.nome}" label="Vendedor" size="30" />
                         </b:form>
-                       
                     </b:container>
                 </h:panelGroup>
-            </b:jumbotron>
-
         </ui:define>
     </ui:composition>
-
 </html>

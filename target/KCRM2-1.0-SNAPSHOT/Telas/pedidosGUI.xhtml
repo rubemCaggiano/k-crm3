@@ -9,10 +9,9 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
-
-            <b:jumbotron> 
-                <h:panelGroup>
-                    <b:container fluid="true">
+            <h:panelGroup>
+                <b:container fluid="true">
+                    <b:panel>
                         <b:panel>
                             <b:row>
                                 <b:form>
@@ -55,14 +54,11 @@
                                     <b:commandButton look="info" action="#{pedidoDetalheMB.detalharPedido(pedido)}" immediate="true" icon-awesome="search-plus"/>
                                 </b:dataTableColumn>
 
-
                             </b:dataTable>
                         </h:form>
-                    </b:container>
-                </h:panelGroup>
-            </b:jumbotron>
-
+                    </b:panel>
+                </b:container>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
-
 </html>
