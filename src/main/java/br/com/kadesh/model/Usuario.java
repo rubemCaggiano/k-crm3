@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Usuario implements Serializable {
@@ -15,26 +14,18 @@ public class Usuario implements Serializable {
     private int id;
     private String nome;
     private String email;
-
-    @ManyToOne
-    private Setor setor;
-
     private String usuario;
-
     private String senha;
-
     private boolean status;
-
     private PermissaoEnum permissao;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String email, Setor setor, String usuario, String senha, boolean status, PermissaoEnum permissao) {
+    public Usuario(int id, String nome, String email, String usuario, String senha, boolean status, PermissaoEnum permissao) {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        this.setor = setor;
         this.usuario = usuario;
         this.senha = senha;
         this.status = status;
@@ -68,14 +59,6 @@ public class Usuario implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Setor getSetor() {
-        return setor;
-    }
-
-    public void setSetor(Setor setor) {
-        this.setor = setor;
     }
 
     public String getSenha() {
