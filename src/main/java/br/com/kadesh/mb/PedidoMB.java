@@ -105,7 +105,7 @@ public class PedidoMB implements Serializable {
         vendedor = (Vendedor) loginMB.getUsuario();
         pedidos = vendedor.getPedidos();
         clientes = vendedor.getClientes();
-        
+
 //        clientes = clienteDao.findAll();
         condicoes = condPagDao.findAll();
         transportadoras = transportadoraDao.findAll();
@@ -216,8 +216,7 @@ public class PedidoMB implements Serializable {
 
         this.itemPedido = new ItemPedido(itemPedido.getId(), itemPedido.getProdutos(),
                 itemPedido.getProduto(), itemPedido.getQuantidade(), itemPedido.getPreco(),
-                itemPedido.getValorItens(), itemPedido.getFrete(), itemPedido.getIcms(),
-                itemPedido.getPisCofins(), itemPedido.getCprb(), itemPedido.getOpcionais());
+                itemPedido.getValorItens(), itemPedido.getFrete());
         gradeVendas = itemPedido.getProdutos();
         produto = itemPedido.getProduto();
 

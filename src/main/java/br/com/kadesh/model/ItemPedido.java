@@ -27,18 +27,12 @@ public class ItemPedido implements Serializable {
     private double preco;
     private double valorItens;
     private double frete;
-    private double icms;
-    private double pisCofins;
-    private double cprb;
     private double mc;
-
-    @OneToMany
-    private List<Opcional> opcionais;
 
     public ItemPedido() {
     }
 
-    public ItemPedido(int id, List<GradeVenda> produtos, Produto produto, int quantidade, double preco, double valorItens, double frete, double icms, double pisCofins, double cprb, List<Opcional> opcionais) {
+    public ItemPedido(int id, List<GradeVenda> produtos, Produto produto, int quantidade, double preco, double valorItens, double frete) {
         this.id = id;
         this.produtos = produtos;
         this.produto = produto;
@@ -46,20 +40,6 @@ public class ItemPedido implements Serializable {
         this.preco = preco;
         this.valorItens = valorItens;
         this.frete = frete;
-        this.icms = icms;
-        this.pisCofins = pisCofins;
-        this.cprb = cprb;
-        this.opcionais = opcionais;
-    }
-
-    
-    
-    public double getCprb() {
-        return cprb;
-    }
-
-    public void setCprb(double cprb) {
-        this.cprb = cprb;
     }
 
     public int getId() {
@@ -93,30 +73,6 @@ public class ItemPedido implements Serializable {
 
     public void setFrete(double frete) {
         this.frete = frete;
-    }
-
-    public double getIcms() {
-        return icms;
-    }
-
-    public void setIcms(double icms) {
-        this.icms = icms;
-    }
-
-    public double getPisCofins() {
-        return pisCofins;
-    }
-
-    public void setPisCofins(double pisCofins) {
-        this.pisCofins = pisCofins;
-    }
-
-    public List<Opcional> getOpcionais() {
-        return opcionais;
-    }
-
-    public void setOpcionais(List<Opcional> opcionais) {
-        this.opcionais = opcionais;
     }
 
     public List<GradeVenda> getProdutos() {

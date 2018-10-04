@@ -10,7 +10,6 @@ import br.com.kadesh.dao.impl.LinhaDao;
 import br.com.kadesh.dao.impl.PedidoDao;
 import br.com.kadesh.dao.impl.ProdutoDao;
 import br.com.kadesh.dao.impl.ProdutoGradeDao;
-import br.com.kadesh.dao.impl.SetorDao;
 import br.com.kadesh.dao.impl.TipoPedidoDao;
 import br.com.kadesh.dao.impl.TransportadoraDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
@@ -24,7 +23,6 @@ import br.com.kadesh.model.Linha;
 import br.com.kadesh.model.Pedido;
 import br.com.kadesh.model.Produto;
 import br.com.kadesh.model.ProdutoGrade;
-import br.com.kadesh.model.Setor;
 import br.com.kadesh.model.TipoPedido;
 import br.com.kadesh.model.Transportadora;
 import br.com.kadesh.model.Usuario;
@@ -46,9 +44,7 @@ public class GerarTabelas {
         LinhaDao linhaDao = new LinhaDao();
         FamiliaDao familiaDao = new FamiliaDao();
         GrupoDao grupoDao = new GrupoDao();
-        SetorDao setorDao = new SetorDao();
         UsuarioDao usuarioDao = new UsuarioDao();
-
 
         Usuario u = new Usuario("Rubem", "1234");
 //        usuarioDao.create(u);

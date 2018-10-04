@@ -93,4 +93,10 @@ public class Usuario implements Serializable {
         this.permissao = permissao;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Usuario u = (Usuario) obj;
+        return this.id == u.getId();
+    }
+
 }

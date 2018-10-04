@@ -1,11 +1,9 @@
 package br.com.kadesh.mb;
 
-import br.com.kadesh.dao.impl.SetorDao;
 import br.com.kadesh.dao.impl.SupervisorDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
 import br.com.kadesh.dao.impl.VendedorDao;
 import br.com.kadesh.model.PermissaoEnum;
-import br.com.kadesh.model.Setor;
 import br.com.kadesh.model.Supervisor;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
@@ -24,18 +22,15 @@ public class UsuarioMB implements Serializable {
     private UsuarioDao usuarioDao = new UsuarioDao();
     private VendedorDao vendedorDao = new VendedorDao();
     private SupervisorDao supervisorDao = new SupervisorDao();
-    private SetorDao setorDao = new SetorDao();
 
     private List<Usuario> usuarios;
     private List<Vendedor> vendedores;
     private List<Supervisor> supervisores;
-    private List<Setor> setores;
     private List<PermissaoEnum> permissoes;
 
     private Usuario usuario;
     private Vendedor vendedor;
     private Supervisor supervisor;
-    private Setor setor;
     private PermissaoEnum permissao;
 
     private String nome;
@@ -46,7 +41,6 @@ public class UsuarioMB implements Serializable {
     public UsuarioMB() {
         usuario = new Usuario();
         vendedor = new Vendedor();
-        setor = new Setor();
 
     }
 
@@ -91,7 +85,6 @@ public class UsuarioMB implements Serializable {
     public void selectAll() {
         usuarios = usuarioDao.findAll();
         vendedores = vendedorDao.findAll();
-        setores = setorDao.findAll();
         permissoes = Arrays.asList(PermissaoEnum.values());
 
     }
@@ -157,30 +150,6 @@ public class UsuarioMB implements Serializable {
 
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
-    }
-
-    public SetorDao getSetorDao() {
-        return setorDao;
-    }
-
-    public void setSetorDao(SetorDao setorDao) {
-        this.setorDao = setorDao;
-    }
-
-    public List<Setor> getSetores() {
-        return setores;
-    }
-
-    public void setSetores(List<Setor> setores) {
-        this.setores = setores;
-    }
-
-    public Setor getSetor() {
-        return setor;
-    }
-
-    public void setSetor(Setor setor) {
-        this.setor = setor;
     }
 
     public List<PermissaoEnum> getPermissoes() {
