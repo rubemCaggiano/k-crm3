@@ -18,7 +18,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class UsuarioMB implements Serializable {
 
     private UsuarioDao usuarioDao = new UsuarioDao();
@@ -98,20 +98,17 @@ public class UsuarioMB implements Serializable {
 
     public void detalharUsuario(Usuario u) {
 
+        this.usuario = usuarioDao.find(u.getId());
+        nome = usuario.getNome();
+        email = usuario.getEmail();
+        usuarioUsuario = usuario.getUsuario();
+        senha = usuario.getSenha();
+        permissao = usuario.getPermissao();
     }
 
     public void excluirUsuario(Usuario u) {
         usuarioDao.delete(u);
         selectAll();
-    }
-
-    public boolean renderizar() {
-        if (setor.getNome().equals("Vendas")) {
-            return true;
-        } else {
-            return false;
-        }
-
     }
 
     public UsuarioDao getUsuarioDao() {

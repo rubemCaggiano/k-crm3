@@ -35,6 +35,7 @@
                                                          value="#{usuarioMB.permissao}" 
                                                          label="Permissão"
                                                          span="10"
+                                                         required="true"
                                                          select2="true"
                                                          >
 
@@ -44,11 +45,10 @@
                                                            itemLabel="#{permissao.permissao}"
                                                            itemValue="#{permissao}"
                                                            />
-                                            <f:ajax event="change" render="rsv"/>
                                         </b:selectOneMenu>
                                     </b:row>
 
-                                    <b:row rendered="#{usuarioMB.permissao == 'VENDEDOR'}" id="rsv">
+                                    <b:row>
                                         <b:selectOneMenu id="supervisorVendedor"
                                                          value="#{usuarioMB.supervisor}" 
                                                          label="Supervisor"
@@ -68,6 +68,35 @@
 
 
                                     <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
+                                </b:form>
+                            </b:panel>
+                            <f:facet name="footer">
+                                <b:button value="Close" look="danger" dismiss="modal" />
+                            </f:facet>
+                        </b:modal>
+                        
+                        <b:modal id="mEditUsuario"
+                                 title="Cadastro de Usuario" 
+                                 styleClass="mEditUsuario"
+                                 closable="false"  
+                                 close-on-escape="false" 
+                                 backdrop="false">
+                            <b:panel id="pmEditUsuario">
+                                <b:form>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="6" id="edtnome" value="#{usuarioMB.nome}" label="Nome Completo" size="100"/>
+                                        <b:inputText readonly="true" span="6" id="edtemail" value="#{usuarioMB.email}" label="E-mail" size="50"/>  
+
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="6" id="edtusuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50"/> 
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="6" id="edtpermissao" value="#{usuarioMB.permissao.permissao}" label="Permissão" size="50"/> 
+                                    </b:row>
+                                    <b:row rendered="#{usuarioMB.supervisor != null}">
+                                        <b:inputText readonly="true" span="6" id="edtsup" value="#{usuarioMB.supervisor.nome}" label="Supervisor" size="50"/> 
+                                    </b:row>
                                 </b:form>
                             </b:panel>
                             <f:facet name="footer">
@@ -94,8 +123,8 @@
                                 <b:dataTableColumn value="#{usuario.email}" label="Email" />
 
                                 <b:dataTableColumn label="Ações">
-                                    <b:commandButton type="button" look="info" onclick="$('.mCadUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon-awesome="search-plus">
-                                        <f:ajax event="click" render="pmCadUsuario"/>
+                                    <b:commandButton type="button" look="info" onclick="$('.mEditUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pmEditUsuario"/>
                                     </b:commandButton>
                                     <b:commandButton type="button" look="warning" onclick="$('.mCadUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" icon="edit" >
                                         <f:ajax event="click" render="pmCadUsuario"/>
