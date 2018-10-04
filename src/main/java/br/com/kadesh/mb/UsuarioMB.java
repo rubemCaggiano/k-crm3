@@ -13,6 +13,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
@@ -54,7 +55,7 @@ public class UsuarioMB implements Serializable {
             vendedor.setSenha(senha);
             vendedor.setPermissao(permissao);
             vendedor.setStatus(true);
-            vendedorDao.create(vendedor);
+            vendedorDao.saveOrUpdate(vendedor);
         } else if (permissao == PermissaoEnum.SUPERVISOR) {
             supervisor.setNome(nome);
             supervisor.setEmail(email);
@@ -62,7 +63,7 @@ public class UsuarioMB implements Serializable {
             supervisor.setSenha(senha);
             supervisor.setPermissao(permissao);
             supervisor.setStatus(true);
-            supervisorDao.create(supervisor);
+            supervisorDao.saveOrUpdate(supervisor);
         } else {
             usuario.setNome(nome);
             usuario.setEmail(email);
@@ -70,7 +71,7 @@ public class UsuarioMB implements Serializable {
             usuario.setSenha(senha);
             usuario.setPermissao(permissao);
             usuario.setStatus(true);
-            usuarioDao.create(usuario);
+            usuarioDao.saveOrUpdate(usuario);
         }
         nome = "";
         email = "";

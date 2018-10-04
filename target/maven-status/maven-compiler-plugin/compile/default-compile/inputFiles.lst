@@ -28,7 +28,6 @@ C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\HibernateUtil.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\LinhaDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Linha.java
-C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Setor.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Usuario.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Vendedor.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\TipoRelacionamento.java
@@ -61,6 +60,6 @@ C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\TransportadoraDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\converter\FamiliaConverter.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\ClienteDao.java
-C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\SetorDao.java
+C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\StatusEnum.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Agendamento.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\GradeVenda.java
