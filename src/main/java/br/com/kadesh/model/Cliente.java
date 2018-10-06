@@ -11,8 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Proxy;
 
 @Entity
+@Proxy(lazy = false)
 public class Cliente implements Serializable {
 
     @Id
@@ -33,8 +37,13 @@ public class Cliente implements Serializable {
     @ManyToOne
     private Vendedor vendedor;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Contato> contatos;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Relacionamento> relacionamentos;
 
     @OneToOne(cascade = {CascadeType.ALL})
     private Endereco endereco;
@@ -42,6 +51,24 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
+    public Cliente(int id, String cnpj, String razaoSocial, String nomeFantasia, String inscricaoEstadual, int numeroFuncionarios, String ramoAtividade, String segmento, String emailNFE, double limite, double limiteDisponivel, Vendedor vendedor, List<Contato> contatos, List<Relacionamento> relacionamentos, Endereco endereco) {
+        this.id = id;
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.inscricaoEstadual = inscricaoEstadual;
+        this.numeroFuncionarios = numeroFuncionarios;
+        this.ramoAtividade = ramoAtividade;
+        this.segmento = segmento;
+        this.emailNFE = emailNFE;
+        this.limite = limite;
+        this.limiteDisponivel = limiteDisponivel;
+        this.vendedor = vendedor;
+        this.contatos = contatos;
+        this.relacionamentos = relacionamentos;
+        this.endereco = endereco;
+    }
+    
     public Cliente(int id, String cnpj, String razaoSocial, String nomeFantasia, String inscricaoEstadual, int numeroFuncionarios, String ramoAtividade, String segmento, String emailNFE, double limite, double limiteDisponivel, List<Contato> contatos, Endereco endereco) {
         this.id = id;
         this.cnpj = cnpj;
@@ -57,6 +84,8 @@ public class Cliente implements Serializable {
         this.contatos = contatos;
         this.endereco = endereco;
     }
+
+   
 
     public int getId() {
         return id;
@@ -179,6 +208,14 @@ public class Cliente implements Serializable {
     public boolean equals(Object obj) {
         Cliente c = (Cliente) obj;
         return this.id == c.getId();
+    }
+
+    public List<Relacionamento> getRelacionamentos() {
+        return relacionamentos;
+    }
+
+    public void setRelacionamentos(List<Relacionamento> relacionamentos) {
+        this.relacionamentos = relacionamentos;
     }
 
 }

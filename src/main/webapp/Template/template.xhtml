@@ -5,7 +5,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui">
-
     <h:head>
         <title>K-CRM</title>
     </h:head>
@@ -16,15 +15,10 @@
             <b:navBar brand="K-CRM" brandHref="#" inverse="true" fixed="top" fluid="true">
                 <b:navbarLinks pull="right">
                     <b:form>
-                        <b:commandButton action="#{loginMB.doLogout()}" onclick="../login.xhtml" value="Sair"/>
+                        <b:commandButton style="background-color: transparent; color: white; border: none" action="#{loginMB.doLogout()}" onclick="../login.xhtml" value="Sair"/>
                     </b:form>
-
                 </b:navbarLinks>
-
             </b:navBar>
-
-
-
             <b:container fluid="true" >
                 <b:row>
                     <!--Menu Lateral-->
@@ -34,7 +28,6 @@
 
                             <b:navLink header="Menu" style="font-size: 24px; color: black;" />
                             <b:dropMenu value="Agendamentos" icon-awesome="fa-calendar-check-o">
-
 
                             </b:dropMenu>
                             <b:dropMenu value="Pedido" icon-awesome="clipboard">
@@ -53,20 +46,15 @@
                                 <b:navLink href="../faces/Telas/adicionarTransportadoraGUI.xhtml" value="Adicionar"/>
                                 <b:navLink href="../faces/Telas/transportadorasGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
-
                             <b:dropMenu value="Usuarios" icon-awesome="user-circle-o">
                                 <b:navLink href="../faces/Telas/adicionarUsuarioGUI.xhtml" value="Adicionar"/>
                             </b:dropMenu>
-
                         </b:listLinks>
-
                         <!--Vendedor-->
                         <b:listLinks rendered="#{loginMB.usuario.permissao == 'VENDEDOR'}">
 
                             <b:navLink header="Menu" style="font-size: 24px; color: black;" />
                             <b:dropMenu value="Agendamentos" icon-awesome="fa-calendar-check-o">
-
-
                             </b:dropMenu>
                             <b:dropMenu value="Pedido" icon-awesome="clipboard">
                                 <b:navLink href="../faces/Telas/adicionarPedidoGUI.xhtml" value="Adicionar"/>
@@ -82,15 +70,12 @@
                             <b:dropMenu value="Transportadora" icon-awesome="truck">
                                 <b:navLink href="../faces/Telas/transportadorasGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
-
                         </b:listLinks>
-
                         <!--Supervisor-->
                         <b:listLinks rendered="#{loginMB.usuario.permissao == 'SUPERVISOR' }">
 
                             <b:navLink header="Menu" style="font-size: 24px; color: black;" />
                             <b:dropMenu value="Agendamentos" icon-awesome="fa-calendar-check-o">
-
                             </b:dropMenu>
                             <b:dropMenu value="Pedido" icon-awesome="clipboard">
                                 <b:navLink href="../faces/Telas/pedidosGUI.xhtml" value="Consultar" />
@@ -104,16 +89,12 @@
                             <b:dropMenu value="Transportadora" icon-awesome="truck">
                                 <b:navLink href="../faces/Telas/transportadorasGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
-
                         </b:listLinks>
-
                         <!--Logistica-->
                         <b:listLinks rendered="#{loginMB.usuario.permissao == 'LOGISTICA'}">
 
                             <b:navLink header="Menu" style="font-size: 24px; color: black;" />
                             <b:dropMenu value="Agendamentos" icon-awesome="fa-calendar-check-o">
-
-
                             </b:dropMenu>
                             <b:dropMenu value="Pedido" icon-awesome="clipboard">
                                 <b:navLink href="../faces/Telas/adicionarPedidoGUI.xhtml" value="Adicionar"/>
@@ -129,24 +110,16 @@
                             <b:dropMenu value="Transportadora" icon-awesome="truck">
                                 <b:navLink href="../faces/Telas/transportadorasGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
-
                         </b:listLinks>
-
                     </b:column>
-
                     <!--Conteudo-->
                     <b:column span="10" offset="2" styleClass="main">
                         <hr></hr>
                         <div style="border: 1px">
                             <ui:insert name="content">
-
-
-
-
                                 Conteúdo
                             </ui:insert>
                         </div>
-
                     </b:column>
                 </b:row>
             </b:container> 
@@ -230,10 +203,6 @@
                 }
             </style>
         </ui:insert>
-
-
-
-
     </h:body>
 </html>
 
