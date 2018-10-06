@@ -17,7 +17,7 @@
                                 <b:inputText span="12" id="nome" value="#{loginMB.usuario.usuario}" label="Nome" size="100" required="true"/>
                             </b:row>
                             <b:row>
-                                <b:inputSecret span="12" id="senha" value="#{loginMB.usuario.senha}" label="Senha" size="16" required="true"/>
+                                <b:inputSecret span="12" id="senha" value="#{loginMB.senhaPlana}" label="Senha" size="16" required="true"/>
                             </b:row>
                             <b:commandButton type="submit" look="primary" value="Entrar" action="#{loginMB.doLogin()}"  icon-awesome="fa-key" />
                         </h:form>

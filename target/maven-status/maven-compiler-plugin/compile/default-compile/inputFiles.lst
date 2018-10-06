@@ -36,6 +36,7 @@ C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Ti
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Familia.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\UsuarioMB.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Grupo.java
+C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\Digest.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\TipoPedidoDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\LoginMB.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\CondPagDao.java
@@ -44,6 +45,7 @@ C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Op
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\ProdutoDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Produto.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\GrupoDao.java
+C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\HashGenerationException.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\ClienteMB.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\TipoVendedor.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\ProdutoGrade.java

@@ -7,9 +7,13 @@ import br.com.kadesh.model.PermissaoEnum;
 import br.com.kadesh.model.Supervisor;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
+import br.com.kadesh.util.Digest;
+import br.com.kadesh.util.HashGenerationException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -37,7 +41,7 @@ public class UsuarioMB implements Serializable {
     private String nome;
     private String email;
     private String usuarioUsuario;
-    private String senha;
+    private String senhaPlana;
 
     public UsuarioMB() {
         usuario = new Usuario();
@@ -52,7 +56,11 @@ public class UsuarioMB implements Serializable {
             vendedor.setNome(nome);
             vendedor.setEmail(email);
             vendedor.setUsuario(usuarioUsuario);
-            vendedor.setSenha(senha);
+            try {
+                vendedor.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
+            } catch (HashGenerationException ex) {
+                Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+            }
             vendedor.setPermissao(permissao);
             vendedor.setStatus(true);
             vendedorDao.saveOrUpdate(vendedor);
@@ -60,7 +68,11 @@ public class UsuarioMB implements Serializable {
             supervisor.setNome(nome);
             supervisor.setEmail(email);
             supervisor.setUsuario(usuarioUsuario);
-            supervisor.setSenha(senha);
+            try {
+                supervisor.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
+            } catch (HashGenerationException ex) {
+                Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+            }
             supervisor.setPermissao(permissao);
             supervisor.setStatus(true);
             supervisorDao.saveOrUpdate(supervisor);
@@ -68,7 +80,11 @@ public class UsuarioMB implements Serializable {
             usuario.setNome(nome);
             usuario.setEmail(email);
             usuario.setUsuario(usuarioUsuario);
-            usuario.setSenha(senha);
+            try {
+                usuario.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
+            } catch (HashGenerationException ex) {
+                Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+            }
             usuario.setPermissao(permissao);
             usuario.setStatus(true);
             usuarioDao.saveOrUpdate(usuario);
@@ -76,7 +92,7 @@ public class UsuarioMB implements Serializable {
         nome = "";
         email = "";
         usuarioUsuario = "";
-        senha = "";
+        senhaPlana = "";
 
         usuario = new Usuario();
         selectAll();
@@ -96,7 +112,7 @@ public class UsuarioMB implements Serializable {
         nome = usuario.getNome();
         email = usuario.getEmail();
         usuarioUsuario = usuario.getUsuario();
-        senha = usuario.getSenha();
+//        senha = usuario.getSenha();
         permissao = usuario.getPermissao();
     }
 
@@ -217,12 +233,12 @@ public class UsuarioMB implements Serializable {
         this.usuarioUsuario = usuarioUsuario;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getSenhaPlana() {
+        return senhaPlana;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenhaPlana(String senhaPlana) {
+        this.senhaPlana = senhaPlana;
     }
 
 }

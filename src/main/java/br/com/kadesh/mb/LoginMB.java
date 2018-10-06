@@ -2,9 +2,13 @@ package br.com.kadesh.mb;
 
 import br.com.kadesh.dao.impl.UsuarioDao;
 import br.com.kadesh.model.Usuario;
+import br.com.kadesh.util.Digest;
+import br.com.kadesh.util.HashGenerationException;
 import br.com.kadesh.util.SessionContext;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,6 +22,7 @@ public class LoginMB implements Serializable {
     private Usuario usuario;
     private Usuario usuarioLogado;
     private List<Usuario> usuarios;
+    private String senhaPlana;
 
     public LoginMB() {
         usuario = new Usuario();
@@ -35,6 +40,12 @@ public class LoginMB implements Serializable {
     }
 
     public String doLogin() {
+        try {
+            usuario.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
+        } catch (HashGenerationException ex) {
+            Logger.getLogger(LoginMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         try {
             usuario = usuarioDao.fazerLogin(usuario);
 //           User user = userBO.isUsuarioReadyToLogin(login, senha);
@@ -108,6 +119,14 @@ public class LoginMB implements Serializable {
 
     public void setUsuarioLogado(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
+    }
+
+    public String getSenhaPlana() {
+        return senhaPlana;
+    }
+
+    public void setSenhaPlana(String senhaPlana) {
+        this.senhaPlana = senhaPlana;
     }
 
 }

@@ -38,7 +38,6 @@
         <mapping class="br.com.kadesh.model.Opcional"/>
         <mapping class="br.com.kadesh.model.GradeVenda"/>
         <mapping class="br.com.kadesh.model.TipoVendedor"/>
-        <mapping class="br.com.kadesh.model.Setor"/>
         <mapping class="br.com.kadesh.model.Usuario"/>
         <mapping class="br.com.kadesh.model.Supervisor"/>
         <mapping class="br.com.kadesh.model.Vendedor"/>
