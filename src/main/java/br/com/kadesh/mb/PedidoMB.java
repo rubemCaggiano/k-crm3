@@ -20,11 +20,13 @@ import br.com.kadesh.model.GradeVenda;
 import br.com.kadesh.model.ItemPedido;
 import br.com.kadesh.model.Opcional;
 import br.com.kadesh.model.Pedido;
+import br.com.kadesh.model.PermissaoEnum;
 import br.com.kadesh.model.Produto;
 import br.com.kadesh.model.ProdutoGrade;
 import br.com.kadesh.model.SituacaoEnum;
 import br.com.kadesh.model.TipoPedido;
 import br.com.kadesh.model.Transportadora;
+import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -67,6 +69,7 @@ public class PedidoMB implements Serializable {
     private List<ProdutoGrade> produtosGrade;
     private List<Opcional> opcionaisDisponiveis;
 
+    private Usuario usuario;
     private Pedido pedido;
     private Cliente cliente;
     private CondicaoPagamento condicaoPagamento;
@@ -101,12 +104,15 @@ public class PedidoMB implements Serializable {
 
     @PostConstruct
     public void selectAll() {
-//        pedidos = pedidoDao.findAll();
-        vendedor = (Vendedor) loginMB.getUsuario();
-        pedidos = vendedor.getPedidos();
-        clientes = vendedor.getClientes();
-
-//        clientes = clienteDao.findAll();
+        usuario = loginMB.getUsuario();
+        if (usuario.getPermissao() == PermissaoEnum.VENDEDOR) {
+            vendedor = (Vendedor) usuario;
+            pedidos = vendedor.getPedidos();
+            clientes = vendedor.getClientes();
+        } else {
+            pedidos = pedidoDao.findAll();
+            clientes = clienteDao.findAll();
+        }
         condicoes = condPagDao.findAll();
         transportadoras = transportadoraDao.findAll();
         tipoPedidos = tipoPedidoDao.findAll();

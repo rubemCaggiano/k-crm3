@@ -15,7 +15,9 @@
             <!--Menu superior-->
             <b:navBar brand="K-CRM" brandHref="#" inverse="true" fixed="top" fluid="true">
                 <b:navbarLinks pull="right">
-                    <b:navLink value="Sair" href="#" ></b:navLink>
+                    <b:form>
+                        <b:commandButton action="#{loginMB.doLogout()}" onclick="../login.xhtml" value="Sair"/>
+                    </b:form>
 
                 </b:navbarLinks>
 

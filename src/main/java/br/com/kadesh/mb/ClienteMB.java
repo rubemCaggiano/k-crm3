@@ -10,6 +10,7 @@ import br.com.kadesh.dao.impl.EstadoDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
 import br.com.kadesh.dao.impl.VendedorDao;
 import br.com.kadesh.model.Estado;
+import br.com.kadesh.model.PermissaoEnum;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
 import java.io.Serializable;
@@ -90,10 +91,13 @@ public class ClienteMB implements Serializable {
 
     @PostConstruct
     public void selectAll() {
-        vendedor = (Vendedor) loginMB.getUsuario();
-//        clientes = clienteDao.findAll();
-        clientes = vendedor.getClientes();
-        
+        usuario = loginMB.getUsuario();
+        if (usuario.getPermissao() == PermissaoEnum.VENDEDOR){
+            vendedor = (Vendedor) usuario;
+            clientes = vendedor.getClientes();
+        }else{
+            clientes = clienteDao.findAll();
+        }
         enderecos = enderecoDao.findAll();
         estados = estadoDao.findAll();
         

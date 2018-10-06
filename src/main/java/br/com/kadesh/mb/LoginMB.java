@@ -24,14 +24,13 @@ public class LoginMB implements Serializable {
         usuarioLogado = new Usuario();
     }
 
-        
     public Usuario getUser() {
         return (Usuario) SessionContext.getInstance().getUsuarioLogado();
-         
+
     }
-    
+
     @PostConstruct
-    public void carregarUsuario(){
+    public void carregarUsuario() {
         usuarioLogado = getUser();
     }
 
@@ -56,6 +55,9 @@ public class LoginMB implements Serializable {
 
     }
 
+    public void doLogout() {
+        SessionContext.getInstance().encerrarSessao();
+    }
 //    @PostConstruct
 //    public void selectAll() {
 //        usuarios = usuarioDao.findAll();
@@ -75,6 +77,7 @@ public class LoginMB implements Serializable {
 //        }
 //
 //    }
+
     public UsuarioDao getUsuarioDao() {
         return usuarioDao;
     }
