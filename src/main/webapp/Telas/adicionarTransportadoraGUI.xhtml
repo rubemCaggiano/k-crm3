@@ -46,7 +46,7 @@
                                                            itemValue="#{estado}"
                                                            />
                                         </b:selectOneMenu>
-                                        <b:commandButton type="button" look="primary" value="Adicionar" action="#{transportadoraMB.adicionarEstado()}" icon-awesome="check" ajax="true" update="estadosAtendidos"  />
+                                        <b:commandButton type="button" look="primary" value="Adicionar" action="#{transportadoraMB.adicionarEstado()}" icon-awesome="check" ajax="true" update="estadosAtendidos, estados"  />
                                     </b:row>
                                     <b:row>
                                         <b:dataTable 
@@ -72,7 +72,7 @@
                                         </b:dataTable>
 
                                     </b:row>
-                                    <b:commandButton look="primary" value="Salvar" action="#{transportadoraMB.salvar()}"  icon-awesome="save">
+                                    <b:commandButton look="primary" value="Salvar" action="#{transportadoraMB.salvar()}" icon-awesome="save">
                                     </b:commandButton>
                                     <b:row>
                                         <b:message for="nomeTransp" />

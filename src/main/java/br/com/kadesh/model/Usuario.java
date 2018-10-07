@@ -1,6 +1,7 @@
 package br.com.kadesh.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +15,11 @@ public class Usuario implements Serializable {
     private int id;
     private String nome;
     private String email;
+    
+    @Column(unique = true)
     private String usuario;
     private String senha;
+    
     private boolean status;
     private PermissaoEnum permissao;
 

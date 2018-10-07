@@ -8,12 +8,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@ViewScoped
-public class TransportadoraMB implements Serializable {
+@ApplicationScoped
+public class TransportadoraMB{
 
     private TransportadoraDao transportadoraDao = new TransportadoraDao();
     private EstadoDao estadoDao = new EstadoDao();
@@ -33,11 +34,14 @@ public class TransportadoraMB implements Serializable {
     public void salvar() {
         transportadora.setEstadosAtendidos(estadosAtendidos);
         transportadoraDao.create(transportadora);
+        
+        transportadora = new Transportadora();
         selectAll();
     }
 
     public void adicionarEstado() {
         estadosAtendidos.add(estado);
+        estados.remove(estado);
         estado = new Estado();
     }
 

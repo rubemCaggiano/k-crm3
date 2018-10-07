@@ -44,7 +44,14 @@
 
                                 <b:dataTableColumn value="#{pedido.cliente.razaoSocial}" label="Cliente" />
                                 <b:dataTableColumn value="#{pedido.tipoPedido.nome}" label="Tipo" />
-                                <b:dataTableColumn value="#{pedido.dataCriacao}" label="Data da Criação" />
+                                <b:dataTableColumn   label="Data da Criação">
+                                    <h:outputText value="#{pedido.dataCriacao}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
+                                    </h:outputText>
+                                    
+                                </b:dataTableColumn>
+
+
                                 <b:dataTableColumn value="#{pedido.situacao.situacao}" label="Situação" />
                                 <b:dataTableColumn value="#{pedido.valorTotal}" label="Total do Pedido" />
                                 <b:dataTableColumn value="#{pedido.quantidade}" label="Total de Pares" />

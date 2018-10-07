@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Proxy;
@@ -45,7 +46,8 @@ public class Pedido implements Serializable {
     private double valorTotal;
     private int quantidade;
 
-    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
