@@ -12,23 +12,26 @@
             <h:panelGroup>
                 <b:container fluid="true">
                     <b:panel>
+
                         <b:panel>
-                            <b:row>
-                                <b:form>
-                                    <b:dateTimePicker value=""
+                            <b:form>
+                                <b:row>
+
+                                    <b:dateTimePicker value="#{pedidoDetalheMB.dataInicial}"
                                                       show-time="false"
                                                       label="De:"
                                                       span="2"
                                                       />
-                                </b:form>
-                                <b:form>
-                                    <b:dateTimePicker value=""
+                                    <b:dateTimePicker value="#{pedidoDetalheMB.dataFinal}"
                                                       show-time="false"
                                                       label="Até:"
                                                       span="2"
                                                       />
-                                </b:form>
-                            </b:row>
+                                    <b:commandButton look="primary" value="Filtrar" icon-awesome="save"/>
+                                </b:row>
+
+
+                            </b:form>
                         </b:panel>     
 
                         <h:form>
@@ -48,7 +51,7 @@
                                     <h:outputText value="#{pedido.dataCriacao}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
                                     </h:outputText>
-                                    
+
                                 </b:dataTableColumn>
 
 

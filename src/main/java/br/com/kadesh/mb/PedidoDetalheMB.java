@@ -25,6 +25,7 @@ import br.com.kadesh.model.TipoPedido;
 import br.com.kadesh.model.Transportadora;
 import br.com.kadesh.model.Usuario;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -75,6 +76,8 @@ public class PedidoDetalheMB {
     private GradeVenda gradeVenda;
     private Opcional opcional;
     private Usuario usuario;
+    private Date dataInicial;
+    private Date dataFinal;
 
     public PedidoDetalheMB() {
 
@@ -117,6 +120,10 @@ public class PedidoDetalheMB {
         itens = pedido.getItensPedido();
 
         return "detalhesPedidoGUI.xhtml";
+    }
+
+    public void filtrarPedidos(){
+       
     }
 
 //    Pedido cancelado pelo vendedor
@@ -433,6 +440,22 @@ public class PedidoDetalheMB {
 
     public void setLoginMB(LoginMB loginMB) {
         this.loginMB = loginMB;
+    }
+
+    public Date getDataInicial() {
+        return dataInicial;
+    }
+
+    public void setDataInicial(Date dataInicial) {
+        this.dataInicial = dataInicial;
+    }
+
+    public Date getDataFinal() {
+        return dataFinal;
+    }
+
+    public void setDataFinal(Date dataFinal) {
+        this.dataFinal = dataFinal;
     }
 
 }
