@@ -9,72 +9,63 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
-            <b:formGroup>
                 <b:container fluid="true">
                     <b:panel title="Cadastro de Usuarios">
-                        <b:button look="primary" onclick="$('.mCadUsuario').modal()" value="Novo Usuario" icon-awesome="plus"/>
-                        <b:modal id="mCadUsuario"
-                                 title="Cadastro de Usuario" 
-                                 styleClass="mCadUsuario"
-                                 closable="false"  
-                                 close-on-escape="false" 
-                                 backdrop="false">
-                            <b:panel id="pmCadUsuario">
-                                <b:form>
-                                    <b:row>
-                                        <b:inputText span="6" id="nome" value="#{usuarioMB.nome}" label="Nome Completo" size="100" required="true"/>
-                                        <b:inputText span="6" id="email" value="#{usuarioMB.email}" label="E-mail" size="50" required="true"/>  
+                        <!--<b:button look="primary" value="Novo Usuario" icon-awesome="plus"/>-->
 
-                                    </b:row>
-                                    <b:row>
-                                        <b:inputText span="6" id="usuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50" required="true"/> 
-                                        <b:inputSecret span="6" id="senha" value="#{usuarioMB.senhaPlana}" label="Senha" size="16" required="true"/>            
-                                    </b:row>
-                                    <b:row>
-                                        <b:selectOneMenu id="permissao"
-                                                         value="#{usuarioMB.permissao}" 
-                                                         label="Permissão"
-                                                         span="10"
-                                                         required="true"
-                                                         select2="true"
-                                                         >
+                        <b:panel id="pmCadUsuario">
+                            <b:form prependId="false">
+                                <b:row>
+                                    <b:inputText span="6" id="nome" value="#{usuarioMB.nome}" label="Nome Completo" size="100" required="true"/>
+                                    <b:inputText span="6" id="email" value="#{usuarioMB.email}" label="E-mail" size="50" required="true"/>  
 
-                                            <f:selectItem itemLabel="Selecione       ." />
-                                            <f:selectItems value="#{usuarioMB.permissoes}"
-                                                           var="permissao" 
-                                                           itemLabel="#{permissao.permissao}"
-                                                           itemValue="#{permissao}"
-                                                           />
-                                        </b:selectOneMenu>
-                                    </b:row>
+                                </b:row>
+                                <b:row>
+                                    <b:inputText span="6" id="usuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50" required="true"/> 
+                                    <b:inputSecret span="6" id="senha" value="#{usuarioMB.senhaPlana}" label="Senha" size="16" required="true"/>            
+                                </b:row>
+                                <b:row>
+                                    <b:selectOneMenu id="permissao"
+                                                     value="#{usuarioMB.permissao}" 
+                                                     label="Permissão"
+                                                     span="10"
+                                                     required="true"
+                                                     select2="true"
+                                                     >
 
-                                    <b:row>
-                                        <b:selectOneMenu id="supervisorVendedor"
-                                                         value="#{usuarioMB.supervisor}" 
-                                                         label="Supervisor"
-                                                         span="10"
-                                                         select2="true"
+                                        <f:selectItem itemLabel="Selecione       ." />
+                                        <f:selectItems value="#{usuarioMB.permissoes}"
+                                                       var="permissao" 
+                                                       itemLabel="#{permissao.permissao}"
+                                                       itemValue="#{permissao}"
+                                                       />
+                                    </b:selectOneMenu>
+                                </b:row>
 
-                                                         >
+                                <b:row>
+                                    <b:selectOneMenu id="supervisorVendedor"
+                                                     value="#{usuarioMB.supervisor}" 
+                                                     label="Supervisor"
+                                                     span="10"
+                                                     select2="true"
 
-                                            <f:selectItem itemLabel="Selecione       ." />
-                                            <f:selectItems value="#{usuarioMB.supervisores}"
-                                                           var="supervisor" 
-                                                           itemLabel="#{supervisor.nome}"
-                                                           itemValue="#{supervisor}"
-                                                           />
-                                        </b:selectOneMenu>
-                                    </b:row>
+                                                     >
+
+                                        <f:selectItem itemLabel="Selecione       ." />
+                                        <f:selectItems value="#{usuarioMB.supervisores}"
+                                                       var="supervisor" 
+                                                       itemLabel="#{supervisor.nome}"
+                                                       itemValue="#{supervisor}"
+                                                       />
+                                    </b:selectOneMenu>
+                                </b:row>
 
 
-                                    <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
-                                </b:form>
-                            </b:panel>
-                            <f:facet name="footer">
-                                <b:button value="Close" look="danger" dismiss="modal" />
-                            </f:facet>
-                        </b:modal>
-                        
+                                <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
+                            </b:form>
+                        </b:panel>
+
+
                         <b:modal id="mEditUsuario"
                                  title="Cadastro de Usuario" 
                                  styleClass="mEditUsuario"
@@ -105,7 +96,7 @@
                         </b:modal>
 
 
-                        <b:form>
+                        <b:form prependId="false">
                             <b:dataTable   
                                 excel="true"
                                 columnVisibility="true"
@@ -126,9 +117,8 @@
                                     <b:commandButton type="button" look="info" onclick="$('.mEditUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon-awesome="search-plus">
                                         <f:ajax event="click" render="pmEditUsuario"/>
                                     </b:commandButton>
-                                    <b:commandButton type="button" look="warning" onclick="$('.mCadUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" icon="edit" >
-                                        <f:ajax event="click" render="pmCadUsuario"/>
-                                    </b:commandButton>
+                                    <b:commandButton look="warning" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon="edit"/>
+
                                     <b:commandButton type="submit" look="danger" action="#{usuarioMB.excluirUsuario(usuario)}" icon="trash" />
 
 
@@ -139,7 +129,6 @@
                         </b:form>
                     </b:panel>
                 </b:container>
-            </b:formGroup>
         </ui:define>
     </ui:composition>
 </html>

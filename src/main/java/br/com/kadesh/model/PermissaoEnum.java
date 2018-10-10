@@ -6,7 +6,8 @@ public enum PermissaoEnum {
     SUPERVISOR("Supervisor"),
     LOGISTICA("Logistica"),
     FINANCEIRO("Financeiro"),
-    ADMIN("Administrador");
+    ADMIN("Administrador"),
+    CUSTO("Custo");
 
     private String permissao;
 

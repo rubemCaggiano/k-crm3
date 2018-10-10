@@ -20,7 +20,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class ProdutoMB implements Serializable {
 
     private ProdutoDao produtoDao = new ProdutoDao();
@@ -39,28 +39,96 @@ public class ProdutoMB implements Serializable {
     private Linha linha;
     private Grupo grupo;
     private StatusEnum status;
+    private boolean mostrarProd = false;
+    private boolean mostrarFamilia = false;
+    private boolean mostrarLinha = false;
+    private boolean mostrarGrupo = false;
 
     public ProdutoMB() {
 
         familia = new Familia();
         linha = new Linha();
         grupo = new Grupo();
+        mostrarProd = false;
+        mostrarFamilia = false;
+        mostrarLinha = false;
+        mostrarGrupo = false;
+
     }
 
+    //Metodos para mostrar Formularios de cadastro
+    public void mostrarCadProd() {
+        mostrarProd = true;
+    }
+
+    public void mostrarCadFamilia() {
+        mostrarFamilia = true;
+    }
+
+    public void mostrarCadLinha() {
+        mostrarLinha = true;
+    }
+
+    public void mostrarCadGrupo() {
+        mostrarGrupo = true;
+    }
+    //--------------------------------------------------------------------------
+    
+    //Metodos para esconder Formularios de cadastro
+    public void ocultarCadProd() {
+        mostrarProd = false;
+    }
+
+    public void ocultarCadFamilia() {
+        mostrarFamilia = false;
+    }
+
+    public void ocultarCadLinha() {
+        mostrarLinha = false;
+    }
+
+    public void ocultarCadGrupo() {
+        mostrarGrupo = false;
+    }
+    //--------------------------------------------------------------------------
+
+//    Metodos para Salvar Cadastros
     public void salvarProduto() {
         produto.setFamilia(familia);
         produto.setLinha(linha);
         produto.setGrupo(grupo);
         produto.setStatus(StatusEnum.ATIVO);
         produto.setNumeracao(geraGrade());
-
-        System.out.println("Salvando");
         produtoDao.saveOrUpdate(produto);
-        System.out.println("Salvo");
-
         produto = new Produto();
+        linha = new Linha();
+        familia = new Familia();
+        grupo = new Grupo();
+        mostrarProd = false;
         selectAll();
     }
+
+    public void salvarFamilia() {
+        familiaDao.create(familia);
+        familia = new Familia();
+        mostrarFamilia = false;
+        selectAll();
+    }
+
+    public void salvarLinha() {
+        linhaDao.create(linha);
+        linha = new Linha();
+        mostrarLinha = false;
+        selectAll();
+    }
+
+    public void salvarGrupo() {
+        grupoDao.create(grupo);
+        grupo = new Grupo();
+        mostrarGrupo = false;
+        selectAll();
+    }
+    //--------------------------------------------------------------------------
 
     public List<ProdutoGrade> geraGrade() {
         List<ProdutoGrade> grades = new ArrayList<>();
@@ -96,25 +164,6 @@ public class ProdutoMB implements Serializable {
         return grades;
     }
 
-    public void salvarFamilia() {
-        familiaDao.create(familia);
-        familia = new Familia();
-
-        selectAll();
-    }
-
-    public void salvarLinha() {
-        linhaDao.create(linha);
-        linha = new Linha();
-        selectAll();
-    }
-
-    public void salvarGrupo() {
-        grupoDao.create(grupo);
-        grupo = new Grupo();
-        selectAll();
-    }
-
     @PostConstruct
     public void selectAll() {
         produtos = produtoDao.findAll();
@@ -124,37 +173,34 @@ public class ProdutoMB implements Serializable {
         statusPossiveis = Arrays.asList(StatusEnum.values());
     }
 
-    public void novoProduto() {
-        produto = new Produto();
-    }
-
+//    Metodos para carregar os cadastros
     public void detalharProduto(Produto p) {
         this.produto = produtoDao.find(p.getId());
-//        this.produto = new Produto(p.getId(), p.getDescricao(), p.getReferencia(), p.getNumeroCa(),
-//                p.getCusto(), p.getMcMinima(), p.getStatus(), p.getPrecoSugerido(), p.getPrecoMinimo(),
-//                p.getGrupo(), p.getFamilia(), p.getLinha());
+
         familia = produto.getFamilia();
         linha = produto.getLinha();
         grupo = produto.getGrupo();
-    }
-
-    public void carregarProduto(Produto p) {
-        produto = produtoDao.find(p.getId());
-
+        status = produto.getStatus();
+        mostrarProd = true;
     }
 
     public void detalharFamilia(Familia f) {
-        familia = new Familia(f.getId(), f.getNome(), f.getDescricao(), f.getNomeReduzido());
+        familia = familiaDao.find(f.getId());
+        mostrarFamilia = true;
     }
 
     public void detalharLinha(Linha l) {
-        linha = new Linha(l.getId(), l.getNome(), l.getDescricao(), l.getNomeReduzido());
+        linha = linhaDao.find(l.getId());
+        mostrarLinha = true;
     }
 
     public void detalharGrupo(Grupo g) {
-        grupo = new Grupo(g.getId(), g.getNome(), g.getDescricao(), g.getNomeReduzido());
+        grupo = grupoDao.find(g.getId());
+        mostrarGrupo = true;
     }
 
+    //--------------------------------------------------------------------------
+//    Metodos para excluir Cadastros
     public void excluirProduto() {
         produtoDao.delete(produto);
         produto = new Produto();
@@ -178,22 +224,12 @@ public class ProdutoMB implements Serializable {
         this.grupo = new Grupo();
         selectAll();
     }
+    //--------------------------------------------------------------------------
 
-    public void alterarProduto(Produto p) {
-
-    }
-
-    public void alterarFamilia(Familia f) {
-
-    }
-
-    public void alterarLinha(Linha l) {
-
-    }
-
-    public void alterarGrupo(Grupo g) {
-    }
-
+//    Getters and Setters
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     public ProdutoDao getProdutoDao() {
         return produtoDao;
     }
@@ -304,6 +340,38 @@ public class ProdutoMB implements Serializable {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    public boolean isMostrarProd() {
+        return mostrarProd;
+    }
+
+    public void setMostrarProd(boolean mostrarProd) {
+        this.mostrarProd = mostrarProd;
+    }
+
+    public boolean isMostrarFamilia() {
+        return mostrarFamilia;
+    }
+
+    public void setMostrarFamilia(boolean mostrarFamilia) {
+        this.mostrarFamilia = mostrarFamilia;
+    }
+
+    public boolean isMostrarLinha() {
+        return mostrarLinha;
+    }
+
+    public void setMostrarLinha(boolean mostrarLinha) {
+        this.mostrarLinha = mostrarLinha;
+    }
+
+    public boolean isMostrarGrupo() {
+        return mostrarGrupo;
+    }
+
+    public void setMostrarGrupo(boolean mostrarGrupo) {
+        this.mostrarGrupo = mostrarGrupo;
     }
 
 }

@@ -9,161 +9,146 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
-            <b:formGroup>
-                <b:container fluid="true">
-                    <b:panel title="Transportadoras" >
-                        <b:button look="primary" onclick="$('.mCadTransp').modal()" value="Nova Transportadora" icon-awesome="plus"/>
-                        <b:modal id="mCadTransp"
-                                 title="Cadastro de Transportadora" 
-                                 styleClass="mCadTransp"
-                                 closable="false"  
-                                 close-on-escape="false" 
-                                 backdrop="false">
-                            <b:panel id="pMCadTransp">
-                                <b:form id="fpMCadTransp" >
-                                    <b:row>
-                                        <b:inputText span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" required="true" />
-                                    </b:row>
-                                    <b:row>
-                                        <b:inputText span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="200" required="true" />
-                                    </b:row>
-                                    <b:row>
-                                        <b:inputText span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" required="true" />
-                                    </b:row>
+            <b:container fluid="true">
+                
+                <b:panel title="Transportadoras" >
+                    
+                    <b:panel id="pMCadTransp" title="Cadastro">
+                        <b:form id="fpMCadTransp" prependId="false" >
+                            <b:row>
+                                <b:inputText span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" required="true" />
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="200" required="true" />
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" required="true" />
+                            </b:row>
 
-                                    <b:row>
-                                        <b:selectOneMenu id="estados"
-                                                         value="#{transportadoraMB.estado}" 
-                                                         label="Estados"
-                                                         span="3"
-                                                         select2="true"
-                                                         >
-                                            <f:converter converterId="estadoConverter"/>
-                                            <f:selectItem itemLabel="Selecione" />
-                                            <f:selectItems value="#{transportadoraMB.estados}"
-                                                           var="estado" 
-                                                           itemLabel="#{estado.sigla}"
-                                                           itemValue="#{estado}"
-                                                           />
-                                        </b:selectOneMenu>
-                                        <b:commandButton type="button" look="primary" value="Adicionar" action="#{transportadoraMB.adicionarEstado()}" icon-awesome="check" ajax="true" update="estadosAtendidos, estados"  />
-                                    </b:row>
-                                    <b:row>
-                                        <b:dataTable 
-                                            id="estadosAtendidos"
-                                            columnVisibility="false"
-                                            value="#{transportadoraMB.estadosAtendidos}"
-                                            var="estado"
-                                            select="true"
-                                            selectionMode="single"
-                                            searching ="false"
-                                            paginated="false"
-                                            info="false"
-                                            customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
-                                            >
+                            <b:row>
+                                <b:selectOneMenu id="estados"
+                                                 value="#{transportadoraMB.estado}" 
+                                                 label="Estados"
+                                                 span="3"
+                                                 select2="true"
+                                                 >
+                                    <f:converter converterId="estadoConverter"/>
+                                    <f:selectItem itemLabel="Selecione" />
+                                    <f:selectItems value="#{transportadoraMB.estados}"
+                                                   var="estado" 
+                                                   itemLabel="#{estado.sigla}"
+                                                   itemValue="#{estado}"
+                                                   />
+                                </b:selectOneMenu>
+                                <b:commandButton type="button" look="primary" value="Adicionar" action="#{transportadoraMB.adicionarEstado()}" icon-awesome="check" ajax="true" update="estadosAtendidos, estados"  />
+                            </b:row>
+                            <b:row>
+                                <b:dataTable 
+                                    id="estadosAtendidos"
+                                    columnVisibility="false"
+                                    value="#{transportadoraMB.estadosAtendidos}"
+                                    var="estado"
+                                    select="true"
+                                    selectionMode="single"
+                                    searching ="false"
+                                    paginated="false"
+                                    info="false"
+                                    customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                    >
 
-                                            <b:dataTableColumn value="#{estado.nome}" label="Estado" />
-                                            <b:dataTableColumn value="#{estado.sigla}" label="Sigla" />
-                                            <b:dataTableColumn label="Opções">
-                                                <b:commandButton type="button" look="danger" action="#{transportadoraMB.removerEstado(estado)}" immediate="true" icon="trash" ajax="true" update=":mCadTransp:pMCadTransp" auto-update="true"/>
-                                            </b:dataTableColumn>
+                                    <b:dataTableColumn value="#{estado.nome}" label="Estado" />
+                                    <b:dataTableColumn value="#{estado.sigla}" label="Sigla" />
+                                    <b:dataTableColumn label="Opções">
+                                        <b:commandButton type="button" look="danger" action="#{transportadoraMB.removerEstado(estado)}" immediate="true" icon="trash" ajax="true" update=":pMCadTransp" auto-update="true"/>
+                                    </b:dataTableColumn>
 
 
-                                        </b:dataTable>
+                                </b:dataTable>
 
-                                    </b:row>
-                                    <b:commandButton look="primary" value="Salvar" action="#{transportadoraMB.salvar()}" icon-awesome="save">
-                                    </b:commandButton>
-                                    <b:row>
-                                        <b:message for="nomeTransp" />
-                                        <b:message for="cnpjTransp" />
-                                        <b:message for="razaoTransp" />
-                                        <b:message for="estados" />
+                            </b:row>
+                            <b:commandButton look="primary" value="Salvar" action="#{transportadoraMB.salvar()}" icon-awesome="save" />
+                            <b:row>
+                                <b:message for="nomeTransp" />
+                                <b:message for="cnpjTransp" />
+                                <b:message for="razaoTransp" />
+                                <b:message for="estados" />
 
-                                    </b:row>
+                            </b:row>
 
-                                </b:form>
-                            </b:panel>
-                            <f:facet name="footer">
-                                <b:button value="Close" look="danger" dismiss="modal" />
-                            </f:facet>
-                        </b:modal>
-
-
-                        <b:modal id="mDtTransp"
-                                 title="Cadastro de Transportadora" 
-                                 styleClass="mDtTransp"
-                                 closable="false"  
-                                 close-on-escape="false" 
-                                 backdrop="false">
-                            <b:panel id="pMDtTransp">
-                                <b:form id="fpMDtTransp" >
-                                    <b:row>
-                                        <b:inputText readonly="true" span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" required="true" />
-                                    </b:row>
-                                    <b:row>
-                                        <b:inputText readonly="true" span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="200" required="true" />
-                                    </b:row>
-                                    <b:row>
-                                        <b:inputText readonly="true" span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" required="true" />
-                                    </b:row>
-                                    <b:row>
-                                        <h3>Estados Atendidos</h3>
-                                    </b:row>
-                                    <b:row>
-                                        <b:dataTable 
-                                            id="estadosAtendidos"
-                                            columnVisibility="false"
-                                            value="#{transportadoraMB.estadosAtendidos}"
-                                            var="estado"
-                                            select="true"
-                                            selectionMode="single"
-                                            searching ="false"
-                                            paginated="false"
-                                            info="false"
-                                            customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
-                                            >
-                                            <b:dataTableColumn value="#{estado.nome}" label="Estado" />
-                                            <b:dataTableColumn value="#{estado.sigla}" label="Sigla" />
-                                        </b:dataTable>
-                                    </b:row>
-                                </b:form>
-                            </b:panel>
-                            <f:facet name="footer">
-                                <b:button value="Close" look="danger" dismiss="modal" />
-                            </f:facet>
-                        </b:modal>
-
-
-                        <b:form>
-                            <b:dataTable   
-                                excel="true"
-                                columnVisibility="true"
-                                print="true"
-                                value="#{transportadoraMB.transportadoras}"
-                                var="transportadora"
-                                select="true"
-                                selectionMode="single"
-                                customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
-                                >
-
-                                <b:dataTableColumn value="#{transportadora.nomeFantasia}" label="Transportadora" />
-                                <b:dataTableColumn value="#{transportadora.cnpj}" label="CNPJ" />
-                                <b:dataTableColumn value="#{transportadora.razaoSocial}" label="Razão Social" />
-
-                                <b:dataTableColumn label="Ações">
-                                    <b:commandButton type="button" look="info" onclick="$('.mDtTransp').modal()" action="#{transportadoraMB.detalharTransportadora(transportadora)}" immediate="true" icon-awesome="search-plus">
-                                        <f:ajax event="click" render="pMDtTransp"/>
-                                    </b:commandButton>
-                                    <b:commandButton type="button" look="warning" onclick="$('.mCadTransp').modal()" action="#{transportadoraMB.detalharTransportadora(transportadora)}" icon="edit" >
-                                        <f:ajax event="click" render="pMCadTransp"/>
-                                    </b:commandButton>
-                                </b:dataTableColumn>
-                            </b:dataTable>
                         </b:form>
                     </b:panel>
-                </b:container>
-            </b:formGroup>
+                    <!--
+                    
+                    
+                                        <b:modal id="mDtTransp"
+                                                 title="Cadastro de Transportadora" 
+                                                 styleClass="mDtTransp"
+                                                 closable="false"  
+                                                 close-on-escape="false" 
+                                                 backdrop="false">
+                                            <b:panel id="pMDtTransp">
+                                                <b:form id="fpMDtTransp" >
+                                                    <b:row>
+                                                        <b:inputText readonly="true" span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" required="true" />
+                                                    </b:row>
+                                                    <b:row>
+                                                        <b:inputText readonly="true" span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="200" required="true" />
+                                                    </b:row>
+                                                    <b:row>
+                                                        <b:inputText readonly="true" span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" required="true" />
+                                                    </b:row>
+                                                    <b:row>
+                                                        <h3>Estados Atendidos</h3>
+                                                    </b:row>
+                                                    <b:row>
+                                                        <b:dataTable 
+                                                            id="estadosAtendidos"
+                                                            columnVisibility="false"
+                                                            value="#{transportadoraMB.estadosAtendidos}"
+                                                            var="estado"
+                                                            select="true"
+                                                            selectionMode="single"
+                                                            searching ="false"
+                                                            paginated="false"
+                                                            info="false"
+                                                            customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                                            >
+                                                            <b:dataTableColumn value="#{estado.nome}" label="Estado" />
+                                                            <b:dataTableColumn value="#{estado.sigla}" label="Sigla" />
+                                                        </b:dataTable>
+                                                    </b:row>
+                                                </b:form>
+                                            </b:panel>
+                                            <f:facet name="footer">
+                                                <b:button value="Close" look="danger" dismiss="modal" />
+                                            </f:facet>
+                                        </b:modal>
+                    -->
+
+                    <b:form prependId="false">
+                        <b:dataTable   
+                            excel="true"
+                            columnVisibility="true"
+                            print="true"
+                            value="#{transportadoraMB.transportadoras}"
+                            var="transportadora"
+                            select="true"
+                            selectionMode="single"
+                            customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                            >
+
+                            <b:dataTableColumn value="#{transportadora.nomeFantasia}" label="Transportadora" />
+                            <b:dataTableColumn value="#{transportadora.cnpj}" label="CNPJ" />
+                            <b:dataTableColumn value="#{transportadora.razaoSocial}" label="Razão Social" />
+
+                            <b:dataTableColumn label="Ações">
+
+                                <b:commandButton  look="warning" action="#{transportadoraMB.detalharTransportadora(transportadora)}" icon="edit" />
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </b:form>
+                </b:panel>
+            </b:container>
         </ui:define>
     </ui:composition>
 

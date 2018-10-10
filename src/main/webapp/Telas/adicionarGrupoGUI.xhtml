@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/Template/template.xhtml">
+        <ui:define name="content">
+            <b:formGroup>
+                <b:panel id="pGrupo" title="Cadastro de Grupo" collapsible="false">
+                    <b:form>
+                        <b:commandButton look="primary" action="#{produtoMB.mostrarCadGrupo()}" value="Novo Grupo" icon-awesome="plus"/>
+                    </b:form>
+                    <b:panel id="pMCadGrupo" title="Cadastro" rendered="#{produtoMB.mostrarGrupo}">
+                        <h:form>
+                            <b:row>
+                                <b:inputText span="12" id="descricaoGrupo" value="#{produtoMB.grupo.descricao}" label="Descrição" size="200" required="true" />
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="12" id="nomeGrupo" value="#{produtoMB.grupo.nome}" label="Nome" size="200" required="true" />
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="12" id="nomeRedGrupo" value="#{produtoMB.grupo.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
+                            </b:row>
+                            <b:row>
+                                <b:message for="descricaoGrupo"/>
+                                <b:message for="nomeGrupo"/>
+                                <b:message for="nomeRedGrupo"/>
+                            </b:row>
+                            <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarGrupo()}"  icon-awesome="save">
+                            </b:commandButton>
+                        </h:form>
+                    </b:panel>
+
+                    <b:modal id="mDtGrupo"
+                             title="Cadastro de Grupo de Produtos" 
+                             styleClass="mDtGrupo"
+                             closable="false"  
+                             close-on-escape="false" 
+                             backdrop="false">
+                        <b:panel id="pMDtGrupo">
+                            <h:form>
+                                <b:row>
+                                    <b:inputText readonly="true" span="12" id="descricaoGrupo" value="#{produtoMB.grupo.descricao}" label="Descrição" size="200" required="true" />
+                                </b:row>
+                                <b:row>
+                                    <b:inputText readonly="true" span="12" id="nomeGrupo" value="#{produtoMB.grupo.nome}" label="Nome" size="200" required="true" />
+                                </b:row>
+                                <b:row>
+                                    <b:inputText readonly="true" span="12" id="nomeRedGrupo" value="#{produtoMB.grupo.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
+                                </b:row>
+                            </h:form>
+                        </b:panel>
+                        <f:facet name="footer">
+                            <b:button value="Fechar" look="danger" dismiss="modal" />
+                        </f:facet>
+                    </b:modal>
+
+                    <h:form>
+                        <b:dataTable  excel="true"
+                                      columnVisibility="true"
+                                      print="true"
+                                      value="#{produtoMB.grupos}"
+                                      var="grupo"
+                                      select="true"
+                                      selectionMode="single"
+                                      customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                      >
+
+                            <b:dataTableColumn value="#{grupo.nome}" label="Grupo" />
+                            <b:dataTableColumn value="#{grupo.descricao}" label="Descrição" />
+                            <b:dataTableColumn value="#{grupo.nomeReduzido}" label="Nome Reduzido" />
+
+                            <b:dataTableColumn label="Ver">
+                                <b:commandButton type="button" onclick="$('.mDtGrupo').modal()" look="info" action="#{produtoMB.detalharGrupo(grupo)}" immediate="true" icon-awesome="search-plus">
+                                    <f:ajax event="click" render="pMDtGrupo"/>
+                                </b:commandButton>
+                                <b:commandButton look="warning" action="#{produtoMB.detalharGrupo(grupo)}" icon="edit"/>
+                                <b:commandButton type="button" look="danger" action="#{produtoMB.excluirGrupo(grupo)}" immediate="true" icon="trash" />
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </h:form>
+                </b:panel>
+            </b:formGroup>
+        </ui:define>
+    </ui:composition>
+</html>

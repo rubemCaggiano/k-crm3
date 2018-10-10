@@ -21,8 +21,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@RequestScoped
-public class UsuarioMB implements Serializable {
+@ViewScoped
+public class UsuarioMB{
 
     private UsuarioDao usuarioDao = new UsuarioDao();
     private VendedorDao vendedorDao = new VendedorDao();
@@ -44,6 +44,7 @@ public class UsuarioMB implements Serializable {
     private String senhaPlana;
 
     public UsuarioMB() {
+        selectAll();
         usuario = new Usuario();
         vendedor = new Vendedor();
 
@@ -98,7 +99,6 @@ public class UsuarioMB implements Serializable {
         selectAll();
     }
 
-    @PostConstruct
     public void selectAll() {
         usuarios = usuarioDao.findAll();
         vendedores = vendedorDao.findAll();
@@ -106,13 +106,13 @@ public class UsuarioMB implements Serializable {
 
     }
 
-    public void detalharUsuario(Usuario u) {
+    public void detalharUsuario(Usuario usuario) {
 
-        this.usuario = usuarioDao.find(u.getId());
+        this.usuario = usuarioDao.find(usuario.getId());
         nome = usuario.getNome();
         email = usuario.getEmail();
         usuarioUsuario = usuario.getUsuario();
-//        senha = usuario.getSenha();
+        senhaPlana = usuario.getSenha();
         permissao = usuario.getPermissao();
     }
 

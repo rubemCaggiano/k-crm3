@@ -39,7 +39,10 @@
                                 <b:navLink href="../faces/Telas/clientesGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
                             <b:dropMenu value="Produto" iconAwesome="cubes">
-                                <b:navLink href="../faces/Telas/adicionarProdutoGUI.xhtml" value="Adicionar"/>
+                                <b:navLink href="../faces/Telas/adicionarProdutoGUI.xhtml" value="Produto"/>
+                                <b:navLink href="../faces/Telas/adicionarFamiliaGUI.xhtml" value="Familia"/>
+                                <b:navLink href="../faces/Telas/adicionarLinhaGUI.xhtml" value="Linha"/>
+                                <b:navLink href="../faces/Telas/adicionarGrupoGUI.xhtml" value="Grupo"/>
                                 <b:navLink href="../faces/Telas/produtosGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
                             <b:dropMenu value="Transportadora" icon-awesome="truck">
@@ -109,6 +112,22 @@
                             </b:dropMenu>
                             <b:dropMenu value="Transportadora" icon-awesome="truck">
                                 <b:navLink href="../faces/Telas/transportadorasGUI.xhtml" value="Consultar"/>
+                            </b:dropMenu>
+                        </b:listLinks>
+
+                        <!--Custo-->
+                        <b:listLinks rendered="#{loginMB.usuario.permissao == 'CUSTO'}">
+
+                            <b:navLink header="Menu" style="font-size: 24px; color: black;" />
+                            <b:dropMenu value="Agendamentos" icon-awesome="fa-calendar-check-o">
+
+                            </b:dropMenu>
+                            <b:dropMenu value="Produto" iconAwesome="cubes">
+                                <b:navLink href="../faces/Telas/adicionarProdutoGUI.xhtml" value="Produto"/>
+                                <b:navLink href="../faces/Telas/adicionarFamiliaGUI.xhtml" value="Familia"/>
+                                <b:navLink href="../faces/Telas/adicionarLinhaGUI.xhtml" value="Linha"/>
+                                <b:navLink href="../faces/Telas/adicionarGrupoGUI.xhtml" value="Grupo"/>
+                                <b:navLink href="../faces/Telas/produtosGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
                         </b:listLinks>
                     </b:column>
