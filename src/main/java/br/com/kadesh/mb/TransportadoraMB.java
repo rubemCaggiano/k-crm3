@@ -4,6 +4,7 @@ import br.com.kadesh.dao.impl.EstadoDao;
 import br.com.kadesh.dao.impl.TransportadoraDao;
 import br.com.kadesh.model.Estado;
 import br.com.kadesh.model.Transportadora;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -13,7 +14,7 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
-public class TransportadoraMB {
+public class TransportadoraMB implements Serializable {
 
     private TransportadoraDao transportadoraDao = new TransportadoraDao();
     private EstadoDao estadoDao = new EstadoDao();
@@ -24,19 +25,29 @@ public class TransportadoraMB {
 
     private Transportadora transportadora;
     private Estado estado;
+    private boolean mostrar;
 
     public TransportadoraMB() {
         selectAll();
         transportadora = new Transportadora();
         estado = new Estado();
+        mostrar = false;
     }
 
     public void salvar() {
+        transportadoraDao.saveOrUpdate(transportadora);
         transportadora.setEstadosAtendidos(estadosAtendidos);
+
         transportadoraDao.saveOrUpdate(transportadora);
 
         transportadora = new Transportadora();
+        estadosAtendidos = new ArrayList<>();
+        mostrar = false;
         selectAll();
+    }
+
+    public void mostrarCadTransp() {
+        mostrar = true;
     }
 
     public void adicionarEstado() {
@@ -53,7 +64,14 @@ public class TransportadoraMB {
     public void detalharTransportadora(Transportadora transportadora) {
         this.transportadora = transportadoraDao.find(transportadora.getId());
         estadosAtendidos = transportadora.getEstadosAtendidos();
+        mostrar = true;
 
+    }
+    
+    public void excluirTransportadora(Transportadora transportadora){
+        transportadoraDao.delete(transportadora);
+        this.transportadora = new Transportadora();
+        selectAll();
     }
 
     public void selectAll() {
@@ -115,6 +133,14 @@ public class TransportadoraMB {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public boolean isMostrar() {
+        return mostrar;
+    }
+
+    public void setMostrar(boolean mostrar) {
+        this.mostrar = mostrar;
     }
 
 }

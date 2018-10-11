@@ -60,7 +60,7 @@
                                         </b:inputText>
                                         <b:inputText id="frete"  value="#{pedidoMB.itemPedido.frete}" label="Valor Frete"  span="4" />
 
-                                        <b:inputText readonly="true" id="mcValor"  value="#{pedidoMB.itemPedido.mc}" label="M.C %" span="4" />
+                                        <b:inputText readonly="true" id="mcValor"  value="#{pedidoMB.calcularMc()}" label="M.C %" span="4" />
                                     </b:row>
                                     <b:row>
                                         <b:message id="messagePreco" for="preco"/>

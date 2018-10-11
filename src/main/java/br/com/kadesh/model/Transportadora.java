@@ -14,7 +14,7 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Proxy;
 
 @Entity
-@Proxy(lazy = false)
+@Proxy(lazy = true)
 public class Transportadora implements Serializable {
 
     @Id
@@ -24,7 +24,7 @@ public class Transportadora implements Serializable {
     private String cnpj;
     private String nomeFantasia;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Fetch(FetchMode.SUBSELECT)
     private List<Estado> estadosAtendidos;
 

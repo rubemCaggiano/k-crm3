@@ -9,12 +9,13 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
-            <b:container fluid="true">
-                
+            <b:formGroup>
                 <b:panel title="Transportadoras" >
-                    
-                    <b:panel id="pMCadTransp" title="Cadastro">
-                        <b:form id="fpMCadTransp" prependId="false" >
+                    <b:form>
+                        <b:commandButton look="primary" action="#{transportadoraMB.mostrarCadTransp()}" value="Nova Transportadora" icon-awesome="plus"/>
+                    </b:form>
+                    <b:panel id="pMCadTransp" title="Cadastro" rendered="#{transportadoraMB.mostrar}" >
+                        <h:form id="fpMCadTransp" prependId="false" >
                             <b:row>
                                 <b:inputText span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" required="true" />
                             </b:row>
@@ -55,7 +56,7 @@
                                     info="false"
                                     customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
                                     >
-
+                            
                                     <b:dataTableColumn value="#{estado.nome}" label="Estado" />
                                     <b:dataTableColumn value="#{estado.sigla}" label="Sigla" />
                                     <b:dataTableColumn label="Opções">
@@ -75,7 +76,7 @@
 
                             </b:row>
 
-                        </b:form>
+                        </h:form>
                     </b:panel>
                     <!--
                     
@@ -125,7 +126,7 @@
                                         </b:modal>
                     -->
 
-                    <b:form prependId="false">
+                    <h:form>
                         <b:dataTable   
                             excel="true"
                             columnVisibility="true"
@@ -144,11 +145,12 @@
                             <b:dataTableColumn label="Ações">
 
                                 <b:commandButton  look="warning" action="#{transportadoraMB.detalharTransportadora(transportadora)}" icon="edit" />
+                                <b:commandButton type="submit" look="danger" action="#{transportadoraMB.excluirTransportadora(transportadora)}" icon="trash" />
                             </b:dataTableColumn>
                         </b:dataTable>
-                    </b:form>
+                    </h:form>
                 </b:panel>
-            </b:container>
+            </b:formGroup>
         </ui:define>
     </ui:composition>
 
