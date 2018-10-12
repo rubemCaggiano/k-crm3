@@ -187,11 +187,10 @@ public class PedidoMB implements Serializable {
         pedido.setItensPedido(itens);
         pedido.setSituacao(SituacaoEnum.ABERTO);
         pedido.setVendedor(vendedor);
-
+        pedidoDao.create(pedido);
         pedidos.add(pedido);
         vendedor.setPedidos(pedidos);
         vendedorDao.saveOrUpdate(vendedor);
-//        pedidoDao.create(pedido);
 
         pedido = new Pedido();
 
