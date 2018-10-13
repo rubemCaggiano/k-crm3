@@ -39,6 +39,7 @@ public class ProdutoMB implements Serializable {
     private Linha linha;
     private Grupo grupo;
     private StatusEnum status;
+    
     private boolean mostrarProd = false;
     private boolean mostrarFamilia = false;
     private boolean mostrarLinha = false;
@@ -97,7 +98,7 @@ public class ProdutoMB implements Serializable {
         produto.setFamilia(familia);
         produto.setLinha(linha);
         produto.setGrupo(grupo);
-        produto.setStatus(StatusEnum.ATIVO);
+        produto.setStatus(status);
         produto.setNumeracao(geraGrade());
         produtoDao.saveOrUpdate(produto);
         produto = new Produto();

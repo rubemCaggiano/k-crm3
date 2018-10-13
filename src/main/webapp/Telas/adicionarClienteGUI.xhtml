@@ -47,6 +47,22 @@
 
                             <b:panel title="Dados Cliente" collapsible="false">
                                 <b:row>
+                                    <b:selectOneMenu id="statusCad"
+                                                     value="#{clienteMB.status}" 
+                                                 required="true"
+                                                 label="Status"
+                                                 span="3"
+                                                 select2="true"
+                                                 >
+                                    <f:selectItem itemLabel="Selecione um Status" />
+                                    <f:selectItems value="#{clienteMB.statusPossiveis}"
+                                                   var="status" 
+                                                   itemLabel="#{status.status}"
+                                                   itemValue="#{status}"
+                                                   />
+                                </b:selectOneMenu>
+                                </b:row>
+                                <b:row>
                                     <b:inputText span="6" id="razao-social" value="#{clienteMB.cliente.razaoSocial}" label="Razão Social" size="100" required="true" />
                                     <b:inputText span="6" id="nome-fantasia" value="#{clienteMB.cliente.nomeFantasia}" label="Nome Fantasia" size="100" />
 

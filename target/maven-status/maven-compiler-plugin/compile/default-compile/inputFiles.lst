@@ -15,7 +15,6 @@ C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Pe
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Pedido.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\SessionContext.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\ContatoDao.java
-C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Regiao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\SituacaoEnum.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\EstadoDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\CondicaoPagamento.java
@@ -41,7 +40,6 @@ C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\LoginMB.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\CondPagDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\HibernateSession.java
-C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Opcional.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\ProdutoDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Produto.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\GrupoDao.java
@@ -53,7 +51,6 @@ C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\con
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\ProdutoMB.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Estado.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\ItemPedido.java
-C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\OpcionaisDao.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\GerarBancoBasico.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Endereco.java
 C:\Users\Rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\ProdutoGradeDao.java

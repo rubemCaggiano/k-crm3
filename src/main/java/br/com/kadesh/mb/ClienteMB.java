@@ -11,10 +11,12 @@ import br.com.kadesh.dao.impl.UsuarioDao;
 import br.com.kadesh.dao.impl.VendedorDao;
 import br.com.kadesh.model.Estado;
 import br.com.kadesh.model.PermissaoEnum;
+import br.com.kadesh.model.StatusEnum;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -32,13 +34,14 @@ public class ClienteMB implements Serializable {
     ContatoDao contatoDao = new ContatoDao();
     EnderecoDao enderecoDao = new EnderecoDao();
     EstadoDao estadoDao = new EstadoDao();
-    VendedorDao vendedorDao = new VendedorDao();
+    private VendedorDao vendedorDao = new VendedorDao();
     private UsuarioDao usuarioDao = new UsuarioDao();
 
     List<Cliente> clientes;
     List<Contato> contatos = new ArrayList<>();
     List<Endereco> enderecos;
     List<Estado> estados;
+    private List<StatusEnum> statusPossiveis;
 
     private Usuario usuario;
     private Vendedor vendedor;
@@ -46,6 +49,7 @@ public class ClienteMB implements Serializable {
     private Contato contato;
     private Endereco endereco;
     private Estado estado;
+    private StatusEnum status;
 
     public ClienteMB() {
         cliente = new Cliente();
@@ -62,7 +66,7 @@ public class ClienteMB implements Serializable {
         cliente.setVendedor(vendedor);
         clientes.add(cliente);
         vendedor.setClientes(clientes);
-        
+
         vendedorDao.saveOrUpdate(vendedor);
 //        clienteDao.saveOrUpdate(cliente);
 
@@ -92,15 +96,16 @@ public class ClienteMB implements Serializable {
     @PostConstruct
     public void selectAll() {
         usuario = loginMB.getUsuario();
-        if (usuario.getPermissao() == PermissaoEnum.VENDEDOR){
+        if (usuario.getPermissao() == PermissaoEnum.VENDEDOR) {
             vendedor = (Vendedor) usuario;
             clientes = vendedor.getClientes();
-        }else{
+        } else {
             clientes = clienteDao.findAll();
         }
         enderecos = enderecoDao.findAll();
         estados = estadoDao.findAll();
-        
+        statusPossiveis = Arrays.asList(StatusEnum.values());
+
     }
 
     public void carregarClientes() {
@@ -233,6 +238,30 @@ public class ClienteMB implements Serializable {
 
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
+    }
+
+    public VendedorDao getVendedorDao() {
+        return vendedorDao;
+    }
+
+    public void setVendedorDao(VendedorDao vendedorDao) {
+        this.vendedorDao = vendedorDao;
+    }
+
+    public List<StatusEnum> getStatusPossiveis() {
+        return statusPossiveis;
+    }
+
+    public void setStatusPossiveis(List<StatusEnum> statusPossiveis) {
+        this.statusPossiveis = statusPossiveis;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
 }

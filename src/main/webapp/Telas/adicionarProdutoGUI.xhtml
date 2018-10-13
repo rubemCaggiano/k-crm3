@@ -74,7 +74,6 @@
                                                  label="Status"
                                                  span="3"
                                                  select2="true"
-                                                 converter="omnifaces.SelectItemsConverter"
                                                  >
                                     <f:selectItem itemLabel="Selecione um Status" />
                                     <f:selectItems value="#{produtoMB.statusPossiveis}"
@@ -83,6 +82,7 @@
                                                    itemValue="#{status}"
                                                    />
                                 </b:selectOneMenu>
+                                
                             </b:row>
                             <b:row>
                                 <b:inputText span="4" id="referencia" value="#{produtoMB.produto.referencia}" label="Referência" size="30" required="true" />

@@ -9,7 +9,11 @@ import br.com.kadesh.dao.impl.TipoPedidoDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
 import br.com.kadesh.model.CondicaoPagamento;
 import br.com.kadesh.model.Estado;
+import br.com.kadesh.model.Familia;
+import br.com.kadesh.model.Grupo;
+import br.com.kadesh.model.Linha;
 import br.com.kadesh.model.PermissaoEnum;
+import br.com.kadesh.model.StatusEnum;
 import br.com.kadesh.model.TipoPedido;
 import br.com.kadesh.model.Usuario;
 
@@ -20,8 +24,11 @@ public class GerarBancoBasico {
         TipoPedidoDao tipoPedidoDao = new TipoPedidoDao();
         EstadoDao estadoDao = new EstadoDao();
         UsuarioDao usuarioDao = new UsuarioDao();
+        LinhaDao linhaDao = new LinhaDao();
+        FamiliaDao familiaDao = new FamiliaDao();
+        GrupoDao grupoDao = new GrupoDao();
 
-        Usuario usuario = new Usuario(0, "Administrador", "adm@kadesh.com.br", "adm", Digest.hashString("1234", "SHA-256"), true, PermissaoEnum.ADMIN);
+        Usuario usuario = new Usuario(0, "Administrador", "adm@kadesh.com.br", "adm", Digest.hashString("1234", "SHA-256"), StatusEnum.ATIVO, PermissaoEnum.ADMIN);
         usuarioDao.create(usuario);
 
         Estado estado = new Estado(0, "Acre", "AC");
@@ -95,6 +102,30 @@ public class GerarBancoBasico {
         tipoPedidoDao.create(tipoPedido);
         tipoPedidoDao.create(tipoPedido2);
         tipoPedidoDao.create(tipoPedido3);
+
+        Linha linha = new Linha(0, "Adventure", "Adventure", "ADV");
+        Linha linha2 = new Linha(0, "Premium", "Premium", "PRM");
+        Linha linha3 = new Linha(0, "Impacto", "Impacto", "IMP");
+
+        linhaDao.create(linha);
+        linhaDao.create(linha2);
+        linhaDao.create(linha3);
+
+        Grupo grupo = new Grupo(0, "Kadesh", "Kadesh", "KSH");
+        Grupo grupo2 = new Grupo(0, "Imbiseg", "Imbiseg", "IMB");
+        Grupo grupo3 = new Grupo(0, "Bemfort", "Bemfort", "BFT");
+
+        grupoDao.create(grupo);
+        grupoDao.create(grupo2);
+        grupoDao.create(grupo3);
+
+        Familia familia = new Familia(0, "Botina", "Botina", "BOT");
+        Familia familia2 = new Familia(0, "Sapato", "Sapato", "SAP");
+        Familia familia3 = new Familia(0, "Tênis", "Tênis", "TNS");
+
+        familiaDao.create(familia);
+        familiaDao.create(familia2);
+        familiaDao.create(familia3);
 
     }
 

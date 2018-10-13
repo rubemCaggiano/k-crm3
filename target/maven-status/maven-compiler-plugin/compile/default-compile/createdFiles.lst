@@ -29,7 +29,6 @@ br\com\kadesh\util\DataAccessLayerException.class
 br\com\kadesh\model\Familia.class
 br\com\kadesh\model\Grupo.class
 br\com\kadesh\model\TipoVendedor.class
-br\com\kadesh\model\Regiao.class
 br\com\kadesh\model\Supervisor.class
 br\com\kadesh\model\TipoRelacionamento.class
 br\com\kadesh\util\converter\ProdutoConverter.class
@@ -62,6 +61,4 @@ br\com\kadesh\model\StatusEnum.class
 br\com\kadesh\dao\impl\ContatoDao.class
 br\com\kadesh\util\converter\LinhaConverter.class
 br\com\kadesh\dao\impl\FamiliaDao.class
-br\com\kadesh\model\Opcional.class
 br\com\kadesh\model\Relacionamento.class
-br\com\kadesh\dao\impl\OpcionaisDao.class
