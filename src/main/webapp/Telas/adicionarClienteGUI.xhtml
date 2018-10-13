@@ -17,7 +17,7 @@
                              close-on-escape="false"
                              backdrop="false"
                              >
-                        <b:panel>
+                        <b:panel id="pmContato">
                             <b:form>
                                 <b:row>
                                     <b:inputText span="6" id="nome" value="#{clienteMB.contato.nome}" label="Nome" required="true" />
@@ -25,8 +25,8 @@
                                 </b:row>
                                 <b:row>
                                     <b:inputText span="6" id="email" value="#{clienteMB.contato.email}" label="E-mail" required="true" />
-                                    <b:inputText span="4" id="telefone" value="#{clienteMB.contato.telefone}" label="Telefone" required="true" />
-                                    <b:commandButton type="button" look="primary" value="Adicionar Contato" action="#{clienteMB.adicionarContato()}" icon-awesome="plus-square" ajax="true" update=":fContatos:contato"  />
+                                    <b:inputText span="4" id="telefone" value="#{clienteMB.contato.telefone}" label="Telefone" required="true" mask="(99) 9999-9999" />
+                                    <b:commandButton look="primary" value="Adicionar Contato" action="#{clienteMB.adicionarContato()}" icon-awesome="plus-square" ajax="true" update=":fContatos:contato, :mContato:pmContato"  />
                                 </b:row>
 
                                 <b:row>
