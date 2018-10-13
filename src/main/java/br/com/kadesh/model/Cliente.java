@@ -33,6 +33,7 @@ public class Cliente implements Serializable {
     private String emailNFE;
     private double limite;
     private double limiteDisponivel;
+    private StatusEnum status;
 
     @ManyToOne
     private Vendedor vendedor;
@@ -68,7 +69,7 @@ public class Cliente implements Serializable {
         this.relacionamentos = relacionamentos;
         this.endereco = endereco;
     }
-    
+
     public Cliente(int id, String cnpj, String razaoSocial, String nomeFantasia, String inscricaoEstadual, int numeroFuncionarios, String ramoAtividade, String segmento, String emailNFE, double limite, double limiteDisponivel, List<Contato> contatos, Endereco endereco) {
         this.id = id;
         this.cnpj = cnpj;
@@ -85,7 +86,25 @@ public class Cliente implements Serializable {
         this.endereco = endereco;
     }
 
-   
+    public Cliente(int id, String cnpj, String razaoSocial, String nomeFantasia, String inscricaoEstadual, int numeroFuncionarios, String ramoAtividade, String segmento, String emailNFE, double limite, double limiteDisponivel, StatusEnum status, Vendedor vendedor, List<Contato> contatos, List<Relacionamento> relacionamentos, Endereco endereco) {
+        this.id = id;
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.inscricaoEstadual = inscricaoEstadual;
+        this.numeroFuncionarios = numeroFuncionarios;
+        this.ramoAtividade = ramoAtividade;
+        this.segmento = segmento;
+        this.emailNFE = emailNFE;
+        this.limite = limite;
+        this.limiteDisponivel = limiteDisponivel;
+        this.status = status;
+        this.vendedor = vendedor;
+        this.contatos = contatos;
+        this.relacionamentos = relacionamentos;
+        this.endereco = endereco;
+    }
+    
 
     public int getId() {
         return id;
@@ -216,6 +235,14 @@ public class Cliente implements Serializable {
 
     public void setRelacionamentos(List<Relacionamento> relacionamentos) {
         this.relacionamentos = relacionamentos;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
 }

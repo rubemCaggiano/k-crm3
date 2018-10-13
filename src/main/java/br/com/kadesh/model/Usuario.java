@@ -15,18 +15,18 @@ public class Usuario implements Serializable {
     private int id;
     private String nome;
     private String email;
-    
+
     @Column(unique = true)
     private String usuario;
     private String senha;
-    
-    private boolean status;
+
+    private StatusEnum status;
     private PermissaoEnum permissao;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String email, String usuario, String senha, boolean status, PermissaoEnum permissao) {
+    public Usuario(int id, String nome, String email, String usuario, String senha, StatusEnum status, PermissaoEnum permissao) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -73,14 +73,6 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     public String getUsuario() {
         return usuario;
     }
@@ -101,6 +93,14 @@ public class Usuario implements Serializable {
     public boolean equals(Object obj) {
         Usuario u = (Usuario) obj;
         return this.id == u.getId();
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
 }

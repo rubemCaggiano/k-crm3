@@ -4,6 +4,7 @@ import br.com.kadesh.dao.impl.SupervisorDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
 import br.com.kadesh.dao.impl.VendedorDao;
 import br.com.kadesh.model.PermissaoEnum;
+import br.com.kadesh.model.StatusEnum;
 import br.com.kadesh.model.Supervisor;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
@@ -63,7 +64,7 @@ public class UsuarioMB{
                 Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
             }
             vendedor.setPermissao(permissao);
-            vendedor.setStatus(true);
+            vendedor.setStatus(StatusEnum.ATIVO);
             vendedorDao.saveOrUpdate(vendedor);
         } else if (permissao == PermissaoEnum.SUPERVISOR) {
             supervisor.setNome(nome);
@@ -75,7 +76,7 @@ public class UsuarioMB{
                 Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
             }
             supervisor.setPermissao(permissao);
-            supervisor.setStatus(true);
+            supervisor.setStatus(StatusEnum.ATIVO);
             supervisorDao.saveOrUpdate(supervisor);
         } else {
             usuario.setNome(nome);
@@ -87,7 +88,7 @@ public class UsuarioMB{
                 Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
             }
             usuario.setPermissao(permissao);
-            usuario.setStatus(true);
+            usuario.setStatus(StatusEnum.ATIVO);
             usuarioDao.saveOrUpdate(usuario);
         }
         nome = "";

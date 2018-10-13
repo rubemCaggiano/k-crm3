@@ -4,7 +4,6 @@ import br.com.kadesh.dao.impl.ClienteDao;
 import br.com.kadesh.dao.impl.CondPagDao;
 import br.com.kadesh.dao.impl.EnderecoDao;
 import br.com.kadesh.dao.impl.EstadoDao;
-import br.com.kadesh.dao.impl.OpcionaisDao;
 import br.com.kadesh.dao.impl.PedidoDao;
 import br.com.kadesh.dao.impl.ProdutoDao;
 import br.com.kadesh.dao.impl.ProdutoGradeDao;
@@ -18,7 +17,6 @@ import br.com.kadesh.model.Endereco;
 import br.com.kadesh.model.Estado;
 import br.com.kadesh.model.GradeVenda;
 import br.com.kadesh.model.ItemPedido;
-import br.com.kadesh.model.Opcional;
 import br.com.kadesh.model.Pedido;
 import br.com.kadesh.model.PermissaoEnum;
 import br.com.kadesh.model.Produto;
@@ -34,7 +32,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
@@ -53,7 +50,6 @@ public class PedidoMB implements Serializable {
     private EstadoDao estadoDao = new EstadoDao();
     private ProdutoDao produtoDao = new ProdutoDao();
     private ProdutoGradeDao produtoGradeDao = new ProdutoGradeDao();
-    private OpcionaisDao opcionaisDao = new OpcionaisDao();
     private UsuarioDao usuarioDao = new UsuarioDao();
     private VendedorDao vendedorDao = new VendedorDao();
 
@@ -67,7 +63,6 @@ public class PedidoMB implements Serializable {
     private List<ItemPedido> itens = new ArrayList<>();
     private List<GradeVenda> gradeVendas = new ArrayList<>();
     private List<ProdutoGrade> produtosGrade;
-    private List<Opcional> opcionaisDisponiveis;
 
     private Usuario usuario;
     private Pedido pedido;
@@ -81,7 +76,6 @@ public class PedidoMB implements Serializable {
     private ProdutoGrade produtoGrade;
     private ItemPedido itemPedido;
     private GradeVenda gradeVenda;
-    private Opcional opcional;
     private SituacaoEnum situacaoEnum;
     private Vendedor vendedor;
 
@@ -98,7 +92,6 @@ public class PedidoMB implements Serializable {
         produtoGrade = new ProdutoGrade();
         itemPedido = new ItemPedido();
         gradeVenda = new GradeVenda();
-        opcional = new Opcional();
 
     }
 
@@ -187,10 +180,10 @@ public class PedidoMB implements Serializable {
         pedido.setItensPedido(itens);
         pedido.setSituacao(SituacaoEnum.ABERTO);
         pedido.setVendedor(vendedor);
-        
+
         pedidoDao.create(pedido);
         pedidos.add(pedido);
-        
+
         vendedor.setPedidos(pedidos);
         vendedorDao.saveOrUpdate(vendedor);
 
@@ -206,7 +199,6 @@ public class PedidoMB implements Serializable {
         produtoGrade = new ProdutoGrade();
         itemPedido = new ItemPedido();
         gradeVenda = new GradeVenda();
-        opcional = new Opcional();
         itens = new ArrayList<>();
 
     }
@@ -482,34 +474,6 @@ public class PedidoMB implements Serializable {
 
     public void setProdutosGrade(List<ProdutoGrade> produtosGrade) {
         this.produtosGrade = produtosGrade;
-    }
-
-    public OpcionaisDao getOpcionaisDao() {
-        return opcionaisDao;
-    }
-
-    public void setOpcionaisDao(OpcionaisDao opcionaisDao) {
-        this.opcionaisDao = opcionaisDao;
-    }
-
-    public List<Opcional> getOpcionaisDisponiveis() {
-        return opcionaisDisponiveis;
-    }
-
-    public void setOpcionaisDisponiveis(List<Opcional> opcionaisDisponiveis) {
-        this.opcionaisDisponiveis = opcionaisDisponiveis;
-    }
-
-    public Opcional getOpcional() {
-        return opcional;
-    }
-
-    public void setOpcional(Opcional opcional) {
-        this.opcional = opcional;
-    }
-
-    public SituacaoEnum getSituacaoEnum() {
-        return situacaoEnum;
     }
 
     public void setSituacaoEnum(SituacaoEnum situacaoEnum) {
