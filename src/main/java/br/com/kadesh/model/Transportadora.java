@@ -8,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Proxy;
@@ -23,17 +23,16 @@ public class Transportadora implements Serializable {
     private String razaoSocial;
     private String cnpj;
     private String nomeFantasia;
+    private StatusEnum status;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Fetch(FetchMode.SUBSELECT)
     private List<Estado> estadosAtendidos;
-
-    private boolean status;
 
     public Transportadora() {
     }
 
-    public Transportadora(int id, String razaoSocial, String cnpj, String nomeFantasia, List<Estado> estadosAtendidos, boolean status) {
+    public Transportadora(int id, String razaoSocial, String cnpj, String nomeFantasia, List<Estado> estadosAtendidos, StatusEnum status) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
@@ -82,14 +81,6 @@ public class Transportadora implements Serializable {
         this.estadosAtendidos = estadosAtendidos;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         return nomeFantasia;
@@ -99,5 +90,13 @@ public class Transportadora implements Serializable {
     public boolean equals(Object obj) {
         Transportadora t = (Transportadora) obj;
         return this.id == t.getId();
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 }
