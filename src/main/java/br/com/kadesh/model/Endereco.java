@@ -16,10 +16,10 @@ public class Endereco implements Serializable {
     private int id;
     private String cep;
     private String cidade;
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Estado estado;
-    
+
     private String logradouro;
     private String bairro;
     private String complemento;
@@ -91,6 +91,31 @@ public class Endereco implements Serializable {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Endereco other = (Endereco) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
 }

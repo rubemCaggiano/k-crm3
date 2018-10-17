@@ -104,7 +104,6 @@ public class Cliente implements Serializable {
         this.relacionamentos = relacionamentos;
         this.endereco = endereco;
     }
-    
 
     public int getId() {
         return id;
@@ -223,10 +222,34 @@ public class Cliente implements Serializable {
         return razaoSocial;
     }
 
+//    @Override
+//    public boolean equals(Object obj) {
+//        Cliente c = (Cliente) obj;
+//        return this.id == c.getId();
+//    }
     @Override
     public boolean equals(Object obj) {
-        Cliente c = (Cliente) obj;
-        return this.id == c.getId();
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + this.id;
+        return hash;
     }
 
     public List<Relacionamento> getRelacionamentos() {

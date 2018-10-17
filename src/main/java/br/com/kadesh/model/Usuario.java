@@ -89,18 +89,42 @@ public class Usuario implements Serializable {
         this.permissao = permissao;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Usuario u = (Usuario) obj;
-        return this.id == u.getId();
-    }
-
+//    @Override
+//    public boolean equals(Object obj) {
+//        Usuario u = (Usuario) obj;
+//        return this.id == u.getId();
+//    }
     public StatusEnum getStatus() {
         return status;
     }
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 43 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
 }

@@ -22,7 +22,7 @@
                                           selectionMode="single"
                                           customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
                                           >
-                                <b:dataTableColumn value="#{cliente.status.status}" label="Razão Social" />
+                                <b:dataTableColumn value="#{cliente.status.status}" label="Status" />
                                 <b:dataTableColumn value="#{cliente.razaoSocial}" label="Razão Social" />
                                 <b:dataTableColumn value="#{cliente.cnpj}" label="CNPJ" />
                                 <b:dataTableColumn value="#{cliente.nomeFantasia}" label="Nome Fantasia" />
@@ -30,8 +30,8 @@
                                 <b:dataTableColumn value="#{cliente.emailNFE}" label="Email" />
 
                                 <b:dataTableColumn label="Opções">
-                                    <b:commandButton look="info" action="#{clienteMB.detalharCliente(cliente)}" immediate="true" icon-awesome="search-plus"/>
-                                    <b:commandButton look="warning" action="#{clienteMB}" immediate="true" icon-awesome="edit"/>
+                                    <b:commandButton look="info" action="#{clienteMB.detalharCliente(cliente)}" icon-awesome="search-plus"/>
+                                    <b:commandButton look="warning" action="#{clienteMB.detalharCliente(cliente)}" icon-awesome="edit"/>
                                 </b:dataTableColumn>
 
                             </b:dataTable>

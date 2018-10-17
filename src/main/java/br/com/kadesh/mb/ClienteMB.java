@@ -21,10 +21,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class ClienteMB implements Serializable {
 
     @ManagedProperty("#{loginMB}")
@@ -52,6 +54,7 @@ public class ClienteMB implements Serializable {
     private StatusEnum status;
 
     public ClienteMB() {
+
         cliente = new Cliente();
         contato = new Contato();
         endereco = new Endereco();
@@ -59,22 +62,24 @@ public class ClienteMB implements Serializable {
 
     }
 
-    public void salvar() {
+    public String salvar() {
         endereco.setEstado(estado);
         cliente.setEndereco(endereco);
         cliente.setContatos(contatos);
         cliente.setVendedor(vendedor);
-        clientes.add(cliente);
-        vendedor.setClientes(clientes);
+        cliente.setStatus(status);
 
-        vendedorDao.saveOrUpdate(vendedor);
 //        clienteDao.saveOrUpdate(cliente);
+//        clientes.add(cliente);
+//        vendedor.setClientes(clientes);
+        vendedorDao.saveOrUpdate(vendedor);
 
         contatos = new ArrayList<>();
         estado = new Estado();
         endereco = new Endereco();
         cliente = new Cliente();
-
+        selectAll();
+        return "clientesGUI.xhtml";
     }
 
     public void adicionarContato() {
@@ -82,10 +87,8 @@ public class ClienteMB implements Serializable {
         contato = new Contato();
     }
 
-    public String detalharCliente(Cliente c) {
-        cliente = new Cliente(c.getId(), c.getCnpj(), c.getRazaoSocial(), c.getNomeFantasia(), c.getInscricaoEstadual(),
-                c.getNumeroFuncionarios(), c.getRamoAtividade(), c.getSegmento(), c.getEmailNFE(), c.getLimite(),
-                c.getLimiteDisponivel(), c.getContatos(), c.getEndereco());
+    public String detalharCliente(Cliente cliente) {
+        this.cliente = clienteDao.find(cliente.getId());
 
         contatos = cliente.getContatos();
         endereco = cliente.getEndereco();
@@ -105,10 +108,6 @@ public class ClienteMB implements Serializable {
         enderecos = enderecoDao.findAll();
         estados = estadoDao.findAll();
         statusPossiveis = Arrays.asList(StatusEnum.values());
-
-    }
-
-    public void carregarClientes() {
 
     }
 
