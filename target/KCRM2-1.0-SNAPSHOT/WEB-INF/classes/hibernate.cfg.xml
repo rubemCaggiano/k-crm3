@@ -30,12 +30,10 @@
         <mapping class="br.com.kadesh.model.Pedido"/>
         <mapping class="br.com.kadesh.model.Produto"/>
         <mapping class="br.com.kadesh.model.ProdutoGrade"/>
-        <mapping class="br.com.kadesh.model.Regiao"/>
         <mapping class="br.com.kadesh.model.Relacionamento"/>
         <mapping class="br.com.kadesh.model.TipoPedido"/>
         <mapping class="br.com.kadesh.model.TipoRelacionamento"/>
         <mapping class="br.com.kadesh.model.Transportadora"/>
-        <mapping class="br.com.kadesh.model.Opcional"/>
         <mapping class="br.com.kadesh.model.GradeVenda"/>
         <mapping class="br.com.kadesh.model.TipoVendedor"/>
         <mapping class="br.com.kadesh.model.Usuario"/>

@@ -31,7 +31,9 @@
 
                                 <b:dataTableColumn label="Opções">
                                     <b:commandButton look="info" action="#{clienteMB.detalharCliente(cliente)}" icon-awesome="search-plus"/>
-                                    <b:commandButton look="warning" action="#{clienteMB.detalharCliente(cliente)}" icon-awesome="edit"/>
+                                    <b:commandButton look="warning" action="#{clienteMB.detalharCliente(cliente)}" icon-awesome="edit">
+                                        <f:param name="cliente" value="#{cliente}"/>
+                                    </b:commandButton>
                                 </b:dataTableColumn>
 
                             </b:dataTable>

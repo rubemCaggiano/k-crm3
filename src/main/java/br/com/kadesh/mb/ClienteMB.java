@@ -26,7 +26,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ClienteMB implements Serializable {
 
     @ManagedProperty("#{loginMB}")
@@ -52,6 +52,7 @@ public class ClienteMB implements Serializable {
     private Endereco endereco;
     private Estado estado;
     private StatusEnum status;
+    private boolean alterar;
 
     public ClienteMB() {
 
@@ -59,7 +60,8 @@ public class ClienteMB implements Serializable {
         contato = new Contato();
         endereco = new Endereco();
         estado = new Estado();
-
+        alterar = false;
+//        selectAll();
     }
 
     public String salvar() {
@@ -68,11 +70,24 @@ public class ClienteMB implements Serializable {
         cliente.setContatos(contatos);
         cliente.setVendedor(vendedor);
         cliente.setStatus(status);
+        if (alterar == true) {
+            for (Cliente c : clientes) {
+                if (c.getId() == cliente.getId()) {
+                    clientes.remove(c);
+                    clientes.add(cliente);
+                }
+            }
+//            clienteDao.saveOrUpdate(cliente);
+            vendedor.setClientes(clientes);
+            vendedorDao.saveOrUpdate(vendedor);
+            System.out.println("alterei");
+        } else {
 
-//        clienteDao.saveOrUpdate(cliente);
-//        clientes.add(cliente);
-//        vendedor.setClientes(clientes);
-        vendedorDao.saveOrUpdate(vendedor);
+            clientes.add(cliente);
+            vendedor.setClientes(clientes);
+            vendedorDao.saveOrUpdate(vendedor);
+            System.out.println("salvei");
+        }
 
         contatos = new ArrayList<>();
         estado = new Estado();
@@ -93,6 +108,7 @@ public class ClienteMB implements Serializable {
         contatos = cliente.getContatos();
         endereco = cliente.getEndereco();
         estado = endereco.getEstado();
+        alterar = true;
         return "adicionarClienteGUI.xhtml";
     }
 
@@ -261,6 +277,14 @@ public class ClienteMB implements Serializable {
 
     public void setStatus(StatusEnum status) {
         this.status = status;
+    }
+
+    public boolean isAlterar() {
+        return alterar;
+    }
+
+    public void setAlterar(boolean alterar) {
+        this.alterar = alterar;
     }
 
 }

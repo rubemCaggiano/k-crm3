@@ -17,7 +17,7 @@ public class Endereco implements Serializable {
     private String cep;
     private String cidade;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Estado estado;
 
     private String logradouro;
