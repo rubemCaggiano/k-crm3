@@ -35,7 +35,6 @@
         <mapping class="br.com.kadesh.model.TipoRelacionamento"/>
         <mapping class="br.com.kadesh.model.Transportadora"/>
         <mapping class="br.com.kadesh.model.GradeVenda"/>
-        <mapping class="br.com.kadesh.model.TipoVendedor"/>
         <mapping class="br.com.kadesh.model.Usuario"/>
         <mapping class="br.com.kadesh.model.Supervisor"/>
         <mapping class="br.com.kadesh.model.Vendedor"/>

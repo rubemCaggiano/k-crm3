@@ -10,6 +10,7 @@ import br.com.kadesh.dao.impl.LinhaDao;
 import br.com.kadesh.dao.impl.PedidoDao;
 import br.com.kadesh.dao.impl.ProdutoDao;
 import br.com.kadesh.dao.impl.ProdutoGradeDao;
+import br.com.kadesh.dao.impl.SupervisorDao;
 import br.com.kadesh.dao.impl.TipoPedidoDao;
 import br.com.kadesh.dao.impl.TransportadoraDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
@@ -21,8 +22,11 @@ import br.com.kadesh.model.Familia;
 import br.com.kadesh.model.Grupo;
 import br.com.kadesh.model.Linha;
 import br.com.kadesh.model.Pedido;
+import br.com.kadesh.model.PermissaoEnum;
 import br.com.kadesh.model.Produto;
 import br.com.kadesh.model.ProdutoGrade;
+import br.com.kadesh.model.StatusEnum;
+import br.com.kadesh.model.Supervisor;
 import br.com.kadesh.model.TipoPedido;
 import br.com.kadesh.model.Transportadora;
 import br.com.kadesh.model.Usuario;
@@ -45,12 +49,18 @@ public class GerarTabelas {
         FamiliaDao familiaDao = new FamiliaDao();
         GrupoDao grupoDao = new GrupoDao();
         UsuarioDao usuarioDao = new UsuarioDao();
-
-        Usuario u = new Usuario("Rubem", "1234");
-//        usuarioDao.create(u);
-
-        Usuario usuario = usuarioDao.fazerLogin(u);
-        System.out.println(usuario.getNome());
+        SupervisorDao supervisorDao = new SupervisorDao();
+        
+        Supervisor supervisor = new Supervisor(0, "Supervisor01", "supervisor@kadesh.com", "supervisor01", "1234", StatusEnum.ATIVO, PermissaoEnum.SUPERVISOR);
+        supervisorDao.create(supervisor);
+        
+        
+//
+//        Usuario u = new Usuario("Rubem", "1234");
+////        usuarioDao.create(u);
+//
+//        Usuario usuario = usuarioDao.fazerLogin(u);
+//        System.out.println(usuario.getNome());
 
 //        Transportadora transportadora = new Transportadora();
 //        transportadora.setCnpj("01.654.447/0001-11");

@@ -9,6 +9,7 @@ import br.com.kadesh.dao.impl.ProdutoDao;
 import br.com.kadesh.dao.impl.ProdutoGradeDao;
 import br.com.kadesh.dao.impl.TipoPedidoDao;
 import br.com.kadesh.dao.impl.TransportadoraDao;
+import br.com.kadesh.dao.impl.VendedorDao;
 import br.com.kadesh.model.Cliente;
 import br.com.kadesh.model.CondicaoPagamento;
 import br.com.kadesh.model.Endereco;
@@ -16,12 +17,14 @@ import br.com.kadesh.model.Estado;
 import br.com.kadesh.model.GradeVenda;
 import br.com.kadesh.model.ItemPedido;
 import br.com.kadesh.model.Pedido;
+import br.com.kadesh.model.PermissaoEnum;
 import br.com.kadesh.model.Produto;
 import br.com.kadesh.model.ProdutoGrade;
 import br.com.kadesh.model.SituacaoEnum;
 import br.com.kadesh.model.TipoPedido;
 import br.com.kadesh.model.Transportadora;
 import br.com.kadesh.model.Usuario;
+import br.com.kadesh.model.Vendedor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,10 +32,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class PedidoDetalheMB {
 
     @ManagedProperty("#{loginMB}")
@@ -47,6 +51,7 @@ public class PedidoDetalheMB {
     private EstadoDao estadoDao = new EstadoDao();
     private ProdutoDao produtoDao = new ProdutoDao();
     private ProdutoGradeDao produtoGradeDao = new ProdutoGradeDao();
+    private VendedorDao vendedorDao = new VendedorDao();
 
     private List<TipoPedido> tipoPedidos;
     private List<Transportadora> transportadoras;
@@ -73,6 +78,7 @@ public class PedidoDetalheMB {
     private Usuario usuario;
     private Date dataInicial;
     private Date dataFinal;
+    private Vendedor vendedor;
 
     public PedidoDetalheMB() {
 
@@ -93,8 +99,13 @@ public class PedidoDetalheMB {
     @PostConstruct
     public void selectAll() {
         usuario = loginMB.getUsuario();
+        if (usuario.getPermissao() == PermissaoEnum.VENDEDOR) {
+            vendedor = (Vendedor) usuario;
+            pedidos = vendedor.getPedidos();
+        } else {
+            pedidos = pedidoDao.findAll();
+        }
 
-        pedidos = pedidoDao.findAll();
         clientes = clienteDao.findAll();
         condicoes = condPagDao.findAll();
         transportadoras = transportadoraDao.findAll();
@@ -106,9 +117,10 @@ public class PedidoDetalheMB {
     }
 
     public String detalharPedido(Pedido p) {
-        pedido = new Pedido(p.getId(), p.getCliente(), p.getTransportadora(), p.getEnderecoEntrega(), p.getCondicaoPagamento(),
-                p.getTipoPedido(), p.getNumeroOrdemCompra(), p.getObservacoes(), p.getSituacao(), p.getValorTotal(), p.getQuantidade(),
-                p.getDataCriacao(), p.getItensPedido());
+        this.pedido = pedidoDao.find(p.getId());
+//        pedido = new Pedido(p.getId(), p.getCliente(), p.getTransportadora(), p.getEnderecoEntrega(), p.getCondicaoPagamento(),
+//                p.getTipoPedido(), p.getNumeroOrdemCompra(), p.getObservacoes(), p.getSituacao(), p.getValorTotal(), p.getQuantidade(),
+//                p.getDataCriacao(), p.getItensPedido());
         itens = pedido.getItensPedido();
 
         return "detalhesPedidoGUI.xhtml";
@@ -121,13 +133,29 @@ public class PedidoDetalheMB {
 //    Pedido cancelado pelo vendedor
     public void cancelar() {
         pedido.setSituacao(SituacaoEnum.CANCELADO);
-        pedidoDao.saveOrUpdate(pedido);
+        for (Pedido p : pedidos) {
+            if (p.getId() == pedido.getId()) {
+                pedidos.remove(p);
+                pedidos.add(pedido);
+            }
+        }
+        vendedor.setPedidos(pedidos);
+        vendedorDao.saveOrUpdate(vendedor);
+//        pedidoDao.saveOrUpdate(pedido);
     }
 
 //    Pedido finalizado pelo vendedor e encaminhado para o supervisor
     public void finalizar() {
         pedido.setSituacao(SituacaoEnum.FINALIZADO);
-        pedidoDao.saveOrUpdate(pedido);
+        for (Pedido p : pedidos) {
+            if (p.getId() == pedido.getId()) {
+                pedidos.remove(p);
+                pedidos.add(pedido);
+            }
+        }
+        vendedor.setPedidos(pedidos);
+        vendedorDao.saveOrUpdate(vendedor);
+//        pedidoDao.saveOrUpdate(pedido);
     }
 
 //    Pedido aprovado pelo supervisor e encaminhado para o financeiro

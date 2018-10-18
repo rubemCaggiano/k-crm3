@@ -48,6 +48,7 @@ public class UsuarioMB{
         selectAll();
         usuario = new Usuario();
         vendedor = new Vendedor();
+        supervisor = new Supervisor();
 
     }
 
@@ -103,6 +104,7 @@ public class UsuarioMB{
     public void selectAll() {
         usuarios = usuarioDao.findAll();
         vendedores = vendedorDao.findAll();
+        supervisores = supervisorDao.findAll();
         permissoes = Arrays.asList(PermissaoEnum.values());
 
     }

@@ -15,6 +15,8 @@
             <b:navBar brand="K-CRM" brandHref="#" inverse="true" fixed="top" fluid="true">
                 <b:navbarLinks pull="right">
                     <b:form>
+                        <h:outputText value="#{loginMB.usuario.nome}" style="color: white; font-size: 14"/>
+                        <!--<b:inputText span="8" readonly="true" id="usuarioLogado" value="#{loginMB.usuario.nome}" size="30" />-->
                         <b:commandButton style="background-color: transparent; color: white; border: none; font-size: 20px" action="#{loginMB.doLogout()}" onclick="../login.xhtml" value="Sair"/>
                     </b:form>
                 </b:navbarLinks>
@@ -31,11 +33,9 @@
 
                             </b:dropMenu>
                             <b:dropMenu value="Pedido" icon-awesome="clipboard">
-                                <b:navLink href="../faces/Telas/adicionarPedidoGUI.xhtml" value="Adicionar"/>
                                 <b:navLink href="../faces/Telas/pedidosGUI.xhtml" value="Consultar" />
                             </b:dropMenu>
                             <b:dropMenu value="Cliente" icon-awesome="users">
-                                <b:navLink href="../faces/Telas/adicionarClienteGUI.xhtml" value="Adicionar"/>
                                 <b:navLink href="../faces/Telas/clientesGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
                             <b:dropMenu value="Produto" iconAwesome="cubes">

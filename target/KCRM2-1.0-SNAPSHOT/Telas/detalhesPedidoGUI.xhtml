@@ -33,7 +33,7 @@
                                 <b:inputText span="3" readonly="true" id="situacao3" value="#{pedidoDetalheMB.pedido.situacao.situacao}" label="Situação" size="30" />
                             </b:row>
                             <b:row>
-                                <b:commandButton type="button" look="primary" value="Finalizar" action="#{pedidoDetalheMB.finalizar()}" icon-awesome="check" />
+                                <b:commandButton type="button" look="primary" value="Finalizar" action="#{pedidoDetalheMB.finalizar()}" icon-awesome="check" ajax="true" update="situacao3" />
                                 <b:commandButton type="button" look="danger" value="Cancelar" action="#{pedidoDetalheMB.cancelar()}" immediate="true" icon-awesome="times" ajax="true" update="situacao3" />
                             </b:row>
                         </b:panel>

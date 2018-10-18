@@ -28,7 +28,6 @@ br\com\kadesh\dao\impl\ProdutoGradeDao.class
 br\com\kadesh\util\DataAccessLayerException.class
 br\com\kadesh\model\Familia.class
 br\com\kadesh\model\Grupo.class
-br\com\kadesh\model\TipoVendedor.class
 br\com\kadesh\model\Supervisor.class
 br\com\kadesh\model\TipoRelacionamento.class
 br\com\kadesh\util\converter\ProdutoConverter.class
