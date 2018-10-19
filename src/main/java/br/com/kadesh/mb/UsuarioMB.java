@@ -68,6 +68,7 @@ public class UsuarioMB{
             vendedor.setStatus(StatusEnum.ATIVO);
             vendedorDao.saveOrUpdate(vendedor);
         } else if (permissao == PermissaoEnum.SUPERVISOR) {
+            supervisor = new Supervisor();
             supervisor.setNome(nome);
             supervisor.setEmail(email);
             supervisor.setUsuario(usuarioUsuario);
@@ -243,5 +244,6 @@ public class UsuarioMB{
     public void setSenhaPlana(String senhaPlana) {
         this.senhaPlana = senhaPlana;
     }
+    
 
 }

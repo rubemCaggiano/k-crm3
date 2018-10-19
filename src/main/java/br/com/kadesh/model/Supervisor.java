@@ -25,6 +25,7 @@ public class Supervisor extends Usuario {
         this.vendedores = vendedores;
     }
 
+
     public Supervisor(List<Vendedor> vendedores, int id, String nome, String email, String usuario, String senha, StatusEnum status, PermissaoEnum permissao) {
         super(id, nome, email, usuario, senha, status, permissao);
         this.vendedores = vendedores;
