@@ -23,6 +23,10 @@ public class Vendedor extends Usuario {
     @Fetch(FetchMode.SUBSELECT)
     private List<Pedido> pedidos;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Agendamento> agendamentos;
+
     @ManyToOne
     private Supervisor supervisor;
 
@@ -81,6 +85,14 @@ public class Vendedor extends Usuario {
             return false;
         }
         return true;
+    }
+
+    public List<Agendamento> getAgendamentos() {
+        return agendamentos;
+    }
+
+    public void setAgendamentos(List<Agendamento> agendamentos) {
+        this.agendamentos = agendamentos;
     }
 
 }

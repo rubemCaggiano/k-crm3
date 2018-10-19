@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/Template/template.xhtml">
+        <ui:define name="content">
+            <b:panel title="Agendamento" collapsible="false">
+                <b:form>
+                    <b:commandButton look="primary" action="#{agendamentoMB.mostrarPAgendamento()}" value="Agendar" icon-awesome="plus"/>
+                </b:form>
+                <h:panelGroup>
+                    <b:formGroup>
+                        <b:panel id="adicionarAgendamento" rendered="#{agendamentoMB.PAgendamento == true}">
+                            <b:form>
+                                <b:row>
+                                    <b:selectOneMenu id="cliente"
+                                                     value="#{agendamentoMB.cliente}" 
+                                                     required="true"
+                                                     label="Cliente"
+                                                     span="6"
+                                                     select2="true"
+                                                     converter="omnifaces.SelectItemsConverter" 
+                                                     >
+                                        <f:selectItem itemLabel="Selecione um cliente" />
+                                        <f:selectItems value="#{agendamentoMB.clientes}"
+                                                       var="cliente" 
+                                                       itemLabel="#{cliente.razaoSocial}"
+                                                       itemValue="#{cliente}"
+                                                       />
+                                    </b:selectOneMenu>
+                                    
+                                    <b:selectOneMenu id="status"
+                                                     value="#{agendamentoMB.statusEnumAgendamento}" 
+                                                     required="false"
+                                                     rendered="#{agendamentoMB.dadosAlterar == true}"
+                                                     label="Status"
+                                                     span="6"
+                                                     select2="true"
+                                                 >
+                                    <f:selectItem  itemLabel="Selecione um Status" />
+                                    <f:selectItems value="#{agendamentoMB.status}"
+                                                   var="statusEnumAgendamento" 
+                                                   itemLabel="#{statusEnumAgendamento.status}"
+                                                   itemValue="#{statusEnumAgendamento}"
+                                                   />
+                                </b:selectOneMenu>
+                                </b:row>
+                                <b:row>
+                                    <b:dateTimePicker value="#{agendamentoMB.agendamento.dataAgendada}"
+                                                      show-time="false"
+                                                      label="Data agendada"
+                                                      span="6"
+                                                      />
+                                    <b:dateTimePicker value="#{agendamentoMB.agendamento.dataRealizacao}"
+                                                      rendered="#{agendamentoMB.dadosAlterar == true}"
+                                                      show-time="false"
+                                                      label="Data realização"
+                                                      span="6"
+                                                      />
+                                </b:row>
+                                <b:row>
+                                    <b:inputTextarea span="12" id="observacao-agendamento" value="#{agendamentoMB.agendamento.observacao}" label="Observação do Agendamento" required="true" />  
+                                </b:row>
+
+                                <b:commandButton look="primary" value="Salvar" action="#{agendamentoMB.salvar()}" icon-awesome="save" />
+                                <b:commandButton look="danger" value="Cancelar" action="#{agendamentoMB.cancelar()}" icon-awesome="trash" />
+                            </b:form>
+                        </b:panel>
+
+                        <h:form>
+                            <b:dataTable
+                                excel="true"
+                                columnVisibility="true"
+                                print="true"
+                                value="#{agendamentoMB.agendamentos}"
+                                var="agendamento"
+                                select="true"
+                                selectionMode="single"
+                                customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                >
+
+                                <b:dataTableColumn value="#{agendamento.status.status}" label="Status" />
+                                <b:dataTableColumn label="Data Agendada" >
+                                    <h:outputText value="#{agendamento.dataAgendada}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="Data Realização" >
+                                    <h:outputText value="#{agendamento.dataRealizacao}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn value="#{agendamento.cliente.razaoSocial}" label="Cliente" />
+                                <b:dataTableColumn value="#{agendamento.observacao}" label="Observação" />
+
+                                <b:dataTableColumn label="Opções">
+                                    <b:commandButton look="warning" action="#{agendamentoMB.detalharAgendamento(agendamento)}" immediate="true" icon-awesome="edit"/>
+                                    <b:commandButton look="danger" action="#{agendamentoMB}" immediate="true" icon-awesome="trash"/>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                    </b:formGroup>
+                </h:panelGroup>
+            </b:panel>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,6 +1,7 @@
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\VendedorDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\HibernateFactory.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Supervisor.java
+C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\AgendamentoDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Transportadora.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Relacionamento.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\PedidoDao.java
@@ -11,6 +12,7 @@ C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\con
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\SupervisorDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\converter\LinhaConverter.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\PageFilter.java
+C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\RelacionamentoMB.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\PermissaoEnum.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Pedido.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\SessionContext.java
@@ -29,17 +31,21 @@ C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Linha.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Usuario.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Vendedor.java
+C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\AgendamentoMB.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\TipoRelacionamento.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Contato.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\TipoPedido.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Familia.java
+C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\RelacionamentoDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\UsuarioMB.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Grupo.java
+C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\StatusEnumAgendamento.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\Digest.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\TipoPedidoDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\LoginMB.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\CondPagDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\util\HibernateSession.java
+C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\mb\GrupoDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\ProdutoDao.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\model\Produto.java
 C:\Users\rubem\Desktop\Workspace CRM\k-crm3\src\main\java\br\com\kadesh\dao\impl\GrupoDao.java

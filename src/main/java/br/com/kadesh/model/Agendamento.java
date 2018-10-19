@@ -2,37 +2,51 @@ package br.com.kadesh.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Proxy;
 
 @Entity
+@Proxy(lazy = true)
 public class Agendamento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
-    @OneToOne
-    private Relacionamento relacionamento;
-
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Cliente cliente;
+    
+    @ManyToOne
+    private Vendedor vendedor;
+   
     @Temporal(TemporalType.DATE)
     private Date dataAgendada;
-
+    
+    @Temporal(TemporalType.DATE)
+    private Date dataRealizacao;
+    
     private String observacao;
+    
+    private StatusEnumAgendamento status;
 
     public Agendamento() {
     }
 
-    public Agendamento(int id, Relacionamento relacionamento, Date dataAgendada, String observacao) {
-        this.id = id;
-        this.relacionamento = relacionamento;
-        this.dataAgendada = dataAgendada;
-        this.observacao = observacao;
+    public Agendamento(int id, Cliente cliente, Vendedor vendedor, Date dataAgendada, Date dataRealizacao, String observacao, StatusEnumAgendamento status) {
+        this.id             = id;
+        this.cliente        = cliente;
+        this.vendedor       = vendedor;
+        this.dataAgendada   = dataAgendada;
+        this.dataRealizacao = dataRealizacao;
+        this.observacao     = observacao;
+        this.status         = status;
     }
 
     public int getId() {
@@ -51,14 +65,6 @@ public class Agendamento implements Serializable {
         this.observacao = observacao;
     }
 
-    public Relacionamento getRelacionamento() {
-        return relacionamento;
-    }
-
-    public void setRelacionamento(Relacionamento relacionamento) {
-        this.relacionamento = relacionamento;
-    }
-
     public Date getDataAgendada() {
         return dataAgendada;
     }
@@ -67,4 +73,49 @@ public class Agendamento implements Serializable {
         this.dataAgendada = dataAgendada;
     }
 
+    public StatusEnumAgendamento getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnumAgendamento status) {
+        this.status = status;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Date getDataRealizacao() {
+        return dataRealizacao;
+    }
+
+    public void setDataRealizacao(Date dataRealizacao) {
+        this.dataRealizacao = dataRealizacao;
+    } 
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        Agendamento a = (Agendamento) obj;
+        return this.id == a.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + this.id;
+        return hash;
+    }
+     
 }

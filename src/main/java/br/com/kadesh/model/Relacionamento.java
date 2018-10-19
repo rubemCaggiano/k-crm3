@@ -21,7 +21,7 @@ public class Relacionamento implements Serializable {
     private Cliente cliente;
     
     @Temporal(TemporalType.DATE)
-    private Date data;
+    private Date dataRealizacao;
     
     @OneToOne
     private TipoRelacionamento tipoRelacionamento;
@@ -31,10 +31,10 @@ public class Relacionamento implements Serializable {
     public Relacionamento() {
     }
 
-    public Relacionamento(int id, Cliente cliente, Date data, TipoRelacionamento tipoRelacionamento, String observacao) {
+    public Relacionamento(int id, Cliente cliente, Date dataRealizacao, TipoRelacionamento tipoRelacionamento, String observacao) {
         this.id = id;
         this.cliente = cliente;
-        this.data = data;
+        this.dataRealizacao = dataRealizacao;
         this.tipoRelacionamento = tipoRelacionamento;
         this.observacao = observacao;
     }
@@ -55,12 +55,12 @@ public class Relacionamento implements Serializable {
         this.cliente = cliente;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataRealizacao() {
+        return dataRealizacao;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataRealizacao(Date dataRealizacao) {
+        this.dataRealizacao = dataRealizacao;
     }
 
     public TipoRelacionamento getTipoRelacionamento() {
