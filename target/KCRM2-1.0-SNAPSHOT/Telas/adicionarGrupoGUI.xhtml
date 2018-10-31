@@ -8,6 +8,10 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
+            <b:growl id="mensagem" autoUpdate="true" allow-dismiss="true"
+                     animation-enter="animated bounceInDown"
+                     animation-exit="animated flipOutX"
+                     escape="true" />
             <b:formGroup>
                 <b:panel id="pGrupo" title="Cadastro de Grupo" collapsible="false">
                     <b:form>
@@ -78,7 +82,7 @@
                                     <f:ajax event="click" render="pMDtGrupo"/>
                                 </b:commandButton>
                                 <b:commandButton look="warning" action="#{produtoMB.detalharGrupo(grupo)}" icon="edit"/>
-                                <b:commandButton type="button" look="danger" action="#{produtoMB.excluirGrupo(grupo)}" immediate="true" icon="trash" />
+                                <b:commandButton type="submit" look="danger" action="#{produtoMB.excluirGrupo(grupo)}" icon="trash" />
                             </b:dataTableColumn>
                         </b:dataTable>
                     </h:form>

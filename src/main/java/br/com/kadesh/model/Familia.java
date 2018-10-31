@@ -1,6 +1,7 @@
 package br.com.kadesh.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,8 +13,12 @@ public class Familia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(unique = true)
     private String nome;
+    
     private String descricao;
+    
+    @Column(unique = true)
     private String nomeReduzido;
 
     public Familia() {

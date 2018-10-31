@@ -8,6 +8,10 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
+            <b:growl id="mensagem" autoUpdate="true" allow-dismiss="true"
+                     animation-enter="animated bounceInDown"
+                     animation-exit="animated flipOutX"
+                     escape="true" />
             <b:formGroup>
                 <b:panel id="pProd" title="Cadastro de Produto">
                     <b:form>
@@ -82,7 +86,7 @@
                                                    itemValue="#{status}"
                                                    />
                                 </b:selectOneMenu>
-                                
+
                             </b:row>
                             <b:row>
                                 <b:inputText span="4" id="referencia" value="#{produtoMB.produto.referencia}" label="Referência" size="30" required="true" />

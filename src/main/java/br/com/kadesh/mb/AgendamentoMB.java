@@ -106,7 +106,8 @@ public class AgendamentoMB implements Serializable {
     }
 
     public void detalharAgendamento(Agendamento a) {
-        this.agendamento = agendamentoDao.find(a.getId());
+        this.agendamento = a;
+//        this.agendamento = agendamentoDao.find(a.getId());
         statusEnumAgendamento = agendamento.getStatus();
         cliente = agendamento.getCliente();
         dadosAlterar = true;

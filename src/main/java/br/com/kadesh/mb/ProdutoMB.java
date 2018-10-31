@@ -96,18 +96,24 @@ public class ProdutoMB implements Serializable {
 
 //    Metodos para Salvar Cadastros
     public void salvarProduto() {
-        produto.setFamilia(familia);
-        produto.setLinha(linha);
-        produto.setGrupo(grupo);
-        produto.setStatus(status);
-        produto.setNumeracao(geraGrade());
-        produtoDao.saveOrUpdate(produto);
-        produto = new Produto();
-        linha = new Linha();
-        familia = new Familia();
-        grupo = new Grupo();
-        mostrarProd = false;
-        selectAll();
+        try {
+            produto.setFamilia(familia);
+            produto.setLinha(linha);
+            produto.setGrupo(grupo);
+            produto.setStatus(status);
+            produto.setNumeracao(geraGrade());
+            produtoDao.saveOrUpdate(produto);
+            produto = new Produto();
+            linha = new Linha();
+            familia = new Familia();
+            grupo = new Grupo();
+            mostrarProd = false;
+            selectAll();
+            Messages.addGlobalInfo("Registro Inserido Com Sucesso");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao inserir Registro");
+        }
+
     }
 
     public void salvarFamilia() {
@@ -125,17 +131,29 @@ public class ProdutoMB implements Serializable {
     }
 
     public void salvarLinha() {
-        linhaDao.create(linha);
-        linha = new Linha();
-        mostrarLinha = false;
-        selectAll();
+        try {
+            linhaDao.create(linha);
+            linha = new Linha();
+            mostrarLinha = false;
+            selectAll();
+            Messages.addGlobalInfo("Registro Inserido Com Sucesso");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao inserir Registro");
+        }
+
     }
 
     public void salvarGrupo() {
-        grupoDao.create(grupo);
-        grupo = new Grupo();
-        mostrarGrupo = false;
-        selectAll();
+        try {
+            grupoDao.create(grupo);
+            grupo = new Grupo();
+            mostrarGrupo = false;
+            selectAll();
+            Messages.addGlobalInfo("Registro Inserido Com Sucesso");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao inserir Registro");
+        }
+
     }
     //--------------------------------------------------------------------------
 
@@ -211,27 +229,53 @@ public class ProdutoMB implements Serializable {
     //--------------------------------------------------------------------------
 //    Metodos para excluir Cadastros
     public void excluirProduto() {
-        produtoDao.delete(produto);
-        produto = new Produto();
-        selectAll();
+        try {
+            produtoDao.delete(produto);
+            produto = new Produto();
+            selectAll();
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao excluir Registro");
+        }
+
     }
 
     public void excluirFamilia(Familia f) {
-        familiaDao.delete(f);
-        this.familia = new Familia();
-        selectAll();
+        try {
+            familiaDao.delete(f);
+            this.familia = new Familia();
+            selectAll();
+        } catch (javax.persistence.PersistenceException ex) {
+            Messages.addGlobalError("Falha ao excluir, existem produtos vinculados");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao excluir Registro");
+        }
+
     }
 
     public void excluirLinha(Linha l) {
-        linhaDao.delete(l);
-        this.linha = new Linha();
-        selectAll();
+        try {
+            linhaDao.delete(l);
+            this.linha = new Linha();
+            selectAll();
+        } catch (javax.persistence.PersistenceException ex) {
+            Messages.addGlobalError("Falha ao excluir, existem produtos vinculados");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao excluir Registro");
+        }
+
     }
 
     public void excluirGrupo(Grupo g) {
-        grupoDao.delete(g);
-        this.grupo = new Grupo();
-        selectAll();
+        try {
+            grupoDao.delete(g);
+            this.grupo = new Grupo();
+            selectAll();
+        } catch (javax.persistence.PersistenceException ex) {
+            Messages.addGlobalError("Falha ao excluir, existem produtos vinculados");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao excluir Registro");
+        }
+
     }
     //--------------------------------------------------------------------------
 

@@ -7,13 +7,16 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:composition template="/Template/template.xhtml">
+        
         <ui:define name="content">
+            <b:growl id="mensagem" autoUpdate="true" allow-dismiss="true"
+                                         animation-enter="animated bounceInDown"
+                                         animation-exit="animated flipOutX"
+                                         escape="true" />
+            
             <b:formGroup>
                 <b:panel id="pFamilia" title="Cadastro de Familia" collapsible="false">
-                    <b:growl id="mensagem" autoUpdate="true" allow-dismiss="true"
-                             animation-enter="animated bounceInDown"
-                             animation-exit="animated flipOutX"
-                             escape="true" />
+                  
                     <b:form>
                         <b:commandButton look="primary" action="#{produtoMB.mostrarCadFamilia()}" value="Nova Familia" icon-awesome="plus"/>
                     </b:form>

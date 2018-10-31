@@ -8,6 +8,10 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
+            <b:growl id="mensagem" autoUpdate="true" allow-dismiss="true"
+                     animation-enter="animated bounceInDown"
+                     animation-exit="animated flipOutX"
+                     escape="true" />
             <b:panel title="Agendamento" collapsible="false">
                 <b:form>
                     <b:commandButton look="primary" action="#{agendamentoMB.mostrarPAgendamento()}" value="Agendar" icon-awesome="plus"/>
@@ -32,7 +36,7 @@
                                                        itemValue="#{cliente}"
                                                        />
                                     </b:selectOneMenu>
-                                    
+
                                     <b:selectOneMenu id="status"
                                                      value="#{agendamentoMB.statusEnumAgendamento}" 
                                                      required="false"
@@ -40,14 +44,14 @@
                                                      label="Status"
                                                      span="6"
                                                      select2="true"
-                                                 >
-                                    <f:selectItem  itemLabel="Selecione um Status" />
-                                    <f:selectItems value="#{agendamentoMB.status}"
-                                                   var="statusEnumAgendamento" 
-                                                   itemLabel="#{statusEnumAgendamento.status}"
-                                                   itemValue="#{statusEnumAgendamento}"
-                                                   />
-                                </b:selectOneMenu>
+                                                     >
+                                        <f:selectItem  itemLabel="Selecione um Status" />
+                                        <f:selectItems value="#{agendamentoMB.status}"
+                                                       var="statusEnumAgendamento" 
+                                                       itemLabel="#{statusEnumAgendamento.status}"
+                                                       itemValue="#{statusEnumAgendamento}"
+                                                       />
+                                    </b:selectOneMenu>
                                 </b:row>
                                 <b:row>
                                     <b:dateTimePicker value="#{agendamentoMB.agendamento.dataAgendada}"

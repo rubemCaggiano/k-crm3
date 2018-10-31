@@ -7,11 +7,15 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:composition template="/Template/template.xhtml">
-<!--        <f:metadata>
-            <f:viewParam name="cliente" value="#{clienteMB.cliente.id}" />
-            <f:viewAction action="#{clienteMB.detalharCliente(cliente)}"/>
-        </f:metadata>-->
+        <!--        <f:metadata>
+                    <f:viewParam name="cliente" value="#{clienteMB.cliente.id}" />
+                    <f:viewAction action="#{clienteMB.detalharCliente(cliente)}"/>
+                </f:metadata>-->
         <ui:define name="content">
+            <b:growl id="mensagem" autoUpdate="true" allow-dismiss="true"
+                     animation-enter="animated bounceInDown"
+                     animation-exit="animated flipOutX"
+                     escape="true" />
             <b:modal id="mContato"
                      title="Contatos"
                      styleClass="mContato"
