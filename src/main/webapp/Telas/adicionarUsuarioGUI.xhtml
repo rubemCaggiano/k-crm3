@@ -9,126 +9,127 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
-                <b:container fluid="true">
-                    <b:panel title="Cadastro de Usuarios">
-                        <!--<b:button look="primary" value="Novo Usuario" icon-awesome="plus"/>-->
+            <b:container fluid="true">
+                <b:panel title="Cadastro de Usuarios">
+                    <!--<b:button look="primary" value="Novo Usuario" icon-awesome="plus"/>-->
 
-                        <b:panel id="pmCadUsuario">
-                            <b:form prependId="false">
-                                <b:row>
-                                    <b:inputText span="6" id="nome" value="#{usuarioMB.nome}" label="Nome Completo" size="100" required="true"/>
-                                    <b:inputText span="6" id="email" value="#{usuarioMB.email}" label="E-mail" size="50" required="true"/>  
-
-                                </b:row>
-                                <b:row>
-                                    <b:inputText span="6" id="usuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50" required="true"/> 
-                                    <b:inputSecret span="6" id="senha" value="#{usuarioMB.senhaPlana}" label="Senha" size="16" required="true"/>            
-                                </b:row>
-                                <b:row>
-                                    <b:selectOneMenu id="permissao"
-                                                     value="#{usuarioMB.permissao}" 
-                                                     label="Permissão"
-                                                     span="10"
-                                                     required="true"
-                                                     select2="true"
-                                                     >
-
-                                        <f:selectItem itemLabel="Selecione       ." />
-                                        <f:selectItems value="#{usuarioMB.permissoes}"
-                                                       var="permissao" 
-                                                       itemLabel="#{permissao.permissao}"
-                                                       itemValue="#{permissao}"
-                                                       />
-                                    </b:selectOneMenu>
-                                </b:row>
-
-                                <b:row>
-                                    <b:selectOneMenu id="supervisorVendedor"
-                                                     value="#{usuarioMB.supervisor}" 
-                                                     label="Supervisor"
-                                                     span="10"
-                                                     select2="true"
-
-                                                     >
-
-                                        <f:selectItem itemLabel="Selecione       ." />
-                                        <f:selectItems value="#{usuarioMB.supervisores}"
-                                                       var="supervisor" 
-                                                       itemLabel="#{supervisor.nome}"
-                                                       itemValue="#{supervisor}"
-                                                       />
-                                    </b:selectOneMenu>
-                                </b:row>
-
-
-                                <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
-                            </b:form>
-                        </b:panel>
-
-
-                        <b:modal id="mEditUsuario"
-                                 title="Cadastro de Usuario" 
-                                 styleClass="mEditUsuario"
-                                 closable="false"  
-                                 close-on-escape="false" 
-                                 backdrop="false">
-                            <b:panel id="pmEditUsuario">
-                                <b:form>
-                                    <b:row>
-                                        <b:inputText readonly="true" span="6" id="edtnome" value="#{usuarioMB.nome}" label="Nome Completo" size="100"/>
-                                        <b:inputText readonly="true" span="6" id="edtemail" value="#{usuarioMB.email}" label="E-mail" size="50"/>  
-
-                                    </b:row>
-                                    <b:row>
-                                        <b:inputText readonly="true" span="6" id="edtusuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50"/> 
-                                    </b:row>
-                                    <b:row>
-                                        <b:inputText readonly="true" span="6" id="edtpermissao" value="#{usuarioMB.permissao.permissao}" label="Permissão" size="50"/> 
-                                    </b:row>
-                                    <b:row rendered="#{usuarioMB.supervisor != null}">
-                                        <b:inputText readonly="true" span="6" id="edtsup" value="#{usuarioMB.supervisor.nome}" label="Supervisor" size="50"/> 
-                                    </b:row>
-                                </b:form>
-                            </b:panel>
-                            <f:facet name="footer">
-                                <b:button value="Close" look="danger" dismiss="modal" />
-                            </f:facet>
-                        </b:modal>
-
-
+                    <b:panel id="pmCadUsuario">
                         <b:form prependId="false">
-                            <b:dataTable   
-                                excel="true"
-                                columnVisibility="true"
-                                print="true"
-                                value="#{usuarioMB.usuarios}"
-                                var="usuario"
-                                select="true"
-                                selectionMode="single"
-                                customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
-                                >
+                            <b:row>
+                                <b:inputText span="6" id="nome" value="#{usuarioMB.nome}" label="Nome Completo" size="100" required="true"/>
+                                <b:inputText span="6" id="email" value="#{usuarioMB.email}" label="E-mail" size="50" required="true"/>  
 
-                                <b:dataTableColumn value="#{usuario.nome}" label="Nome" />
-                                <b:dataTableColumn value="#{usuario.usuario}" label="Usuario" />
-                                <b:dataTableColumn value="#{usuario.permissao.permissao}" label="Permissão" />
-                                <b:dataTableColumn value="#{usuario.email}" label="Email" />
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="6" id="usuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50" required="true"/> 
+                                <b:inputSecret span="6" id="senha" value="#{usuarioMB.senhaPlana}" label="Senha" size="16" required="true"/>            
+                            </b:row>
+                            <b:row>
+                                <b:selectOneMenu id="permissao"
+                                                 value="#{usuarioMB.permissao}" 
+                                                 label="Permissão"
+                                                 span="10"
+                                                 required="true"
+                                                 select2="true"
+                                                 >
 
-                                <b:dataTableColumn label="Ações">
-                                    <b:commandButton type="button" look="info" onclick="$('.mEditUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon-awesome="search-plus">
-                                        <f:ajax event="click" render="pmEditUsuario"/>
-                                    </b:commandButton>
-                                    <b:commandButton look="warning" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon="edit"/>
+                                    <f:selectItem itemLabel="Selecione       ." />
+                                    <f:selectItems value="#{usuarioMB.permissoes}"
+                                                   var="permissao" 
+                                                   itemLabel="#{permissao.permissao}"
+                                                   itemValue="#{permissao}"
+                                                   />
+                                    <!--<f:ajax event="change" render="supervisorVendedor"/>-->
+                                </b:selectOneMenu>
+                            </b:row>
 
-                                    <b:commandButton type="submit" look="danger" action="#{usuarioMB.excluirUsuario(usuario)}" icon="trash" />
+                            <b:row>
+                                <b:selectOneMenu id="supervisorVendedor"
+                                                 value="#{usuarioMB.supervisor}" 
+                                                 label="Supervisor"
+                                                 span="10"
+                                                 select2="true"
+                                                 rendered="#{usuarioMB.permissao == 'VENDEDOR'}"
+                                                 >
+
+                                    <f:selectItem itemLabel="Selecione       ." />
+                                    <f:selectItems value="#{usuarioMB.supervisores}"
+                                                   var="supervisor" 
+                                                   itemLabel="#{supervisor.nome}"
+                                                   itemValue="#{supervisor}"
+                                                   />
+                                </b:selectOneMenu>
+                            </b:row>
 
 
-                                </b:dataTableColumn>
-
-
-                            </b:dataTable> 
+                            <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
                         </b:form>
                     </b:panel>
-                </b:container>
+
+
+                    <b:modal id="mEditUsuario"
+                             title="Cadastro de Usuario" 
+                             styleClass="mEditUsuario"
+                             closable="false"  
+                             close-on-escape="false" 
+                             backdrop="false">
+                        <b:panel id="pmEditUsuario">
+                            <b:form>
+                                <b:row>
+                                    <b:inputText readonly="true" span="6" id="edtnome" value="#{usuarioMB.nome}" label="Nome Completo" size="100"/>
+                                    <b:inputText readonly="true" span="6" id="edtemail" value="#{usuarioMB.email}" label="E-mail" size="50"/>  
+
+                                </b:row>
+                                <b:row>
+                                    <b:inputText readonly="true" span="6" id="edtusuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50"/> 
+                                </b:row>
+                                <b:row>
+                                    <b:inputText readonly="true" span="6" id="edtpermissao" value="#{usuarioMB.permissao.permissao}" label="Permissão" size="50"/> 
+                                </b:row>
+                                <b:row rendered="#{usuarioMB.supervisor != null}">
+                                    <b:inputText readonly="true" span="6" id="edtsup" value="#{usuarioMB.supervisor.nome}" label="Supervisor" size="50"/> 
+                                </b:row>
+                            </b:form>
+                        </b:panel>
+                        <f:facet name="footer">
+                            <b:button value="Close" look="danger" dismiss="modal" />
+                        </f:facet>
+                    </b:modal>
+
+
+                    <b:form prependId="false">
+                        <b:dataTable   
+                            excel="true"
+                            columnVisibility="true"
+                            print="true"
+                            value="#{usuarioMB.usuarios}"
+                            var="usuario"
+                            select="true"
+                            selectionMode="single"
+                            customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                            >
+
+                            <b:dataTableColumn value="#{usuario.nome}" label="Nome" />
+                            <b:dataTableColumn value="#{usuario.usuario}" label="Usuario" />
+                            <b:dataTableColumn value="#{usuario.permissao.permissao}" label="Permissão" />
+                            <b:dataTableColumn value="#{usuario.email}" label="Email" />
+
+                            <b:dataTableColumn label="Ações">
+                                <b:commandButton type="button" look="info" onclick="$('.mEditUsuario').modal()" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon-awesome="search-plus">
+                                    <f:ajax event="click" render="pmEditUsuario"/>
+                                </b:commandButton>
+                                <b:commandButton look="warning" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon="edit"/>
+
+                                <b:commandButton type="submit" look="danger" action="#{usuarioMB.excluirUsuario(usuario)}" icon="trash" />
+
+
+                            </b:dataTableColumn>
+
+
+                        </b:dataTable> 
+                    </b:form>
+                </b:panel>
+            </b:container>
         </ui:define>
     </ui:composition>
 </html>

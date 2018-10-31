@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.omnifaces.util.Messages;
 
 @ManagedBean
 @SessionScoped
@@ -50,17 +51,25 @@ public class LoginMB implements Serializable {
             usuario = usuarioDao.fazerLogin(usuario);
 //           User user = userBO.isUsuarioReadyToLogin(login, senha);
 
-            if (usuario == null) {
+            if (usuario == null || usuario.getId() == 0) {
 //             addErrorMessage("Login ou Senha errado, tente novamente !");
                 FacesContext.getCurrentInstance().validationFailed();
+                
+                usuario = new Usuario();
+                senhaPlana = "";
+                Messages.addGlobalError("Usuario ou senha Incorreto!!");
                 return "login.xhtml";
             }
             SessionContext.getInstance().setAttribute("usuarioLogado", usuario);
+            
             return "/Telas/inicial.xhtml";
+            
 
         } catch (Exception e) {
             FacesContext.getCurrentInstance().validationFailed();
             e.printStackTrace();
+            
+            
             return "";
         }
 

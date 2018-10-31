@@ -1,5 +1,5 @@
 package br.com.kadesh.mb;
- 
+
 import br.com.kadesh.dao.impl.ClienteDao;
 import br.com.kadesh.dao.impl.AgendamentoDao;
 import br.com.kadesh.dao.impl.UsuarioDao;
@@ -10,6 +10,7 @@ import br.com.kadesh.model.StatusEnumAgendamento;
 import br.com.kadesh.model.Usuario;
 import br.com.kadesh.model.Vendedor;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -65,13 +66,15 @@ public class AgendamentoMB implements Serializable {
         agendamento.setStatus(statusEnumAgendamento);
 
         if (alterar == true) {
+            List <Agendamento> agendamentosTemp = new ArrayList<>();
             for (Agendamento a : agendamentos) {
-                if (a.getId() == agendamento.getId()) {
-                    agendamentos.remove(a);
-                    agendamentos.add(agendamento);
+                if (a.getId() != agendamento.getId()) {
+                    agendamentosTemp.add(a);
                 }
             }
-            vendedor.setAgendamentos(agendamentos);
+            
+            agendamentosTemp.add(agendamento);
+            vendedor.setAgendamentos(agendamentosTemp);
             vendedorDao.saveOrUpdate(vendedor);
         } else if (alterar == false) {
             agendamento.setStatus(StatusEnumAgendamento.PENDENTE);

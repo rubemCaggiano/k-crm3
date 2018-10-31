@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import org.omnifaces.util.Messages;
 
 @ManagedBean
 @ViewScoped
@@ -39,7 +40,7 @@ public class ProdutoMB implements Serializable {
     private Linha linha;
     private Grupo grupo;
     private StatusEnum status;
-    
+
     private boolean mostrarProd = false;
     private boolean mostrarFamilia = false;
     private boolean mostrarLinha = false;
@@ -74,7 +75,7 @@ public class ProdutoMB implements Serializable {
         mostrarGrupo = true;
     }
     //--------------------------------------------------------------------------
-    
+
     //Metodos para esconder Formularios de cadastro
     public void ocultarCadProd() {
         mostrarProd = false;
@@ -110,10 +111,17 @@ public class ProdutoMB implements Serializable {
     }
 
     public void salvarFamilia() {
-        familiaDao.create(familia);
-        familia = new Familia();
-        mostrarFamilia = false;
-        selectAll();
+        try {
+            familiaDao.create(familia);
+            familia = new Familia();
+            mostrarFamilia = false;
+            selectAll();
+            Messages.addGlobalInfo("Registro Inserido Com Sucesso");
+
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao inserir Registro");
+        }
+
     }
 
     public void salvarLinha() {

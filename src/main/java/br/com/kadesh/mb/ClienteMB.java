@@ -77,7 +77,7 @@ public class ClienteMB implements Serializable {
                     clientes.add(cliente);
                 }
             }
-//            clienteDao.saveOrUpdate(cliente);
+            clienteDao.saveOrUpdate(cliente);
             vendedor.setClientes(clientes);
             vendedorDao.saveOrUpdate(vendedor);
             System.out.println("alterei");

@@ -15,30 +15,37 @@
                         <h:form>
                             <b:row>
                                 <b:inputText span="12" id="nome" value="#{loginMB.usuario.usuario}" label="Nome" size="100" required="true"/>
+
                             </b:row>
+                            <b:message for="nome"/>
                             <b:row>
                                 <b:inputSecret span="12" id="senha" value="#{loginMB.senhaPlana}" label="Senha" size="16" required="true"/>
+
                             </b:row>
+                            <b:message for="senha"/>
                             <b:commandButton type="submit" look="primary" value="Entrar" action="#{loginMB.doLogin()}"  icon-awesome="fa-key" />
+                            
                         </h:form>
+
                     </b:panel>
+                    <b:growl id="mensagem" autoUpdate="true" />
                 </b:container>
             </h:panelGroup>
         </b:jumbotron>
 
         <style type="text/css">
             .form-signin {
-                
+
 
             }
             .panel-group{
                 margin-left: 500px;
-                
+
             }
             .panel-heading{
-                    background-color: #337ab7 !important;
-                    color: #fff !important;
-                }
+                background-color: #337ab7 !important;
+                color: #fff !important;
+            }
         </style>
 
     </h:body>
