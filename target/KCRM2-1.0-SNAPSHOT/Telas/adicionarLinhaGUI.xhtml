@@ -9,9 +9,9 @@
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
             <b:growl id="mensagem" autoUpdate="true" allow-dismiss="true"
-                                         animation-enter="animated bounceInDown"
-                                         animation-exit="animated flipOutX"
-                                         escape="true" />
+                     animation-enter="animated bounceInDown"
+                     animation-exit="animated flipOutX"
+                     escape="true" />
             <b:formGroup>
                 <b:panel id="pLinha" title="Cadastro de Linha" collapsible="false">
                     <b:form>
@@ -20,18 +20,19 @@
 
                     <b:panel id="pMCadLinha" title="Cadastro" rendered="#{produtoMB.mostrarLinha}">
                         <h:form>
-                            <b:row>
-                                <b:inputText span="12" id="descricaoLinha" value="#{produtoMB.linha.descricao}" label="Descrição" size="200" required="true" />
-                            </b:row>
+
                             <b:row>
                                 <b:inputText span="12" id="nomeLinha" value="#{produtoMB.linha.nome}" label="Nome" size="200" required="true" />
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="12" id="descricaoLinha" value="#{produtoMB.linha.descricao}" label="Descrição" size="200" required="true" />
                             </b:row>
                             <b:row>
                                 <b:inputText span="12" id="nomeRedLinha" value="#{produtoMB.linha.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
                             </b:row>
                             <b:row>
-                                <b:message for="descricaoLinha"/>
                                 <b:message for="nomeLinha"/>
+                                <b:message for="descricaoLinha"/>
                                 <b:message for="nomeRedLinha"/>
                             </b:row>
                             <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarLinha()}"  icon-awesome="save">
@@ -48,10 +49,10 @@
                         <b:panel id="pMDtLinha">
                             <h:form>
                                 <b:row>
-                                    <b:inputText readonly="true" span="12" id="descricaoLinha" value="#{produtoMB.linha.descricao}" label="Descrição" size="200" required="true" />
+                                    <b:inputText readonly="true" span="12" id="nomeLinha" value="#{produtoMB.linha.nome}" label="Nome" size="200" required="true" />
                                 </b:row>
                                 <b:row>
-                                    <b:inputText readonly="true" span="12" id="nomeLinha" value="#{produtoMB.linha.nome}" label="Nome" size="200" required="true" />
+                                    <b:inputText readonly="true" span="12" id="descricaoLinha" value="#{produtoMB.linha.descricao}" label="Descrição" size="200" required="true" />
                                 </b:row>
                                 <b:row>
                                     <b:inputText readonly="true" span="12" id="nomeRedLinha" value="#{produtoMB.linha.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />

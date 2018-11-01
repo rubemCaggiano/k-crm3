@@ -7,34 +7,35 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:composition template="/Template/template.xhtml">
-        
+
         <ui:define name="content">
             <b:growl id="mensagem" autoUpdate="true" allow-dismiss="true"
-                                         animation-enter="animated bounceInDown"
-                                         animation-exit="animated flipOutX"
-                                         escape="true" />
-            
+                     animation-enter="animated bounceInDown"
+                     animation-exit="animated flipOutX"
+                     escape="true" />
+
             <b:formGroup>
                 <b:panel id="pFamilia" title="Cadastro de Familia" collapsible="false">
-                  
+
                     <b:form>
                         <b:commandButton look="primary" action="#{produtoMB.mostrarCadFamilia()}" value="Nova Familia" icon-awesome="plus"/>
                     </b:form>
 
                     <b:panel id="pMCadFamilia" title="Cadastro" rendered="#{produtoMB.mostrarFamilia}">
                         <h:form>
-                            <b:row>
-                                <b:inputText span="12" id="descricaoFamilia" value="#{produtoMB.familia.descricao}" label="Descrição" size="200" required="true" />
-                            </b:row>
+
                             <b:row>
                                 <b:inputText span="12" id="nomeFamilia" value="#{produtoMB.familia.nome}" label="Nome" size="200" required="true" />
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="12" id="descricaoFamilia" value="#{produtoMB.familia.descricao}" label="Descrição" size="200" required="true" />
                             </b:row>
                             <b:row>
                                 <b:inputText span="12" id="nomeRedFamilia" value="#{produtoMB.familia.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
                             </b:row>
                             <b:row>
-                                <b:message for="descricaoFamilia"/>
                                 <b:message for="nomeFamilia"/>
+                                <b:message for="descricaoFamilia"/>
                                 <b:message for="nomeRedFamilia"/>
                             </b:row>
                             <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarFamilia()}"  icon-awesome="save">
@@ -51,10 +52,10 @@
                         <b:panel id="pMDtFamilia">
                             <h:form>
                                 <b:row>
-                                    <b:inputText readonly="true" span="12" id="descricaoFamilia" value="#{produtoMB.familia.descricao}" label="Descrição" size="200" required="true" />
+                                    <b:inputText readonly="true" span="12" id="nomeFamilia" value="#{produtoMB.familia.nome}" label="Nome" size="200" required="true" />
                                 </b:row>
                                 <b:row>
-                                    <b:inputText readonly="true" span="12" id="nomeFamilia" value="#{produtoMB.familia.nome}" label="Nome" size="200" required="true" />
+                                    <b:inputText readonly="true" span="12" id="descricaoFamilia" value="#{produtoMB.familia.descricao}" label="Descrição" size="200" required="true" />
                                 </b:row>
                                 <b:row>
                                     <b:inputText readonly="true" span="12" id="nomeRedFamilia" value="#{produtoMB.familia.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />

@@ -61,18 +61,22 @@ public class ProdutoMB implements Serializable {
     //Metodos para mostrar Formularios de cadastro
     public void mostrarCadProd() {
         mostrarProd = true;
+        produto = new Produto();
     }
 
     public void mostrarCadFamilia() {
         mostrarFamilia = true;
+        familia = new Familia();
     }
 
     public void mostrarCadLinha() {
         mostrarLinha = true;
+        linha = new Linha();
     }
 
     public void mostrarCadGrupo() {
         mostrarGrupo = true;
+        grupo = new Grupo();
     }
     //--------------------------------------------------------------------------
 
@@ -109,9 +113,9 @@ public class ProdutoMB implements Serializable {
             grupo = new Grupo();
             mostrarProd = false;
             selectAll();
-            Messages.addGlobalInfo("Registro Inserido Com Sucesso");
+            Messages.addGlobalInfo("Produto cadastrado com Sucesso");
         } catch (Exception e) {
-            Messages.addGlobalError("Falha ao inserir Registro");
+            Messages.addGlobalError("Falha ao cadastrar Produto");
         }
 
     }
@@ -122,10 +126,10 @@ public class ProdutoMB implements Serializable {
             familia = new Familia();
             mostrarFamilia = false;
             selectAll();
-            Messages.addGlobalInfo("Registro Inserido Com Sucesso");
+            Messages.addGlobalInfo("Familia cadastrada com Sucesso");
 
         } catch (Exception e) {
-            Messages.addGlobalError("Falha ao inserir Registro");
+            Messages.addGlobalError("Falha ao cadastrar Familia");
         }
 
     }
@@ -136,9 +140,9 @@ public class ProdutoMB implements Serializable {
             linha = new Linha();
             mostrarLinha = false;
             selectAll();
-            Messages.addGlobalInfo("Registro Inserido Com Sucesso");
+            Messages.addGlobalInfo("Linha cadastrada com Sucesso");
         } catch (Exception e) {
-            Messages.addGlobalError("Falha ao inserir Registro");
+            Messages.addGlobalError("Falha ao cadastrar Linha");
         }
 
     }
@@ -149,9 +153,9 @@ public class ProdutoMB implements Serializable {
             grupo = new Grupo();
             mostrarGrupo = false;
             selectAll();
-            Messages.addGlobalInfo("Registro Inserido Com Sucesso");
+            Messages.addGlobalInfo("Grupo cadastrado com Sucesso");
         } catch (Exception e) {
-            Messages.addGlobalError("Falha ao inserir Registro");
+            Messages.addGlobalError("Falha ao cadastrar Grupo");
         }
 
     }
@@ -233,8 +237,9 @@ public class ProdutoMB implements Serializable {
             produtoDao.delete(produto);
             produto = new Produto();
             selectAll();
+            Messages.addGlobalInfo("Produto excluido com Sucesso");
         } catch (Exception e) {
-            Messages.addGlobalError("Falha ao excluir Registro");
+            Messages.addGlobalError("Falha ao excluir Produto");
         }
 
     }
@@ -244,10 +249,11 @@ public class ProdutoMB implements Serializable {
             familiaDao.delete(f);
             this.familia = new Familia();
             selectAll();
+            Messages.addGlobalInfo("Familia excluida com Sucesso");
         } catch (javax.persistence.PersistenceException ex) {
             Messages.addGlobalError("Falha ao excluir, existem produtos vinculados");
         } catch (Exception e) {
-            Messages.addGlobalError("Falha ao excluir Registro");
+            Messages.addGlobalError("Falha ao excluir Familia");
         }
 
     }
@@ -257,10 +263,11 @@ public class ProdutoMB implements Serializable {
             linhaDao.delete(l);
             this.linha = new Linha();
             selectAll();
+            Messages.addGlobalInfo("Linha excluida com Sucesso");
         } catch (javax.persistence.PersistenceException ex) {
             Messages.addGlobalError("Falha ao excluir, existem produtos vinculados");
         } catch (Exception e) {
-            Messages.addGlobalError("Falha ao excluir Registro");
+            Messages.addGlobalError("Falha ao excluir Linha");
         }
 
     }
@@ -270,10 +277,11 @@ public class ProdutoMB implements Serializable {
             grupoDao.delete(g);
             this.grupo = new Grupo();
             selectAll();
+            Messages.addGlobalInfo("Grupo excluido com Sucesso");
         } catch (javax.persistence.PersistenceException ex) {
             Messages.addGlobalError("Falha ao excluir, existem produtos vinculados");
         } catch (Exception e) {
-            Messages.addGlobalError("Falha ao excluir Registro");
+            Messages.addGlobalError("Falha ao excluir Grupo");
         }
 
     }

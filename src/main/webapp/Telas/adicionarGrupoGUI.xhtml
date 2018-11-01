@@ -20,17 +20,17 @@
                     <b:panel id="pMCadGrupo" title="Cadastro" rendered="#{produtoMB.mostrarGrupo}">
                         <h:form>
                             <b:row>
-                                <b:inputText span="12" id="descricaoGrupo" value="#{produtoMB.grupo.descricao}" label="Descrição" size="200" required="true" />
+                                <b:inputText span="12" id="nomeGrupo" value="#{produtoMB.grupo.nome}" label="Nome" size="200" required="true" />
                             </b:row>
                             <b:row>
-                                <b:inputText span="12" id="nomeGrupo" value="#{produtoMB.grupo.nome}" label="Nome" size="200" required="true" />
+                                <b:inputText span="12" id="descricaoGrupo" value="#{produtoMB.grupo.descricao}" label="Descrição" size="200" required="true" />
                             </b:row>
                             <b:row>
                                 <b:inputText span="12" id="nomeRedGrupo" value="#{produtoMB.grupo.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
                             </b:row>
                             <b:row>
-                                <b:message for="descricaoGrupo"/>
                                 <b:message for="nomeGrupo"/>
+                                <b:message for="descricaoGrupo"/>
                                 <b:message for="nomeRedGrupo"/>
                             </b:row>
                             <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarGrupo()}"  icon-awesome="save">
@@ -47,10 +47,10 @@
                         <b:panel id="pMDtGrupo">
                             <h:form>
                                 <b:row>
-                                    <b:inputText readonly="true" span="12" id="descricaoGrupo" value="#{produtoMB.grupo.descricao}" label="Descrição" size="200" required="true" />
+                                    <b:inputText readonly="true" span="12" id="nomeGrupo" value="#{produtoMB.grupo.nome}" label="Nome" size="200" required="true" />
                                 </b:row>
                                 <b:row>
-                                    <b:inputText readonly="true" span="12" id="nomeGrupo" value="#{produtoMB.grupo.nome}" label="Nome" size="200" required="true" />
+                                    <b:inputText readonly="true" span="12" id="descricaoGrupo" value="#{produtoMB.grupo.descricao}" label="Descrição" size="200" required="true" />
                                 </b:row>
                                 <b:row>
                                     <b:inputText readonly="true" span="12" id="nomeRedGrupo" value="#{produtoMB.grupo.nomeReduzido}" label="Nome Reduzido" size="200" required="true" />
