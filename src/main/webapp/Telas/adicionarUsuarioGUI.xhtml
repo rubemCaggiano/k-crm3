@@ -49,25 +49,6 @@
                                 </b:selectOneMenu>
                             </b:row>
 
-                            <b:row>
-                                <b:selectOneMenu id="supervisorVendedor"
-                                                 value="#{usuarioMB.supervisor}" 
-                                                 label="Supervisor"
-                                                 span="10"
-                                                 select2="true"
-                                                 rendered="#{usuarioMB.permissao == 'VENDEDOR'}"
-                                                 >
-
-                                    <f:selectItem itemLabel="Selecione       ." />
-                                    <f:selectItems value="#{usuarioMB.supervisores}"
-                                                   var="supervisor" 
-                                                   itemLabel="#{supervisor.nome}"
-                                                   itemValue="#{supervisor}"
-                                                   />
-                                </b:selectOneMenu>
-                            </b:row>
-
-
                             <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
                             <b:commandButton type="button" look="warning" value="Cancelar" action="#{usuarioMB.ocultarCadUsuario()}" immediate="true" icon-awesome="times">
                                 <f:ajax event="click" render="pmCadUsuario"/>
@@ -87,19 +68,19 @@
                         <b:panel id="pmEditUsuario">
                             <b:form>
                                 <b:row>
-                                    <b:inputText readonly="true" span="6" id="edtnome" value="#{usuarioMB.nome}" label="Nome Completo" size="100"/>
+                                    <b:inputText readonly="true" span="6" id="edtnome" value="#{usuarioMB.usuario.nome}" label="Nome Completo" size="100"/>
                                 </b:row>
                                 <b:row>
-                                    <b:inputText readonly="true" span="6" id="edtemail" value="#{usuarioMB.email}" label="E-mail" size="50"/>  
+                                    <b:inputText readonly="true" span="6" id="edtemail" value="#{usuarioMB.usuario.email}" label="E-mail" size="50"/>  
                                 </b:row>
                                 <b:row>
-                                    <b:inputText readonly="true" span="6" id="edtusuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50"/> 
+                                    <b:inputText readonly="true" span="6" id="edtusuariou" value="#{usuarioMB.usuario.usuario}" label="Usuario" size="50"/> 
                                 </b:row>
                                 <b:row>
-                                    <b:inputText readonly="true" span="6" id="edtpermissao" value="#{usuarioMB.permissao.permissao}" label="Permissão" size="50"/> 
+                                    <b:inputText readonly="true" span="6" id="edtpermissao" value="#{usuarioMB.usuario.permissao.permissao}" label="Permissão" size="50"/> 
                                 </b:row>
                                 <b:row rendered="#{usuarioMB.usuario.permissao == 'VENDEDOR'}">
-                                    <b:inputText readonly="true" span="6" id="edtsup" value="#{usuarioMB.supervisor.nome}" label="Supervisor" size="50"/> 
+                                    <b:inputText readonly="true" span="6" id="edtsup" value="#{usuarioMB.vendedor.supervisor.nome}" label="Supervisor" size="50"/> 
                                 </b:row>
                             </b:form>
                         </b:panel>
@@ -146,9 +127,9 @@
                                         <b:commandButton type="button" look="danger" action="#{usuarioMB.removerVendedor(vendedor)}" immediate="true" icon="trash" ajax="true" update=":pmEquipe" auto-update="true"/>
                                     </b:dataTableColumn>
 
-
                                 </b:dataTable>
                             </b:row>
+                            <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.vincularEquipe()}" icon-awesome="save" />
                         </b:form>
                     </b:panel>
 
@@ -181,8 +162,8 @@
                                 <b:commandButton  rendered="#{usuario.permissao == 'VENDEDOR'}" tooltip="Adicionar Supervisor"
                                                   type="submit" look="success"  icon="user" />
                                 <b:commandButton  rendered="#{usuario.permissao == 'SUPERVISOR'}" tooltip="Ver Equipe"
-                                                  type="submit" look="success" action="#{usuarioMB.mostrarEquipe()}" icon-awesome="users" />
-                                
+                                                  type="submit" look="success" action="#{usuarioMB.mostrarEquipe(usuario)}" icon-awesome="users" />
+
 
                             </b:dataTableColumn>
 

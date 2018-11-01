@@ -74,17 +74,26 @@ public class UsuarioMB {
         mostrar = false;
     }
 
-    public void mostrarEquipe() {
+    public void mostrarEquipe(Usuario u) {
+        supervisor = (Supervisor) u;
         mostrarEquipe = true;
     }
 
     public void adicionarVendedor() {
+        vendedor.setSupervisor(supervisor);
         vendedoresSelecionados.add(vendedor);
         vendedor = new Vendedor();
     }
     
     public void removerVendedor(Vendedor v){
         vendedoresSelecionados.remove(v);
+    }
+    
+    public void vincularEquipe(){
+        supervisor.setVendedores(vendedoresSelecionados);
+        supervisorDao.saveOrUpdate(supervisor);
+        vendedoresSelecionados = new ArrayList<>();
+        selectAll();
     }
 
     public void salvar() {
@@ -149,6 +158,7 @@ public class UsuarioMB {
     public void detalharUsuario(Usuario usuario) {
 
         this.usuario = usuarioDao.find(usuario.getId());
+        vendedor = (Vendedor) usuario;
         nome = usuario.getNome();
         email = usuario.getEmail();
         usuarioUsuario = usuario.getUsuario();
