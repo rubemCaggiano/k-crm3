@@ -14,25 +14,28 @@
                      animation-exit="animated flipOutX"
                      escape="true" />
             <b:container fluid="true">
-                <b:panel title="Cadastro de Usuarios">
-                    <!--<b:button look="primary" value="Novo Usuario" icon-awesome="plus"/>-->
+                <b:panel title="Cadastro de Usuarios" collapsible="false">
+                    <b:form>
+                        <b:commandButton look="primary" action="#{usuarioMB.mostrarCadUsuario()}" value="Novo Usuario" icon-awesome="plus"/>
+                    </b:form>
 
-                    <b:panel id="pmCadUsuario">
+                    <b:panel id="pmCadUsuario" rendered="#{usuarioMB.mostrar}">
                         <b:form prependId="false">
                             <b:row>
                                 <b:inputText span="6" id="nome" value="#{usuarioMB.nome}" label="Nome Completo" size="100" required="true"/>
-                                <b:inputText span="6" id="email" value="#{usuarioMB.email}" label="E-mail" size="50" required="true"/>  
-
                             </b:row>
                             <b:row>
-                                <b:inputText span="6" id="usuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50" required="true"/> 
-                                <b:inputSecret span="6" id="senha" value="#{usuarioMB.senhaPlana}" label="Senha" size="16" required="true"/>            
+                                <b:inputText span="6" id="email" value="#{usuarioMB.email}" label="E-mail" size="50" required="true"/>  
+                            </b:row>
+                            <b:row>
+                                <b:inputText span="3" id="usuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50" required="true"/> 
+                                <b:inputSecret span="3" id="senha" value="#{usuarioMB.senhaPlana}" label="Senha" size="16" required="true"/>            
                             </b:row>
                             <b:row>
                                 <b:selectOneMenu id="permissao"
                                                  value="#{usuarioMB.permissao}" 
                                                  label="Permissão"
-                                                 span="10"
+                                                 span="4"
                                                  required="true"
                                                  select2="true"
                                                  >
@@ -43,7 +46,6 @@
                                                    itemLabel="#{permissao.permissao}"
                                                    itemValue="#{permissao}"
                                                    />
-                                    <!--<f:ajax event="change" render="supervisorVendedor"/>-->
                                 </b:selectOneMenu>
                             </b:row>
 
@@ -67,6 +69,9 @@
 
 
                             <b:commandButton look="primary" value="Salvar" action="#{usuarioMB.salvar()}"  icon-awesome="save" />
+                            <b:commandButton type="button" look="warning" value="Cancelar" action="#{usuarioMB.ocultarCadUsuario()}" immediate="true" icon-awesome="times">
+                                <f:ajax event="click" render="pmCadUsuario"/>
+                            </b:commandButton>
                         </b:form>
                     </b:panel>
 
@@ -81,8 +86,9 @@
                             <b:form>
                                 <b:row>
                                     <b:inputText readonly="true" span="6" id="edtnome" value="#{usuarioMB.nome}" label="Nome Completo" size="100"/>
+                                </b:row>
+                                <b:row>
                                     <b:inputText readonly="true" span="6" id="edtemail" value="#{usuarioMB.email}" label="E-mail" size="50"/>  
-
                                 </b:row>
                                 <b:row>
                                     <b:inputText readonly="true" span="6" id="edtusuariou" value="#{usuarioMB.usuarioUsuario}" label="Usuario" size="50"/> 
@@ -90,7 +96,7 @@
                                 <b:row>
                                     <b:inputText readonly="true" span="6" id="edtpermissao" value="#{usuarioMB.permissao.permissao}" label="Permissão" size="50"/> 
                                 </b:row>
-                                <b:row rendered="#{usuarioMB.supervisor != null}">
+                                <b:row rendered="#{usuarioMB.usuario.permissao == 'VENDEDOR'}">
                                     <b:inputText readonly="true" span="6" id="edtsup" value="#{usuarioMB.supervisor.nome}" label="Supervisor" size="50"/> 
                                 </b:row>
                             </b:form>
@@ -123,12 +129,14 @@
                                     <f:ajax event="click" render="pmEditUsuario"/>
                                 </b:commandButton>
                                 <b:commandButton look="warning" action="#{usuarioMB.detalharUsuario(usuario)}" immediate="true" icon="edit"/>
-
                                 <b:commandButton type="submit" look="danger" action="#{usuarioMB.excluirUsuario(usuario)}" icon="trash" />
 
+                                <b:commandButton  rendered="#{usuario.permissao == 'VENDEDOR'}" tooltip="Adicionar Supervisor"
+                                                  type="submit" look="success" action="#{usuarioMB.excluirUsuario(usuario)}" icon="user" />
+                                <b:commandButton  rendered="#{usuario.permissao == 'SUPERVISOR'}" tooltip="Ver Equipe"
+                                                  type="submit" look="success" action="#{usuarioMB.excluirUsuario(usuario)}" icon="users" />
 
                             </b:dataTableColumn>
-
 
                         </b:dataTable> 
                     </b:form>

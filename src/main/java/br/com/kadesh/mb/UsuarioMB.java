@@ -23,7 +23,7 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
-public class UsuarioMB{
+public class UsuarioMB {
 
     private UsuarioDao usuarioDao = new UsuarioDao();
     private VendedorDao vendedorDao = new VendedorDao();
@@ -38,6 +38,7 @@ public class UsuarioMB{
     private Vendedor vendedor;
     private Supervisor supervisor;
     private PermissaoEnum permissao;
+    private boolean mostrar;
 
     private String nome;
     private String email;
@@ -49,7 +50,24 @@ public class UsuarioMB{
         usuario = new Usuario();
         vendedor = new Vendedor();
         supervisor = new Supervisor();
+        mostrar = false;
 
+    }
+
+    public void mostrarCadUsuario() {
+        mostrar = true;
+        nome = "";
+        email = "";
+        usuarioUsuario = "";
+        senhaPlana = "";
+
+        usuario = new Usuario();
+        vendedor = new Vendedor();
+        supervisor = new Supervisor();
+    }
+    
+    public void ocultarCadUsuario(){
+        mostrar = false;
     }
 
     public void salvar() {
@@ -100,6 +118,7 @@ public class UsuarioMB{
 
         usuario = new Usuario();
         selectAll();
+        mostrar = false;
     }
 
     public void selectAll() {
@@ -118,6 +137,7 @@ public class UsuarioMB{
         usuarioUsuario = usuario.getUsuario();
         senhaPlana = usuario.getSenha();
         permissao = usuario.getPermissao();
+        mostrar = true;
     }
 
     public void excluirUsuario(Usuario u) {
@@ -244,6 +264,13 @@ public class UsuarioMB{
     public void setSenhaPlana(String senhaPlana) {
         this.senhaPlana = senhaPlana;
     }
-    
+
+    public boolean isMostrar() {
+        return mostrar;
+    }
+
+    public void setMostrar(boolean mostrar) {
+        this.mostrar = mostrar;
+    }
 
 }
