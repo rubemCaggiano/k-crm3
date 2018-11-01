@@ -3,6 +3,7 @@ package br.com.kadesh.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,10 @@ public class Transportadora implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String razaoSocial;
+    
+    @Column(unique = true)
     private String cnpj;
+    
     private String nomeFantasia;
     private StatusEnum status;
 

@@ -20,7 +20,10 @@ public class Produto implements Serializable {
     private int id;
 
     private String descricao;
+    
+    @Column(unique = true)
     private String referencia;
+    
     private String numeroCa;
     private double custo;
     private double mcMinima;
