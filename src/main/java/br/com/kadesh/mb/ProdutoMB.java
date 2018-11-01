@@ -84,20 +84,24 @@ public class ProdutoMB implements Serializable {
     //--------------------------------------------------------------------------
 
     //Metodos para esconder Formularios de cadastro
-    public void ocultarCadProd() {
+    public String ocultarCadProd() {
         mostrarProd = false;
+        return "adicionarProdutoGUI.xhtml";
     }
 
-    public void ocultarCadFamilia() {
+    public String ocultarCadFamilia() {
         mostrarFamilia = false;
+        return "adicionarFamiliaGUI.xhtml";
     }
 
-    public void ocultarCadLinha() {
+    public String ocultarCadLinha() {
         mostrarLinha = false;
+        return "adicionarLinhaGUI.xhtml";
     }
 
-    public void ocultarCadGrupo() {
+    public String ocultarCadGrupo() {
         mostrarGrupo = false;
+        return "adicionarGrupoGUI.xhtml";
     }
     //--------------------------------------------------------------------------
 

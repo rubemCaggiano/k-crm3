@@ -11,6 +11,7 @@ import br.com.kadesh.model.Vendedor;
 import br.com.kadesh.util.Digest;
 import br.com.kadesh.util.HashGenerationException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,12 +34,14 @@ public class UsuarioMB {
     private List<Vendedor> vendedores;
     private List<Supervisor> supervisores;
     private List<PermissaoEnum> permissoes;
+    private List<Vendedor> vendedoresSelecionados = new ArrayList<>();
 
     private Usuario usuario;
     private Vendedor vendedor;
     private Supervisor supervisor;
     private PermissaoEnum permissao;
     private boolean mostrar;
+    private boolean mostrarEquipe;
 
     private String nome;
     private String email;
@@ -51,6 +54,7 @@ public class UsuarioMB {
         vendedor = new Vendedor();
         supervisor = new Supervisor();
         mostrar = false;
+        mostrarEquipe = false;
 
     }
 
@@ -65,9 +69,22 @@ public class UsuarioMB {
         vendedor = new Vendedor();
         supervisor = new Supervisor();
     }
-    
-    public void ocultarCadUsuario(){
+
+    public void ocultarCadUsuario() {
         mostrar = false;
+    }
+
+    public void mostrarEquipe() {
+        mostrarEquipe = true;
+    }
+
+    public void adicionarVendedor() {
+        vendedoresSelecionados.add(vendedor);
+        vendedor = new Vendedor();
+    }
+    
+    public void removerVendedor(Vendedor v){
+        vendedoresSelecionados.remove(v);
     }
 
     public void salvar() {
@@ -271,6 +288,22 @@ public class UsuarioMB {
 
     public void setMostrar(boolean mostrar) {
         this.mostrar = mostrar;
+    }
+
+    public List<Vendedor> getVendedoresSelecionados() {
+        return vendedoresSelecionados;
+    }
+
+    public void setVendedoresSelecionados(List<Vendedor> vendedoresSelecionados) {
+        this.vendedoresSelecionados = vendedoresSelecionados;
+    }
+
+    public boolean isMostrarEquipe() {
+        return mostrarEquipe;
+    }
+
+    public void setMostrarEquipe(boolean mostrarEquipe) {
+        this.mostrarEquipe = mostrarEquipe;
     }
 
 }

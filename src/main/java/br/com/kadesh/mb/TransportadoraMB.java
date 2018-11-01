@@ -70,6 +70,11 @@ public class TransportadoraMB implements Serializable {
         estadosAtendidos = new ArrayList<>();
     }
 
+    public String ocultarCadTransp() {
+        mostrar = false;
+        return "adicionarTransportadoraGUI.xhtml";
+    }
+
     public void adicionarEstado() {
         estadosAtendidos.add(estado);
         estados.remove(estado);

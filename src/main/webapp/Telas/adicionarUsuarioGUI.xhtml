@@ -76,6 +76,8 @@
                     </b:panel>
 
 
+
+
                     <b:modal id="mEditUsuario"
                              title="Cadastro de Usuario" 
                              styleClass="mEditUsuario"
@@ -106,6 +108,51 @@
                         </f:facet>
                     </b:modal>
 
+                    <b:panel id="pmEquipe" rendered="#{usuarioMB.mostrarEquipe}">
+                        <b:form>
+                            <b:row>
+                                <b:selectOneMenu id="vendedores"
+                                                 value="#{usuarioMB.vendedor}" 
+                                                 label="Equipe"
+                                                 span="3"
+                                                 select2="true"
+                                                 >
+                                    <f:selectItem itemLabel="Selecione" />
+                                    <f:selectItems value="#{usuarioMB.vendedores}"
+                                                   var="vendedor" 
+                                                   itemLabel="#{vendedor.nome}"
+                                                   itemValue="#{vendedor}"
+                                                   />
+                                </b:selectOneMenu>
+                                <b:commandButton type="button" look="primary" value="Adicionar" action="#{usuarioMB.adicionarVendedor()}" icon-awesome="check" ajax="true" update="equipeVendedores, vendedores"  />
+                            </b:row>
+                            <b:row>
+                                <b:dataTable 
+                                    span="4"
+                                    id="equipeVendedores"
+                                    columnVisibility="false"
+                                    value="#{usuarioMB.vendedoresSelecionados}"
+                                    var="vendedor"
+                                    select="true"
+                                    selectionMode="single"
+                                    searching ="false"
+                                    paginated="false"
+                                    info="false"
+                                    customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                    >
+
+                                    <b:dataTableColumn value="#{vendedor.nome}" label="Vendedor" />
+                                    <b:dataTableColumn label="Remover">
+                                        <b:commandButton type="button" look="danger" action="#{usuarioMB.removerVendedor(vendedor)}" immediate="true" icon="trash" ajax="true" update=":pmEquipe" auto-update="true"/>
+                                    </b:dataTableColumn>
+
+
+                                </b:dataTable>
+                            </b:row>
+                        </b:form>
+                    </b:panel>
+
+
 
                     <b:form prependId="false">
                         <b:dataTable   
@@ -132,9 +179,10 @@
                                 <b:commandButton type="submit" look="danger" action="#{usuarioMB.excluirUsuario(usuario)}" icon="trash" />
 
                                 <b:commandButton  rendered="#{usuario.permissao == 'VENDEDOR'}" tooltip="Adicionar Supervisor"
-                                                  type="submit" look="success" action="#{usuarioMB.excluirUsuario(usuario)}" icon="user" />
+                                                  type="submit" look="success"  icon="user" />
                                 <b:commandButton  rendered="#{usuario.permissao == 'SUPERVISOR'}" tooltip="Ver Equipe"
-                                                  type="submit" look="success" action="#{usuarioMB.excluirUsuario(usuario)}" icon="users" />
+                                                  type="submit" look="success" action="#{usuarioMB.mostrarEquipe()}" icon-awesome="users" />
+                                
 
                             </b:dataTableColumn>
 

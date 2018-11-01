@@ -40,9 +40,7 @@
                             </b:row>
                             <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarFamilia()}"  icon-awesome="save">
                             </b:commandButton>
-                            <b:commandButton type="button" look="warning" value="Cancelar" action="#{produtoMB.ocultarCadFamilia()}" immediate="true" icon-awesome="times">
-                                <f:ajax event="click" render="pFamilia"/>
-                            </b:commandButton>
+                            <b:commandButton type="submit" look="warning" value="Cancelar" action="#{produtoMB.ocultarCadFamilia()}" immediate="true" icon-awesome="times" />
                         </h:form>
                     </b:panel>
 

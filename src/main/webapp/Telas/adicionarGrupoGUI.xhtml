@@ -33,11 +33,8 @@
                                 <b:message for="descricaoGrupo"/>
                                 <b:message for="nomeRedGrupo"/>
                             </b:row>
-                            <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarGrupo()}"  icon-awesome="save">
-                            </b:commandButton>
-                            <b:commandButton type="button" look="warning" value="Cancelar" action="#{produtoMB.ocultarCadGrupo()}" immediate="true" icon-awesome="times">
-                                <f:ajax event="click" render="pGrupo"/>
-                            </b:commandButton>
+                            <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarGrupo()}"  icon-awesome="save"/>
+                            <b:commandButton type="submit" look="warning" value="Cancelar" action="#{produtoMB.ocultarCadGrupo()}" immediate="true" icon-awesome="times"/>
                         </h:form>
                     </b:panel>
 
