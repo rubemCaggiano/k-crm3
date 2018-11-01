@@ -25,13 +25,16 @@
                         <b:panel id="pMDtTransp">
                             <b:form id="fpMDtTransp" >
                                 <b:row>
-                                    <b:inputText readonly="true" span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" required="true" />
+                                    <b:inputText readonly="true" span="12" id="statusTransp" value="#{transportadoraMB.transportadora.status.status}" label="Status" size="200" />
                                 </b:row>
                                 <b:row>
-                                    <b:inputText readonly="true" span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="200" required="true" />
+                                    <b:inputText readonly="true" span="12" id="nomeTransp" value="#{transportadoraMB.transportadora.nomeFantasia}" label="Nome Fantasia" size="200" />
                                 </b:row>
                                 <b:row>
-                                    <b:inputText readonly="true" span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" required="true" />
+                                    <b:inputText readonly="true" span="12" id="cnpjTransp" value="#{transportadoraMB.transportadora.cnpj}" label="CNPJ" mask="99.999.999/9999-99" size="200"/>
+                                </b:row>
+                                <b:row>
+                                    <b:inputText readonly="true" span="12" id="razaoTransp" value="#{transportadoraMB.transportadora.razaoSocial}" label="Razão Social" size="200" />
                                 </b:row>
                                 <b:row>
                                     <h3>Estados Atendidos</h3>
@@ -162,6 +165,7 @@
                             customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
                             >
 
+                            <b:dataTableColumn value="#{transportadora.status.status}" label="Status" />
                             <b:dataTableColumn value="#{transportadora.nomeFantasia}" label="Transportadora" />
                             <b:dataTableColumn value="#{transportadora.cnpj}" label="CNPJ" />
                             <b:dataTableColumn value="#{transportadora.razaoSocial}" label="Razão Social" />

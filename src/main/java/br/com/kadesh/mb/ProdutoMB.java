@@ -62,6 +62,9 @@ public class ProdutoMB implements Serializable {
     public void mostrarCadProd() {
         mostrarProd = true;
         produto = new Produto();
+        familia = new Familia();
+        linha = new Linha();
+        grupo = new Grupo();
     }
 
     public void mostrarCadFamilia() {

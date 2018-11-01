@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import org.omnifaces.util.Messages;
 
 @ManagedBean
 @ViewScoped
@@ -37,27 +38,36 @@ public class TransportadoraMB implements Serializable {
         estado = new Estado();
         mostrar = false;
     }
-    public void instanciarTransportadora(){
+
+    public void instanciarTransportadora() {
         transportadora = new Transportadora();
         estadosAtendidos = new ArrayList<>();
         estado = new Estado();
     }
 
     public void salvar() {
-//        transportadoraDao.saveOrUpdate(transportadora);
-        transportadora.setStatus(status);
-        transportadora.setEstadosAtendidos(estadosAtendidos);
+        try {
+            //        transportadoraDao.saveOrUpdate(transportadora);
+            transportadora.setStatus(status);
+            transportadora.setEstadosAtendidos(estadosAtendidos);
 
-        transportadoraDao.saveOrUpdate(transportadora);
+            transportadoraDao.saveOrUpdate(transportadora);
 
-        transportadora = new Transportadora();
-        estadosAtendidos = new ArrayList<>();
-        mostrar = false;
-        selectAll();
+            transportadora = new Transportadora();
+            estadosAtendidos = new ArrayList<>();
+            mostrar = false;
+            selectAll();
+            Messages.addGlobalInfo("Transportadora cadastrada com Sucesso");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao cadastrar Transportadora");
+        }
+
     }
 
     public void mostrarCadTransp() {
         mostrar = true;
+        transportadora = new Transportadora();
+        estadosAtendidos = new ArrayList<>();
     }
 
     public void adicionarEstado() {
@@ -80,9 +90,16 @@ public class TransportadoraMB implements Serializable {
     }
 
     public void excluirTransportadora(Transportadora transportadora) {
-        transportadoraDao.delete(transportadora);
-        this.transportadora = new Transportadora();
-        selectAll();
+        try {
+            transportadoraDao.delete(transportadora);
+            this.transportadora = new Transportadora();
+            selectAll();
+            Messages.addGlobalInfo("Transportadora excluida com Sucesso");
+        } catch (javax.persistence.PersistenceException ex) {
+            Messages.addGlobalError("Falha ao excluir, existem pedidos vinculados");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao excluir Transportadora");
+        }
     }
 
     public void selectAll() {
