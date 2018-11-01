@@ -235,10 +235,10 @@ public class ProdutoMB implements Serializable {
 
     //--------------------------------------------------------------------------
 //    Metodos para excluir Cadastros
-    public void excluirProduto() {
+    public void excluirProduto(Produto p) {
         try {
-            produtoDao.delete(produto);
-            produto = new Produto();
+            produtoDao.delete(p);
+            this.produto = new Produto();
             selectAll();
             Messages.addGlobalInfo("Produto excluido com Sucesso");
         } catch (Exception e) {

@@ -9,73 +9,75 @@
 
     <ui:composition template="/Template/template.xhtml">
         <ui:define name="content">
-                <h:panelGroup>
-                    <b:container fluid="true">
-                        <b:panel title="Produtos">
-                            <b:modal id="mDtProd"
-                                     title="Cadastro de Produtos" 
-                                     styleClass="mDtProd"
-                                     closable="false"  
-                                     close-on-escape="false" 
-                                     backdrop="false"
-                                     closeOnEscape="false">
-                                <b:panel id="pMDtProd">
-                                    <b:form>
-                                        <b:row>
-                                            <b:inputText readonly="true" span="12" id="descricao" value="#{produtoMB.produto.descricao}" label="Descrição" size="200" required="true" />
+            <h:panelGroup>
+                <b:container fluid="true">
+                    <b:panel title="Produtos">
+                        <b:modal id="mDtProd"
+                                 title="Cadastro de Produtos" 
+                                 styleClass="mDtProd"
+                                 closable="false"  
+                                 close-on-escape="false" 
+                                 backdrop="false"
+                                 closeOnEscape="false">
+                            <b:panel id="pMDtProd">
+                                <b:form>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="status" value="#{produtoMB.produto.status.status}" label="Status" size="200" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="12" id="descricao" value="#{produtoMB.produto.descricao}" label="Descrição" size="200" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="4" id="referencia" value="#{produtoMB.produto.referencia}" label="Referência" size="30" />
+                                        <b:inputText readonly="true" span="4" id="numeroca" value="#{produtoMB.produto.numeroCa}" label="Numero do C.A " size="30" />
+                                    </b:row>
+                                    <b:row> 
+                                        <b:inputText readonly="true" span="3" id="custo" value="#{produtoMB.produto.custo}" label="Custo de Produção" size="10" />
+                                        <b:inputText readonly="true" span="3" id="mcminima" value="#{produtoMB.produto.mcMinima}" label="Margem Minima" size="10" mask="numeric" />
+                                    </b:row>
+                                    <b:row>
+                                        <b:inputText readonly="true" span="3" id="pfamiliaN" value="#{produtoMB.produto.familia.nome}" label="Familia" size="10" />
+                                        <b:inputText readonly="true" span="3" id="plinhaN" value="#{produtoMB.produto.linha.nome}" label="Linha" size="10" />
+                                        <b:inputText readonly="true" span="3" id="pgrupoN" value="#{produtoMB.produto.grupo.nome}" label="Grupo" size="10" />
+                                    </b:row>
+                                </b:form>
+                            </b:panel>
 
-                                        </b:row>
-                                        <b:row>
-                                            <b:inputText readonly="true" span="4" id="referencia" value="#{produtoMB.produto.referencia}" label="Referência" size="30" required="true" />
-                                            <b:inputText readonly="true" span="4" id="numeroca" value="#{produtoMB.produto.numeroCa}" label="Numero do C.A " size="30" required="false" />
-                                        </b:row>
-                                        <b:row> 
-                                            <b:inputText readonly="true" span="3" id="custo" value="#{produtoMB.produto.custo}" label="Custo de Produção" size="10" required="true" />
-                                            <b:inputText readonly="true" span="3" id="mcminima" value="#{produtoMB.produto.mcMinima}" label="Margem Minima" size="10" required="false" mask="numeric" />
-                                        </b:row>
-                                        <b:row>
-                                            <b:inputText readonly="true" span="3" id="pfamiliaN" value="#{produtoMB.produto.familia.nome}" label="Familia" size="10" required="true" />
-                                            <b:inputText readonly="true" span="3" id="plinhaN" value="#{produtoMB.produto.linha.nome}" label="Linha" size="10" required="true" />
-                                            <b:inputText readonly="true" span="3" id="pgrupoN" value="#{produtoMB.produto.grupo.nome}" label="Grupo" size="10" required="true" />
-                                        </b:row>
-                                    </b:form>
-                                </b:panel>
+                            <f:facet name="footer">
+                                <b:button value="Close" look="danger" dismiss="modal"  />
+                            </f:facet>	
 
-                                <f:facet name="footer">
-                                    <b:button value="Close" look="danger" dismiss="modal"  />
-                                </f:facet>	
+                        </b:modal>
 
-                            </b:modal>
+                        <h:form>
+                            <b:dataTable  excel="true"
+                                          columnVisibility="true"
+                                          print="true"
+                                          value="#{produtoMB.produtos}"
+                                          var="produto"
+                                          select="true"
+                                          selectionMode="single"
+                                          customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+                                          >
+                                <b:dataTableColumn value="#{produto.status.status}" label="Status" />
+                                <b:dataTableColumn value="#{produto.referencia}" label="Referencia" />
+                                <b:dataTableColumn value="#{produto.descricao}" label="Descrição" />
+                                <b:dataTableColumn value="#{produto.numeroCa}" label="Numero C.A" />
+                                <b:dataTableColumn value="#{produto.familia.nome}" label="Familia" />
+                                <b:dataTableColumn value="#{produto.grupo.nome}" label="Grupo" />
+                                <b:dataTableColumn value="#{produto.linha.nome}" label="Linha" />
 
-                            <h:form>
-                                <b:dataTable  excel="true"
-                                              columnVisibility="true"
-                                              print="true"
-                                              value="#{produtoMB.produtos}"
-                                              var="produto"
-                                              select="true"
-                                              selectionMode="single"
-                                              customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
-                                              >
+                                <b:dataTableColumn label="Ver">
+                                    <b:commandButton type="button" look="info" onclick="$('.mDtProd').modal()" action="#{produtoMB.detalharProduto(produto)}" immediate="true" icon-awesome="search-plus">
+                                        <f:ajax event="click" render="pMDtProd"/>
+                                    </b:commandButton>
+                                </b:dataTableColumn>
 
-                                    <b:dataTableColumn value="#{produto.referencia}" label="Referencia" />
-                                    <b:dataTableColumn value="#{produto.descricao}" label="Descrição" />
-                                    <b:dataTableColumn value="#{produto.numeroCa}" label="Numero C.A" />
-                                    <b:dataTableColumn value="#{produto.familia.nome}" label="Familia" />
-                                    <b:dataTableColumn value="#{produto.grupo.nome}" label="Grupo" />
-                                    <b:dataTableColumn value="#{produto.linha.nome}" label="Linha" />
-
-                                    <b:dataTableColumn label="Ver">
-                                        <b:commandButton type="button" look="info" onclick="$('.mDtProd').modal()" action="#{produtoMB.detalharProduto(produto)}" immediate="true" icon-awesome="search-plus">
-                                            <f:ajax event="click" render="pMDtProd"/>
-                                        </b:commandButton>
-                                    </b:dataTableColumn>
-
-                                </b:dataTable>
-                            </h:form>
-                        </b:panel>
-                    </b:container>
-                </h:panelGroup>
+                            </b:dataTable>
+                        </h:form>
+                    </b:panel>
+                </b:container>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </html>

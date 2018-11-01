@@ -37,6 +37,9 @@
                             </b:row>
                             <b:commandButton look="primary" value="Salvar" action="#{produtoMB.salvarLinha()}"  icon-awesome="save">
                             </b:commandButton>
+                            <b:commandButton type="button" look="warning" value="Cancelar" action="#{produtoMB.ocultarCadLinha()}" immediate="true" icon-awesome="times">
+                                <f:ajax event="click" render="pLinha"/>
+                            </b:commandButton>
                         </h:form>
                     </b:panel>
 
