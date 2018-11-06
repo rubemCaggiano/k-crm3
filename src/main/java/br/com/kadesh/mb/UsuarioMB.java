@@ -158,7 +158,10 @@ public class UsuarioMB {
     public void detalharUsuario(Usuario usuario) {
 
         this.usuario = usuarioDao.find(usuario.getId());
-        vendedor = (Vendedor) usuario;
+        if(usuario.getPermissao() == PermissaoEnum.VENDEDOR){
+            vendedor = (Vendedor) usuario;
+        }
+        
         nome = usuario.getNome();
         email = usuario.getEmail();
         usuarioUsuario = usuario.getUsuario();

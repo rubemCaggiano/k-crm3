@@ -28,9 +28,9 @@ public class GerarBancoBasico {
         FamiliaDao familiaDao = new FamiliaDao();
         GrupoDao grupoDao = new GrupoDao();
 
-//        Usuario usuario = new Usuario(0, "Administrador", "adm@kadesh.com.br", "adm", Digest.hashString("1234", "SHA-256"), StatusEnum.ATIVO, PermissaoEnum.ADMIN);
-//        usuarioDao.create(usuario);
-//
+        Usuario usuario = new Usuario(0, "Administrador", "adm@kadesh.com.br", "adm", Digest.hashString("1234", "SHA-256"), StatusEnum.ATIVO, PermissaoEnum.ADMIN);
+        usuarioDao.create(usuario);
+
         Estado estado = new Estado(0, "Acre", "AC");
         Estado estado2 = new Estado(0, "Alagoas", "AL");
         Estado estado3 = new Estado(0, "Amapá", "AP");
