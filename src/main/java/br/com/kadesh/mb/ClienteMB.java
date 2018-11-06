@@ -103,7 +103,7 @@ public class ClienteMB implements Serializable {
     }
 
     public String detalharCliente(Cliente cliente) {
-        this.cliente = clienteDao.find(cliente.getId());
+        this.cliente = cliente;
 
         contatos = cliente.getContatos();
         endereco = cliente.getEndereco();
