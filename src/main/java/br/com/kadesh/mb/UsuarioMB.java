@@ -21,6 +21,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import org.omnifaces.util.Messages;
 
 @ManagedBean
 @ViewScoped
@@ -84,12 +85,12 @@ public class UsuarioMB {
         vendedoresSelecionados.add(vendedor);
         vendedor = new Vendedor();
     }
-    
-    public void removerVendedor(Vendedor v){
+
+    public void removerVendedor(Vendedor v) {
         vendedoresSelecionados.remove(v);
     }
-    
-    public void vincularEquipe(){
+
+    public void vincularEquipe() {
         supervisor.setVendedores(vendedoresSelecionados);
         supervisorDao.saveOrUpdate(supervisor);
         vendedoresSelecionados = new ArrayList<>();
@@ -97,54 +98,59 @@ public class UsuarioMB {
     }
 
     public void salvar() {
-
-        usuario.setPermissao(permissao);
-        if (permissao == PermissaoEnum.VENDEDOR) {
-            vendedor.setNome(nome);
-            vendedor.setEmail(email);
-            vendedor.setUsuario(usuarioUsuario);
-            try {
-                vendedor.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
-            } catch (HashGenerationException ex) {
-                Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            vendedor.setPermissao(permissao);
-            vendedor.setStatus(StatusEnum.ATIVO);
-            vendedorDao.saveOrUpdate(vendedor);
-        } else if (permissao == PermissaoEnum.SUPERVISOR) {
-            supervisor = new Supervisor();
-            supervisor.setNome(nome);
-            supervisor.setEmail(email);
-            supervisor.setUsuario(usuarioUsuario);
-            try {
-                supervisor.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
-            } catch (HashGenerationException ex) {
-                Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            supervisor.setPermissao(permissao);
-            supervisor.setStatus(StatusEnum.ATIVO);
-            supervisorDao.saveOrUpdate(supervisor);
-        } else {
-            usuario.setNome(nome);
-            usuario.setEmail(email);
-            usuario.setUsuario(usuarioUsuario);
-            try {
-                usuario.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
-            } catch (HashGenerationException ex) {
-                Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
             usuario.setPermissao(permissao);
-            usuario.setStatus(StatusEnum.ATIVO);
-            usuarioDao.saveOrUpdate(usuario);
-        }
-        nome = "";
-        email = "";
-        usuarioUsuario = "";
-        senhaPlana = "";
+            if (permissao == PermissaoEnum.VENDEDOR) {
+                vendedor.setNome(nome);
+                vendedor.setEmail(email);
+                vendedor.setUsuario(usuarioUsuario);
+                try {
+                    vendedor.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
+                } catch (HashGenerationException ex) {
+                    Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                vendedor.setPermissao(permissao);
+                vendedor.setStatus(StatusEnum.ATIVO);
+                vendedorDao.saveOrUpdate(vendedor);
+            } else if (permissao == PermissaoEnum.SUPERVISOR) {
+                supervisor = new Supervisor();
+                supervisor.setNome(nome);
+                supervisor.setEmail(email);
+                supervisor.setUsuario(usuarioUsuario);
+                try {
+                    supervisor.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
+                } catch (HashGenerationException ex) {
+                    Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                supervisor.setPermissao(permissao);
+                supervisor.setStatus(StatusEnum.ATIVO);
+                supervisorDao.saveOrUpdate(supervisor);
+            } else {
+                usuario.setNome(nome);
+                usuario.setEmail(email);
+                usuario.setUsuario(usuarioUsuario);
+                try {
+                    usuario.setSenha(Digest.hashString(senhaPlana, "SHA-256"));
+                } catch (HashGenerationException ex) {
+                    Logger.getLogger(UsuarioMB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                usuario.setPermissao(permissao);
+                usuario.setStatus(StatusEnum.ATIVO);
+                usuarioDao.saveOrUpdate(usuario);
+            }
+            nome = "";
+            email = "";
+            usuarioUsuario = "";
+            senhaPlana = "";
 
-        usuario = new Usuario();
-        selectAll();
-        mostrar = false;
+            usuario = new Usuario();
+            selectAll();
+            mostrar = false;
+            Messages.addGlobalInfo("Usuario cadastrado com Sucesso");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao cadastrar Usuario");
+        }
+
     }
 
     public void selectAll() {
@@ -158,10 +164,10 @@ public class UsuarioMB {
     public void detalharUsuario(Usuario usuario) {
 
         this.usuario = usuarioDao.find(usuario.getId());
-        if(usuario.getPermissao() == PermissaoEnum.VENDEDOR){
+        if (usuario.getPermissao() == PermissaoEnum.VENDEDOR) {
             vendedor = (Vendedor) usuario;
         }
-        
+
         nome = usuario.getNome();
         email = usuario.getEmail();
         usuarioUsuario = usuario.getUsuario();
@@ -171,8 +177,15 @@ public class UsuarioMB {
     }
 
     public void excluirUsuario(Usuario u) {
-        usuarioDao.delete(u);
-        selectAll();
+        try {
+            usuarioDao.delete(u);
+            selectAll();
+        } catch (javax.persistence.PersistenceException ex) {
+            Messages.addGlobalError("Falha ao excluir, existem vinculos com esse usuario");
+        } catch (Exception e) {
+            Messages.addGlobalError("Falha ao excluir Usuario");
+        }
+
     }
 
     public UsuarioDao getUsuarioDao() {
