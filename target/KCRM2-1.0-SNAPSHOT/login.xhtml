@@ -3,8 +3,8 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
 
+    <h:head>
     </h:head>
     <h:body>
         <b:jumbotron> 
@@ -24,14 +24,14 @@
                             </b:row>
                             <b:message for="senha"/>
                             <b:commandButton type="submit" look="primary" value="Entrar" action="#{loginMB.doLogin()}"  icon-awesome="fa-key" />
-                            
+
                         </h:form>
 
                     </b:panel>
                     <b:growl id="mensagem" autoUpdate="true" allow-dismiss="true"
-                                         animation-enter="animated bounceInDown"
-                                         animation-exit="animated flipOutX"
-                                         escape="true" />
+                             animation-enter="animated bounceInDown"
+                             animation-exit="animated flipOutX"
+                             escape="true" />
                 </b:container>
             </h:panelGroup>
         </b:jumbotron>

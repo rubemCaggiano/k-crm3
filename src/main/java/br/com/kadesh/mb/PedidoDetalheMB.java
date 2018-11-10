@@ -102,6 +102,14 @@ public class PedidoDetalheMB {
         if (usuario.getPermissao() == PermissaoEnum.VENDEDOR) {
             vendedor = (Vendedor) usuario;
             pedidos = vendedor.getPedidos();
+        } else if (usuario.getPermissao() == PermissaoEnum.SUPERVISOR) {
+            List<Pedido> todosPedidos = pedidoDao.findAll();
+            pedidos = new ArrayList<>();
+            for (Pedido p : todosPedidos) {
+                if (p.getSituacao() != SituacaoEnum.ABERTO) {
+                    pedidos.add(p);
+                }
+            }
         } else {
             pedidos = pedidoDao.findAll();
         }
@@ -117,7 +125,7 @@ public class PedidoDetalheMB {
     }
 
     public String detalharPedido(Pedido p) {
-        this.pedido = pedidoDao.find(p.getId());
+        this.pedido = p;
 //        pedido = new Pedido(p.getId(), p.getCliente(), p.getTransportadora(), p.getEnderecoEntrega(), p.getCondicaoPagamento(),
 //                p.getTipoPedido(), p.getNumeroOrdemCompra(), p.getObservacoes(), p.getSituacao(), p.getValorTotal(), p.getQuantidade(),
 //                p.getDataCriacao(), p.getItensPedido());

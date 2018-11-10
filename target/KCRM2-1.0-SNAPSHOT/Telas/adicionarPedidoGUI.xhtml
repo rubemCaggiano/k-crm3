@@ -16,7 +16,7 @@
                 <b:formGroup>
 
                     <b:modal id="mItemAdd"
-                             
+
                              styleClass="mItemAdd"
                              closable="false"  
                              close-on-escape="false" 
@@ -253,7 +253,7 @@
                                 </b:row>
                             </b:panel>
 
-                            <b:button onclick="$('.mItemAdd').modal()" value="Adicionar Item" icon-awesome="plus"/>
+                            <b:button look="primary" onclick="$('.mItemAdd').modal()" value="Adicionar Item" icon-awesome="plus"/>
 
                             <b:panel id="dtVenda" title="Detalhes da Venda" collapsible="false">
                                 <b:inputText readonly="true" id="valorTotal"  value="#{pedidoMB.pedido.valorTotal}" label="Valor Total" mask="R$ 9{1,9}.00[00]" size="2" span="2" style="bottom: -20px" />
@@ -275,8 +275,12 @@
                                     <b:dataTableColumn value="#{itemPedido.produto.descricao}" label="Item" />
 
                                     <b:dataTableColumn value="#{itemPedido.preco}" label="Preço" />
-                                    <b:dataTableColumn value="#{itemPedido.quantidade}" label="Quantidade" />
-                                    <b:dataTableColumn value="#{itemPedido.valorItens}" label="Valor Itens" />
+                                    <b:dataTableColumn  label="Quantidade" >
+                                        <h:outputText value="#{itemPedido.quantidade}"/>
+                                    </b:dataTableColumn>
+                                    <b:dataTableColumn value="#{itemPedido.valorItens}" label="Valor Itens" >
+
+                                    </b:dataTableColumn>
                                     <b:dataTableColumn label="Opções">
                                         <b:commandButton type="button" onclick="$('.mItemAdd').modal()" look="warning" action="#{pedidoMB.editarItem(itemPedido)}" immediate="true" icon="edit" >
                                             <f:ajax event="click" render=":mItemAdd:itensVenda"/>

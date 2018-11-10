@@ -46,7 +46,7 @@ public class LoginMB implements Serializable {
         } catch (HashGenerationException ex) {
             Logger.getLogger(LoginMB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             usuario = usuarioDao.fazerLogin(usuario);
 //           User user = userBO.isUsuarioReadyToLogin(login, senha);
@@ -54,29 +54,28 @@ public class LoginMB implements Serializable {
             if (usuario == null || usuario.getId() == 0) {
 //             addErrorMessage("Login ou Senha errado, tente novamente !");
                 FacesContext.getCurrentInstance().validationFailed();
-                
+
                 usuario = new Usuario();
                 senhaPlana = "";
                 Messages.addGlobalError("Usuario ou senha Incorreto!!");
                 return "login.xhtml";
             }
             SessionContext.getInstance().setAttribute("usuarioLogado", usuario);
-            
+
             return "/Telas/inicial.xhtml";
-            
 
         } catch (Exception e) {
             FacesContext.getCurrentInstance().validationFailed();
             e.printStackTrace();
-            
-            
+
             return "";
         }
 
     }
 
-    public void doLogout() {
+    public String doLogout() {
         SessionContext.getInstance().encerrarSessao();
+        return "/login.xhtml";
     }
 //    @PostConstruct
 //    public void selectAll() {

@@ -15,7 +15,7 @@
             <b:formGroup>
                 <b:form>
                     <b:container fluid="true">
-                        <b:panel title="Supervisor" collapsible="false" rendered="#{loginMB.usuario.permissao == 'SUPERVISOR'}" >
+                        <b:panel title="Financeiro" collapsible="false" rendered="#{loginMB.usuario.permissao == 'FINANCEIRO'}" >
                             <b:row>
                                 <b:inputText span="3" readonly="true" id="vendedor1" value="#{pedidoDetalheMB.pedido.vendedor.nome}" label="Vendedor" size="30" />
                                 <b:commandButton look="primary" value="Produzir" action="#{pedidoDetalheMB.enviarProducao()}" immediate="true" icon-awesome="check" />
@@ -23,10 +23,10 @@
                             </b:row>
                         </b:panel>
 
-                        <b:panel title="Financeiro" collapsible="false" rendered="#{loginMB.usuario.permissao == 'FINANCEIRO'}" >
+                        <b:panel title="Supervisor" collapsible="false" rendered="#{loginMB.usuario.permissao == 'SUPERVISOR'}" >
                             <b:row>
                                 <b:inputText span="3" readonly="true" id="situacao2" value="#{pedidoDetalheMB.pedido.situacao.situacao}" label="Situação" size="30" />
-                                <b:inputText span="8" readonly="true" id="vendedor2" value="#{pedidoDetalheMB.pedido.vendedor.nome}" label="Vendedor" size="30" />
+                                <b:inputText span="3" readonly="true" id="vendedor2" value="#{pedidoDetalheMB.pedido.vendedor.nome}" label="Vendedor" size="30" />
                                 <b:commandButton look="primary" value="Aprovar" action="#{pedidoDetalheMB.aprovar()}" immediate="true" icon-awesome="check" />
                                 <b:commandButton look="warning" value="Devolver" action="#{pedidoDetalheMB.devolverVendedor()}" immediate="true" icon-awesome="times" />
                             </b:row>

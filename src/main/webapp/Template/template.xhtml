@@ -95,6 +95,20 @@
                                 <b:navLink href="../faces/Telas/transportadorasGUI.xhtml" value="Consultar"/>
                             </b:dropMenu>
                         </b:listLinks>
+                        <!--Financeiro-->
+                        <b:listLinks rendered="#{loginMB.usuario.permissao == 'FINANCEIRO' }">
+
+                            <b:navLink header="Menu" style="font-size: 24px; color: black;" />
+                            
+                            <b:dropMenu value="Pedido" icon-awesome="clipboard">
+                                <b:navLink href="../faces/Telas/pedidosGUI.xhtml" value="Consultar" />
+                            </b:dropMenu>
+                            <b:dropMenu value="Cliente" icon-awesome="users">
+                                <b:navLink href="../faces/Telas/clientesGUI.xhtml" value="Consultar"/>
+                            </b:dropMenu>
+                            
+                        </b:listLinks>
+                        
                         <!--Logistica-->
                         <b:listLinks rendered="#{loginMB.usuario.permissao == 'LOGISTICA'}">
 
