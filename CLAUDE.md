@@ -1,12 +1,12 @@
 # K-CRM legado (k-crm3) — repositório somente para consulta
 
 Este repositório contém o **K-CRM legado** (JSF 2.2 + BootsFaces + Hibernate 5 + MySQL, Java 7), CRM de vendas
-da Kadesh. O sistema está sendo reescrito em dois repositórios novos:
+da Kadesh. O sistema está sendo reescrito como **R-CRM**, em dois repositórios novos:
 
 | Projeto             | Repositório      | Stack                                            |
 |---------------------|------------------|--------------------------------------------------|
-| Backend (API REST)  | `k-crm-backend`  | Java 25 + Spring Boot 4.1.x + PostgreSQL         |
-| Frontend (SPA)      | `k-crm-frontend` | Vue 3 + TypeScript + Vite + Pinia + PrimeVue     |
+| Backend (API REST)  | `r-crm-backend`  | Java 25 + Spring Boot 4.1.x + PostgreSQL         |
+| Frontend (SPA)      | `r-crm-frontend` | Vue 3 + TypeScript + Vite + Pinia + Vuetify      |
 
 ## Regras para trabalhar aqui
 
@@ -15,8 +15,8 @@ da Kadesh. O sistema está sendo reescrito em dois repositórios novos:
 - Use este repositório para **entender regras de negócio e telas**. Não copie código, padrões nem
   configurações daqui para os projetos novos: o legado tem falhas de segurança e de design conhecidas
   (lista abaixo).
-- Os `CLAUDE.md` dos projetos novos estão em `docs/novos-projetos/` (cópia de referência). Depois que cada
-  repositório novo existir, a versão dele passa a valer, e a cópia daqui pode ficar desatualizada.
+- As definições dos projetos novos (arquitetura, convenções, segurança) estão no `CLAUDE.md` de cada repositório
+  novo. Mudanças nessas definições são feitas lá, não aqui.
 
 ## Onde encontrar cada coisa no legado
 
@@ -47,8 +47,8 @@ da Kadesh. O sistema está sendo reescrito em dois repositórios novos:
   `quantidade do item = Σ grade`; `valorItens = quantidade × preco`; `MC% = (preco − custo)/preco × 100`;
   totais do pedido = soma dos itens.
 
-A especificação completa (matriz de permissões, máquina de estados corrigida e pontos em aberto) está em
-`docs/novos-projetos/k-crm-backend/CLAUDE.md`.
+A especificação completa (matriz de permissões, máquina de estados corrigida e pontos em aberto) está no
+`CLAUDE.md` do repositório `r-crm-backend`.
 
 ## Problemas conhecidos do legado (não reproduzir)
 
