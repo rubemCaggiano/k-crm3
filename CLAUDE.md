@@ -18,7 +18,7 @@ da Kadesh. O sistema está sendo reescrito como **R-CRM**, em dois repositórios
 - As definições dos projetos novos (arquitetura, convenções, segurança) estão no `CLAUDE.md` de cada repositório
   novo. Mudanças nessas definições são feitas lá, não aqui.
 - Commits: um commit por alteração relevante de documentação, em Conventional Commits (`docs: ...`), como definido na
-  seção 2.1 do `CLAUDE.md` dos repositórios novos.
+  seção 2.1 do `CLAUDE.md` dos repositórios novos; branches e pull requests seguem a seção 2.2 de lá.
 
 ## Onde encontrar cada coisa no legado
 
